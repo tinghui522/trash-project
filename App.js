@@ -18,7 +18,7 @@ const Tab = createBottomTabNavigator();
 const PERSISTENCE_KEY = "NAVIGATION_STATE";
 
 const Stack = createStackNavigator();
-function JournalStack () {
+function HomeStack () {
   return (
       
       <Stack.Navigator>
@@ -60,7 +60,7 @@ function MonthStack () {
             height:0,
           }
         }} />  
-        <Stack.Screen name="Profile" component={AboutScreen} />
+        <StackMonth.Screen name="Profile" component={AboutScreen} />
       </StackMonth.Navigator>
   );
 }
@@ -161,7 +161,7 @@ const App = () => {
         }}
         
       >
-        <Tab.Screen name="首頁" component={JournalStack} />
+        <Tab.Screen name="首頁" component={HomeStack} />
         <Tab.Screen name="分析" component={SuggestStack} />
         <Tab.Screen name="月曆" component={MonthStack} />
         <Tab.Screen name="目標" component={GoalStack} />

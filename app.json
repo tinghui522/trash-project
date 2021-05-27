@@ -1,12 +1,12 @@
 {
   "expo": {
-    "name": "trash-project",
-    "slug": "trash-project",
+    "name": "trashpj",
+    "slug": "trashpj",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
-      "image": "./assets/trash-spinner.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -21,12 +21,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/trash-spinner.png",
+        "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       }
     },
     "web": {
-      "favicon": "./assets/trash-spinner.png"
+      "favicon": "./assets/favicon.png"
     }
   }
 }
