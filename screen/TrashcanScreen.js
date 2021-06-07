@@ -1,45 +1,45 @@
 import React, { Component,Fragment } from "react";
-import {Text,StatusBar,Button,StyleSheet,Platform,API,TouchableOpacity,Image,View,ScrollView,TouchableHighlight,SafeAreaView, ImageBackground,navigation} from 'react-native';
+import {Text,StatusBar,Button,StyleSheet,Platform,API,TouchableOpacity,Image,View,ScrollView,TouchableHighlight,SafeAreaView} from 'react-native';
 
 const TrashcanScreen = ({ navigation }) => {
-    return (
-        <SafeAreaView style={{flex:1}}>
-            <View style={styles.contentStyle}>
+  return (
+    <SafeAreaView style={{flex:1}}>
+        <View style={styles.contentStyle}>
+            
+            <Image
+                style={styles.circle1Style}
+                source={require('../assets/circle1.png')}
+                />
+            <Image
+                style={styles.circle2Style}
+                source={require('../assets/circle2.png')}
+                />
+            <Text style={styles.titleStyle}>本月垃圾量 16 件</Text>
+            <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
                 <Image
-                    style={styles.circle1Style}
-                    source={require('../assets/circle1.png')}
+                    style={styles.profileiconStyle}
+                    source={require('../assets/icon-profile.png')}
                     />
-                <Text style={styles.titleStyle}>本月垃圾量16件</Text>
+            </TouchableOpacity>
                 <Image
-                    style={styles.circle2Style}
-                    source={require('../assets/circle2.png')}
-                    />
-                <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+                style={styles.trashledStyle}
+                source={require('../assets/trash-led.png')}
+                />
+                <Image
+                style={styles.trashcanStyle}
+                source={require('../assets/trashcan.png')}
+                />
+                <TouchableOpacity onPress={() => navigation.navigate('Record')}>
                     <Image
-                        style={styles.profileiconStyle}
-                        source={require('../assets/icon-profile.png')}
+                        style={styles.btnaddtrashStyle}
+                        source={require('../assets/btn-addtrash.png')}
                         />
                 </TouchableOpacity>
-                <View >
-                    <Image
-                    style={styles.trashledStyle}
-                    source={require('../assets/trash-led.png')}
-                    />
-                    <Image
-                    style={styles.trashcanStyle}
-                    source={require('../assets/trashcan.png')}
-                    />
-                    <TouchableOpacity onPress={() => navigation.navigate('Record')}>
-                        <Image
-                            style={styles.btnaddtrashStyle}
-                            source={require('../assets/btn-addtrash.png')}
-                            />
-                    </TouchableOpacity>
-                </View>
-            </View>
-        </SafeAreaView>
-    )
-  }
+            
+        </View>
+    </SafeAreaView>
+  )
+}
 
 const styles = StyleSheet.create({
   container0: { flex: 1},
@@ -52,32 +52,41 @@ const styles = StyleSheet.create({
     fontSize:24,
     fontWeight:"bold",
     color:"#fff",
-    marginLeft:50,
-    marginTop:-20
+    marginLeft:70,
+    marginTop:-35
   },
   circle1Style:{
-    width:414,
-    height:205,
+    width:387,
+    height:265,
+    marginTop:-60
   },
   circle2Style:{
-    width:125,
-    height:147,
+    width:153,
+    height:180,
+    marginTop:-270,
+    marginLeft:270,
   },
   profileiconStyle:{
     width:58,
     height:58,
+    marginLeft:325,
+    marginTop:-100
   },
   trashledStyle:{
     width:356,
     height:68,
+    marginTop:100,
+    marginLeft:30
   },
   trashcanStyle:{
     width:350,
     height:407,
+    marginLeft:32
   },
   btnaddtrashStyle:{
     width:93,
     height:42,
+    marginLeft:300
   },
 });
 

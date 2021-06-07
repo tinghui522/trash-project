@@ -1,5 +1,5 @@
 import React, { Component,Fragment } from "react";
-import {Text,StatusBar,Button,StyleSheet,Platform,API,TouchableOpacity,Image,View,ScrollView,TouchableHighlight,SafeAreaView, ImageBackground,navigation} from 'react-native';
+import {StatusBar,Button,StyleSheet,Platform,API,TouchableOpacity,Image,View,ScrollView,TouchableHighlight,SafeAreaView, ImageBackground} from 'react-native';
 
 const RecordScreen = ({ navigation }) => {
     return (
@@ -9,7 +9,7 @@ const RecordScreen = ({ navigation }) => {
                     style={styles.circle1Style}
                     source={require('../assets/circle1.png')}
                     />
-                <Text style={styles.titleStyle}>本月垃圾量16件</Text>
+                
                 <Image
                     style={styles.circle2Style}
                     source={require('../assets/circle2.png')}

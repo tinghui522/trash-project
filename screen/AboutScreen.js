@@ -1,74 +1,71 @@
-import React, { Component,Fragment } from "react";
-import {Text,StatusBar,Button,StyleSheet,Platform,API,TouchableOpacity,Image,View,ScrollView,TouchableHighlight,SafeAreaView, ImageBackground,navigation} from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import React from 'react';
+import { TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View ,Image,ScrollView} from 'react-native';
 
-const AboutScreen = ({ navigation }) => {
-    return (
-        <SafeAreaView style={{flex:1}}>
-            <View style={{flex:1}}>
-                <Image
-                    style={styles.circle1Style}
-                    source={require('../assets/circle1.png')}
-                    />
-                <Text style={styles.titleStyle}>本月垃圾量16件</Text>
-                <Image
-                    style={styles.circle2Style}
-                    source={require('../assets/circle2.png')}
-                    />
-                <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
-                    <Image
-                        style={styles.profileiconStyle}
-                        source={require('../assets/icon-profile.png')}
-                        />
-                </TouchableOpacity>
-                <View style={styles.contentStyle}>
-                    <Image
-                    style={styles.trashledStyle}
-                    source={require('../assets/trash-led.png')}
-                    />
-                    <Image
-                    style={styles.trashcanStyle}
-                    source={require('../assets/trashcan.png')}
-                    />
-                </View>
-            </View>
-        </SafeAreaView>
-    )
-  }
+export default function AboutScreen({ navigation }) {
+  return (
+    <ScrollView>
+    <View >
+      <Image source={require('../assets/setting/bg.png')}/>
+      <TouchableOpacity>
+        <Image source={require('../assets/setting/btn_back.png')} style={{bottom: 200,left: 20}}/>
+      </TouchableOpacity>
+      <View style={styles.center}>
+        <View style={styles.bg_personal_form}>
+          <View style={styles.personal_form}>
+            <Image source={require('../assets/setting/big_icon-profile.png')}/>
+            <Text style={styles.text_personal_form}>Sandy</Text>
+            <Text style={styles.text_personal_form}>開始日期：2021 / 4 / 9</Text>
+          </View>
+          <View style={styles.setting}>
+            <Text style={{marginBottom: 40,marginTop:50,fontWeight: 'bold',color:'#909090'}}>語言</Text>
+            <Text style={{marginBottom: 40,fontWeight: 'bold',color:'#909090'}}>帳號管理</Text>
+            <Text style={{marginBottom: 40,fontWeight: 'bold',color:'#909090'}}>通知</Text>
+            <Text style={{marginBottom: 40,fontWeight: 'bold',color:'#909090'}}>Q and A</Text>
+            <Text style={{marginBottom: 40,fontWeight: 'bold',color:'#909090'}}>登出</Text>
+            <Text style={{marginBottom: 40,fontWeight: 'bold',color:'#909090'}}>聯絡我們</Text>
+          </View>
+        </View>
+      </View>
+      
+      <StatusBar style="auto" />
+    </View>
+    </ScrollView>
+  );
+}
 
 const styles = StyleSheet.create({
-  container0: { flex: 1},
-  contentStyle: {
+  center: {
+    alignItems: 'center',
+  },
+  bg_personal_form: {
+    width: 320,
+    height: 600,
+    backgroundColor: '#63CFA8',
+    alignItems: 'center',
+    bottom: 50,
+    shadowColor: '#707070',
+    shadowOffset: { width:6, height: 6,top:20 },
+    shadowOpacity: 6,
+    elevation: 5,
+    borderRadius: 20
+  },
+  personal_form: {
+    alignItems: 'center',
+    color: 'white',
+    bottom: 40,
+  },
+  text_personal_form :{
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: 'white'
+  },
+  setting: {
     backgroundColor: '#fff',
-    width:414,
-    height:896,
-  },
-  titleStyle:{
-    fontSize:24,
-    fontWeight:"bold",
-    color:"#fff",
-    marginLeft:50,
-    marginTop:-20
-  },
-  circle1Style:{
-    width:414,
-    height:205,
-  },
-  circle2Style:{
-    width:125,
-    height:147,
-  },
-  profileiconStyle:{
-    width:58,
-    height:58,
-  },
-  trashledStyle:{
-    width:356,
-    height:68,
-  },
-  trashcanStyle:{
-    width:350,
-    height:407,
-  },
+    width: 320,
+    height: 467,
+    alignItems: 'center',
+    borderRadius: 20
+  }
 });
-
-export default AboutScreen;

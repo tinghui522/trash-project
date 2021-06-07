@@ -1,12 +1,12 @@
 {
   "expo": {
-    "name": "trashpj",
-    "slug": "trashpj",
+    "name": "trash",
+    "slug": "trash",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/trash-spinner.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },

@@ -1,13 +1,10 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Image , AsyncStorageStatic, AppRegistry } from 'react-native';
-import { SplashScreen } from 'expo';
-
-import SuggestScreen from './screen/SuggestScreen';
+import { createStackNavigator } from '@react-navigation/stack';
+import TrashSuggestScreen from './screen/TrashSuggestScreen';
+import MoneySuggestScreen from './screen/MoneySuggestScreen';
 import RecordScreen from './screen/RecordScreen';
 import TrashcanScreen from "./screen/TrashcanScreen";
 import MonthScreen from "./screen/MonthScreen";
@@ -38,7 +35,7 @@ const StackSuggest = createStackNavigator();
 function SuggestStack () {
   return(
     <StackSuggest.Navigator>
-      <StackSuggest.Screen name=" "component={SuggestScreen}  
+      <StackSuggest.Screen name=" "component={TrashSuggestScreen}  
         options={{
           headerStyle:{
             height:0,
@@ -81,7 +78,7 @@ function GoalStack () {
   );
 }
 
-const App = () => {
+export default function App() {
   const [isLoadingComplete, setLoadingComplete] = React.useState(false);
   const [initialNavigationState, setInitialNavigationState] = React.useState();
   
@@ -106,18 +103,15 @@ const App = () => {
   if (!isLoadingComplete) {
     return null;
   } else {
-    return (
-      
-    <NavigationContainer 
-        initialState={initialNavigationState}
-        onStateChange={(state)=>
-          AsyncStorage.setItem(PERSISTENCE_KEY, JSON.stringify(state))
-        }
+  return (
+    <NavigationContainer
+      initialState={initialNavigationState}
+        
       >
-      //底部選單
-      <Tab.Navigator 
+      <Tab.Navigator
+        initialRouteName="trash"
         screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused, color, size }) => {
+          tabBarIcon: ({ focused, color,size }) => {
             let iconPath;
 
             if (route.name === '首頁') {
@@ -141,14 +135,14 @@ const App = () => {
             // You can return any component that you like here!
             return (
               <Image 
-                style={{width: 35, height: 35}}
+                style={{width: 40, height: 40}}
                 source={iconPath} 
               />
             );
           },
         })}
         tabBarOptions={{
-          activeTintColor: '#13EBAB',
+          activeTintColor: '#fff',
           inactiveTintColor: '#FFFFFF',
           labelStyle: {
             fontSize: 13,
@@ -158,8 +152,7 @@ const App = () => {
           },
           style:{height:120,backgroundColor:"#fff"}
           
-        }}
-        
+        }} 
       >
         <Tab.Screen name="首頁" component={HomeStack} />
         <Tab.Screen name="分析" component={SuggestStack} />
@@ -167,9 +160,7 @@ const App = () => {
         <Tab.Screen name="目標" component={GoalStack} />
       </Tab.Navigator>
     </NavigationContainer>
-  );
+    
+    );
+  }
 }
-
-}
-
-export default App;
