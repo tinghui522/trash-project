@@ -26,7 +26,12 @@ function HomeStack () {
           }
         }} />  
         <Stack.Screen name="Record" component={RecordScreen} />
-        <Stack.Screen name="Profile" component={AboutScreen} />
+        <Stack.Screen name="Profile" component={AboutScreen} 
+          options={{
+            headerStyle:{
+              height:0,
+            }
+          }} />  
       </Stack.Navigator>
   );
 }
@@ -41,7 +46,24 @@ function SuggestStack () {
             height:0,
           }
         }} />  
-      <Stack.Screen name="Profile" component={AboutScreen} />
+      <Stack.Screen name="Profile" component={AboutScreen} 
+        options={{
+          headerStyle:{
+            height:0,
+          }
+        }} /> 
+      <Stack.Screen name="MoneySuggest" component={MoneySuggestScreen} 
+        options={{
+          headerStyle:{
+            height:0,
+          }
+        }} />
+      <Stack.Screen name="TrashSuggest" component={TrashSuggestScreen} 
+        options={{
+          headerStyle:{
+            height:0,
+          }
+        }} />    
     </StackSuggest.Navigator>
   );
 }
@@ -57,7 +79,12 @@ function MonthStack () {
             height:0,
           }
         }} />  
-        <StackMonth.Screen name="Profile" component={AboutScreen} />
+        <Stack.Screen name="Profile" component={AboutScreen} 
+          options={{
+            headerStyle:{
+              height:0,
+            }
+          }} /> 
       </StackMonth.Navigator>
   );
 }
@@ -73,7 +100,12 @@ function GoalStack () {
             height:0,
           }
         }} />  
-        <Stack.Screen name="Profile" component={AboutScreen} />
+        <Stack.Screen name="Profile" component={AboutScreen} 
+          options={{
+            headerStyle:{
+              height:0,
+            }
+          }} /> 
       </StackGoal.Navigator>
   );
 }
@@ -135,7 +167,7 @@ export default function App() {
             // You can return any component that you like here!
             return (
               <Image 
-                style={{width: 40, height: 40}}
+                style={{width: 30, height: 30, marginTop: 20,}}
                 source={iconPath} 
               />
             );
@@ -145,13 +177,19 @@ export default function App() {
           activeTintColor: '#fff',
           inactiveTintColor: '#FFFFFF',
           labelStyle: {
-            fontSize: 13,
-            marginTop: -3,
+            fontSize: 12,
             padding: 0,
             fontWeight:"600"
           },
-          style:{height:120,backgroundColor:"#fff"}
-          
+          style: {
+            height:90,
+            backgroundColor:"#fff",
+            borderRadius: 30,
+            shadowColor: '#707070',
+            shadowOffset: { width: 0, height: 3,},
+            shadowOpacity: 6,
+          }
+
         }} 
       >
         <Tab.Screen name="首頁" component={HomeStack} />

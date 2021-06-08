@@ -4,21 +4,21 @@ import { StyleSheet, Text, View ,Image,TouchableOpacity} from 'react-native';
 
 export default function GoalScreen({ navigation }) {
   return (
-    <View>
+    <View style={{ backgroundColor: '#fff' }}>
       <View style={styles.header_goal}>
         <Text style={styles.titleText}>垃圾量目標</Text>
       </View>
 
       {/* //按鈕 個人資料  */}
       <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
-                <Image
-                    style={styles.profileiconStyle}
-                    source={require('../assets/icon-profile.png')}
-                    />
-            </TouchableOpacity>
-      <Image source={require('../assets/goal/bg_goal.png')} style={{top: 50,right:10}}/>
-      <Image source={require('../assets/goal/cup_goal.png')} style={{bottom: 150,left:140}}/>
-      <Image source={require('../assets/goal/box_goal.png')} style={{bottom: 300,left:20}}/>
+          <Image
+              style={styles.profileiconStyle}
+              source={require('../assets/icon-profile.png')}
+              />
+      </TouchableOpacity>
+      <Image source={require('../assets/goal/bg_goal.png')} style={{top: 70,right:10}}/>
+      <Image source={require('../assets/goal/cup_goal.png')} style={{bottom: 130,left:140}}/>
+      <Image source={require('../assets/goal/box_goal.png')} style={{bottom: 280,left:20}}/>
       <View style={styles.goal_content}>
         <View style={styles.bg_date_goal}>
           <Image source={require('../assets/goal/icon_left.png')} />
@@ -55,7 +55,6 @@ const styles = StyleSheet.create({
     marginTop:-50
   },
   header_goal: {
-    flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     paddingTop: 100,
@@ -67,7 +66,7 @@ const styles = StyleSheet.create({
   },
   goal_content: {
     alignItems: 'center',
-    bottom: 180
+    bottom: 140
   },
   bg_date_goal: {
     alignItems: 'center',
@@ -76,11 +75,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#63CFA8',
     flexDirection: 'row',
     justifyContent: 'space-around',
-    shadowColor: "#000",
-    shadowOffset: { width:5, height: 6 },
-    shadowOpacity: 0.2,
+    shadowColor: '#707070',
+    shadowOffset: { width: 0, height: 3,},
+    shadowOpacity: 0.8,
     elevation: 2,
-    borderRadius: 20
+    borderRadius: 15,
+    zIndex: 5,
   },
   text_date: {
     fontSize: 16,
@@ -88,13 +88,14 @@ const styles = StyleSheet.create({
     color: 'white'
   },
   bg_item_goal: {
+    backgroundColor: '#fff',
     width: 350,
     height: 267,
     borderRadius: 20,
     bottom: 16,
-    shadowColor: "#000",
-    shadowOffset: { width:3 },
-    shadowOpacity: 0.2,
+    shadowColor: '#707070',
+    shadowOffset: { width: 0, height: 3,},
+    shadowOpacity: 1,
     alignItems: 'center',
   },
   text_itemTitle_goal: {

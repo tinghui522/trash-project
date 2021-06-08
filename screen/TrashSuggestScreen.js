@@ -14,8 +14,10 @@ export default function TrashSuggestScreen({ navigation }) {
                     />
             </TouchableOpacity>
         <Text style={styles.headerText}>統計分析</Text>
-        <Image source= {require('../assets/suggest/btn-moneySuggest.png')}
-               style= {{ marginTop: 30, marginLeft: 45,}}/>
+        <TouchableOpacity onPress={() => navigation.navigate('MoneySuggest')}>
+          <Image source= {require('../assets/suggest/btn-moneySuggest.png')}
+                style= {{ marginTop: 30, marginLeft: 45,}}/>
+        </TouchableOpacity>
         <Image source= {require('../assets/suggest/btn-trashOnTouch.png')}
                style= {{ marginTop: -44, marginLeft: 54,}}/>
       </View>
