@@ -1,4 +1,5 @@
 import React from 'react';
+import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, ScrollView,TouchableOpacity } from 'react-native';
 
 export default function TrashSuggestScreen({ navigation }) {
@@ -34,6 +35,7 @@ export default function TrashSuggestScreen({ navigation }) {
             </View>
         </View>
       </View>
+      <StatusBar style="auto" />
     </ScrollView>
     
   );
@@ -47,17 +49,18 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
     fontSize: 20,
-    marginTop: -150,
+    marginTop: -170,
     marginLeft: 50,
   },
   profileiconStyle:{
     width:58,
     height:58,
     marginLeft:325,
-    marginTop:-200
+    marginTop:-230
   },
   container: {
     alignItems: 'center',
+    backgroundColor: '#fff',
   },
   chart: {
     backgroundColor: '#fff',
@@ -69,7 +72,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 6,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: -20,
+    marginTop: -50,
   },
   trashSuggest: {
     backgroundColor: '#fff',
@@ -79,7 +82,8 @@ const styles = StyleSheet.create({
     shadowColor: '#707070',
     shadowOffset: { width: 0, height: 3,},
     shadowOpacity: 6,
-    marginTop: 50,
+    marginTop: 80,
+    bottom: 30,
   },
   suggestText: {
     color: '#909090',

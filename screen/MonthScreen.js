@@ -22,7 +22,7 @@ export default function MonthScreen({ navigation }) {
           style={{ width: 365, height: 330, borderRadius: 20,}}
           markingType={'custom'}
           markedDates={{
-            '2021-06-07': {
+            '2021-06-09': {
               customStyles: {
                 container: {
                   backgroundColor: '#63CFA8'
@@ -35,7 +35,7 @@ export default function MonthScreen({ navigation }) {
             },
           }}
           // Initially visible month. Default = Date()
-          curren={'2021-06-07'}
+          curren={'2021-06-09'}
           // Minimum date that can be selected, dates before minDate will be grayed out. Default = undefined
           minDate={'2021-06-01'}
           // Maximum date that can be selected, dates after maxDate will be grayed out. Default = undefined
@@ -125,13 +125,14 @@ const styles = StyleSheet.create({
     width:58,
     height:58,
     marginLeft:305,
-    marginTop:-200
+    marginTop:-230
   },
   container: {
     alignItems: 'center',
+    backgroundColor: '#fff',
   },
   calendar: {
-    marginTop: -50, 
+    marginTop: -100, 
     shadowColor: '#707070',
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 6,
@@ -156,7 +157,8 @@ const styles = StyleSheet.create({
     shadowColor: '#707070',
     shadowOffset: { width: 0, height: 3,},
     shadowOpacity: 6,
-    marginTop: 50,
+    marginTop: 70,
+    bottom:30,
   },
   detailTitle: {
     backgroundColor: '#63CFA8',

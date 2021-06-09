@@ -4,10 +4,9 @@ import { StyleSheet, Text, View ,Image,TouchableOpacity} from 'react-native';
 
 export default function GoalScreen({ navigation }) {
   return (
-    <View>
-      <View style={styles.header_goal}>
+    <View style={styles.container}>
+      
         <Text style={styles.titleText}>垃圾量目標</Text>
-      </View>
 
       {/* //按鈕 個人資料  */}
       <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
@@ -16,9 +15,9 @@ export default function GoalScreen({ navigation }) {
                     source={require('../assets/icon-profile.png')}
                     />
             </TouchableOpacity>
-      <Image source={require('../assets/goal/bg_goal.png')} style={{top: 50,right:10}}/>
-      <Image source={require('../assets/goal/cup_goal.png')} style={{bottom: 150,left:140}}/>
-      <Image source={require('../assets/goal/box_goal.png')} style={{bottom: 300,left:20}}/>
+      <Image source={require('../assets/goal/bg_goal.png')} style={{top: 80,right:10}}/>
+      <Image source={require('../assets/goal/cup_goal.png')} style={{bottom: 120,left:140}}/>
+      <Image source={require('../assets/goal/box_goal.png')} style={{bottom: 270,left:20}}/>
       <View style={styles.goal_content}>
         <View style={styles.bg_date_goal}>
           <Image source={require('../assets/goal/icon_left.png')} />
@@ -48,22 +47,21 @@ export default function GoalScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+  container:{
+    backgroundColor:'#fff',
+  },
   profileiconStyle:{
     width:58,
     height:58,
     marginLeft:325,
-    marginTop:-50
-  },
-  header_goal: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    paddingTop: 100,
+    marginTop:-60
   },
   titleText: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#707070'
+    color: '#707070',
+    marginTop: 100,
+    marginLeft:160,
   },
   goal_content: {
     alignItems: 'center',
@@ -76,11 +74,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#63CFA8',
     flexDirection: 'row',
     justifyContent: 'space-around',
-    shadowColor: "#000",
+    shadowColor: "#909090",
     shadowOffset: { width:5, height: 6 },
     shadowOpacity: 0.2,
     elevation: 2,
-    borderRadius: 20
+    borderRadius: 10,
+    marginTop:40
   },
   text_date: {
     fontSize: 16,
@@ -92,10 +91,12 @@ const styles = StyleSheet.create({
     height: 267,
     borderRadius: 20,
     bottom: 16,
+    backgroundColor:'white',
     shadowColor: "#000",
     shadowOffset: { width:3 },
     shadowOpacity: 0.2,
     alignItems: 'center',
+    zIndex:-3,
   },
   text_itemTitle_goal: {
     marginLeft: 25,
@@ -121,19 +122,4 @@ const styles = StyleSheet.create({
   btn_addgoal: {
     justifyContent: 'center',
   },
-  footer: {
-    bottom: 130,
-    shadowColor: "#000",
-    shadowOffset: { width:5, height: 6 },
-    shadowOpacity: 0.2,
-    
-  },
-  footer_content: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    width: 414,
-    height: 100,
-    borderRadius: 20,
-    paddingTop: 20,
-  }
 });

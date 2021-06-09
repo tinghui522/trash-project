@@ -10,6 +10,8 @@ import TrashcanScreen from "./screen/TrashcanScreen";
 import MonthScreen from "./screen/MonthScreen";
 import GoalScreen from './screen/GoalScreen';
 import AboutScreen from './screen/AboutScreen';
+import CalScreen from './screen/CalScreen';
+
 
 const Tab = createBottomTabNavigator();
 const PERSISTENCE_KEY = "NAVIGATION_STATE";
@@ -144,13 +146,11 @@ export default function App() {
         tabBarOptions={{
           activeTintColor: '#fff',
           inactiveTintColor: '#FFFFFF',
-          labelStyle: {
-            fontSize: 13,
-            marginTop: -3,
-            padding: 0,
-            fontWeight:"600"
-          },
-          style:{height:120,backgroundColor:"#fff"}
+          style:{
+            height:120,
+            backgroundColor:"#fff",
+            borderRadius:20,
+          }
           
         }} 
       >

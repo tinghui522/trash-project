@@ -86,7 +86,9 @@ const styles = StyleSheet.create({
   btnaddtrashStyle:{
     width:93,
     height:42,
-    marginLeft:300
+    marginTop:15,
+    marginLeft:300,
+    bottom:20
   },
 });
 
