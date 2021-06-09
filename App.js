@@ -10,6 +10,7 @@ import TrashcanScreen from "./screen/TrashcanScreen";
 import MonthScreen from "./screen/MonthScreen";
 import GoalScreen from './screen/GoalScreen';
 import AboutScreen from './screen/AboutScreen';
+import CalScreen from './screen/CalScreen';
 
 const Tab = createBottomTabNavigator();
 const PERSISTENCE_KEY = "NAVIGATION_STATE";
@@ -25,13 +26,13 @@ function HomeStack () {
             height:0,
           }
         }} />  
-        <Stack.Screen name="Record" component={RecordScreen} />
-        <Stack.Screen name="Profile" component={AboutScreen} 
+        <Stack.Screen name="Record" component={RecordScreen}
           options={{
             headerStyle:{
               height:0,
             }
-          }} />  
+          }} />
+        <Stack.Screen name="Profile" component={AboutScreen}  />  
       </Stack.Navigator>
   );
 }
@@ -40,30 +41,19 @@ const StackSuggest = createStackNavigator();
 function SuggestStack () {
   return(
     <StackSuggest.Navigator>
-      <StackSuggest.Screen name=" "component={TrashSuggestScreen}  
+      <StackSuggest.Screen name="TrashSuggest"component={TrashSuggestScreen}  
         options={{
           headerStyle:{
             height:0,
           }
         }} />  
-      <Stack.Screen name="Profile" component={AboutScreen} 
-        options={{
-          headerStyle:{
-            height:0,
-          }
-        }} /> 
+      <Stack.Screen name="Profile" component={AboutScreen} /> 
       <Stack.Screen name="MoneySuggest" component={MoneySuggestScreen} 
         options={{
           headerStyle:{
             height:0,
           }
-        }} />
-      <Stack.Screen name="TrashSuggest" component={TrashSuggestScreen} 
-        options={{
-          headerStyle:{
-            height:0,
-          }
-        }} />    
+        }} />  
     </StackSuggest.Navigator>
   );
 }
@@ -71,7 +61,6 @@ function SuggestStack () {
 const StackMonth = createStackNavigator();
 function MonthStack () {
   return (
-      
       <StackMonth.Navigator>
        <StackMonth.Screen name=" "component={MonthScreen}  
         options={{
@@ -79,12 +68,7 @@ function MonthStack () {
             height:0,
           }
         }} />  
-        <Stack.Screen name="Profile" component={AboutScreen} 
-          options={{
-            headerStyle:{
-              height:0,
-            }
-          }} /> 
+        <Stack.Screen name="Profile" component={AboutScreen} /> 
       </StackMonth.Navigator>
   );
 }
@@ -92,7 +76,6 @@ function MonthStack () {
 const StackGoal = createStackNavigator();
 function GoalStack () {
   return (
-      
       <StackGoal.Navigator>
        <StackGoal.Screen name=" "component={GoalScreen}  
         options={{
@@ -100,12 +83,7 @@ function GoalStack () {
             height:0,
           }
         }} />  
-        <Stack.Screen name="Profile" component={AboutScreen} 
-          options={{
-            headerStyle:{
-              height:0,
-            }
-          }} /> 
+        <Stack.Screen name="Profile" component={AboutScreen} /> 
       </StackGoal.Navigator>
   );
 }

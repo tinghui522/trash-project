@@ -1,4 +1,5 @@
 import React from 'react';
+import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, ScrollView,TouchableOpacity } from 'react-native';
 
 export default function TrashSuggestScreen({ navigation }) {
@@ -36,6 +37,7 @@ export default function TrashSuggestScreen({ navigation }) {
             </View>
         </View>
       </View>
+      <StatusBar style="auto" />
     </ScrollView>
     
   );
@@ -60,6 +62,7 @@ const styles = StyleSheet.create({
   },
   container: {
     alignItems: 'center',
+    backgroundColor: '#fff',
   },
   chart: {
     backgroundColor: '#fff',
