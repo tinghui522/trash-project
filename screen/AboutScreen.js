@@ -6,7 +6,7 @@ import { StyleSheet, Text, View ,Image, ScrollView} from 'react-native';
 export default function AboutScreen({ navigation }) {
   return (
     <View style={styles.center}>
-    <Image source={require('../assets/setting/bg.png')}/>
+    <Image source={require('../assets/setting/bg.png')} style={{height: 300,}}/>
       <TouchableOpacity>
         {/* <Image source={require('../assets/setting/btn_back.png')} style={{bottom: 230,left: 20}}/> */}
       </TouchableOpacity>

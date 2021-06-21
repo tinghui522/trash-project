@@ -22,7 +22,7 @@ export default function MonthScreen({ navigation }) {
           style={{ width: 365, height: 330, borderRadius: 20,}}
           markingType={'custom'}
           markedDates={{
-            '2021-06-09': {
+            '2021-06-20': {
               customStyles: {
                 container: {
                   backgroundColor: '#63CFA8'
