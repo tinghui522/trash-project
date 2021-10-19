@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, ScrollView,TouchableOpacity } from 'react-native';
-import { Calendar } from 'react-native-calendars';
+import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 
 export default function MonthScreen({ navigation }) {
   return (
@@ -22,7 +22,7 @@ export default function MonthScreen({ navigation }) {
           style={{ width: 365, height: 330, borderRadius: 20,}}
           markingType={'custom'}
           markedDates={{
-            '2021-06-20': {
+            'selected day': {
               customStyles: {
                 container: {
                   backgroundColor: '#63CFA8'
@@ -35,11 +35,11 @@ export default function MonthScreen({ navigation }) {
             },
           }}
           // Initially visible month. Default = Date()
-          curren={'2021-06-09'}
+          curren={new Date() .toDateString()}
           // Minimum date that can be selected, dates before minDate will be grayed out. Default = undefined
           minDate={'2021-06-01'}
           // Maximum date that can be selected, dates after maxDate will be grayed out. Default = undefined
-          maxDate={'2021-07-07'}
+          maxDate={new Date() .toDateString()}
           // Handler which gets executed on day press. Default = undefined
           onDayPress={(day) => {console.log('selected day', day)}}
           // Month format in calendar title. Formatting values: http://arshaw.com/xdate/#Formatting

@@ -1,6 +1,17 @@
 import React, { Component } from "react";
-import {StatusBar,Button,StyleSheet,Platform,API,Text,TouchableOpacity,Image,View,ScrollView,TouchableHighlight,SafeAreaView, ImageBackground,TouchableNativeFeedback} from 'react-native';
-
+import { 
+  StyleSheet, 
+  Text, 
+  TouchableOpacity, 
+  Image, 
+  View, 
+  ScrollView, 
+  TouchableHighlight, 
+  SafeAreaView, 
+  TouchableNativeFeedback
+} from 'react-native';
+import BottomSheet from 'reanimated-bottom-sheet';
+import Animated from "react-native-reanimated";
 export default class RecordScreen extends Component {
     constructor(props) {
       super(props);
@@ -13,10 +24,94 @@ export default class RecordScreen extends Component {
       this.clickNum = this.clickNum.bind(this);
       this.setOper = this.setOper.bind(this);
       this.calc = this.calc.bind(this);
-  }
+    }
+
+    addHeader = () => (
+      <View style={styles.line1}>
+        <Text style={{fontSize:18, color:'#fff'}}>新增</Text>
+      </View>
+    )
+    
+    addInner = () => (
+      <View style={styles.panel}>
+        <View style={styles.panelContent}>
+          <TouchableOpacity>
+            <Image
+              style={styles.iconstyle}
+              source={require('../assets/icon-gray-box.png')}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Image
+              style={styles.iconstyle}
+              source={require('../assets/icon-gray-plate.png')}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Image
+              style={styles.iconstyle}
+              source={require('../assets/icon-gray-chopstick.png')}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Image
+              style={styles.iconstyle}
+              source={require('../assets/icon-gray-ketchup.png')}
+            />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.panelContent}>
+          <TouchableOpacity>
+            <Image
+              style={styles.iconstyle}
+              source={require('../assets/icon-gray-cup.png')}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Image
+              style={styles.iconstyle}
+              source={require('../assets/icon-gray-strow.png')}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Image
+              style={styles.iconstyle}
+              source={require('../assets/icon-gray-bag.png')}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Image
+              style={styles.iconstyle}
+              source={require('../assets/icon-gray-trashother.png')}
+            />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.btnCheck}>
+          <TouchableOpacity onPress={() => this.bs.current.snapTo(1)}>
+            <Image
+              style={styles.iconstyle}
+              source={require('../assets/btn-check.png')}
+            />
+          </TouchableOpacity>
+        </View>
+        <View>
+          <TouchableOpacity onPress={() => this.bs.current.snapTo(1)}>
+            <Image
+              style={styles.iconstyle}
+              source={require('../assets/btn-check.png')}
+            />
+          </TouchableOpacity>
+        </View>
+      </View>
+    )
+
+    bs = React.createRef();
+    fall = new Animated.Value(1);
+
   render() {
     return (
-      <ScrollView>
+      <SafeAreaView>
+         <ScrollView>
            <View style={styles.header}>
               <Image
                   style={styles.record_bg}
@@ -95,7 +190,7 @@ export default class RecordScreen extends Component {
                 source={require('../assets/icon-box.png')}
                 />
               </TouchableHighlight>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => this.bs.current.snapTo(0)}>
                 <Image
                 style={styles.btnstyle}
                 source={require('../assets/btn-addnew.png')}
@@ -118,7 +213,7 @@ export default class RecordScreen extends Component {
                 <View style={styles.buttonContainer}>
                     <View style={styles.buttonContainerRight}>
                         <View style={styles.line1}>
-                        <Text style={{fontSize:20, color:'#fff'}}>金額</Text>
+                            <Text style={{fontSize:20, color:'#fff'}}>金額</Text>
                             <Text style={{fontSize:20, color:'#fff'}}>{this.state.displayValue} 元</Text>
                         </View>
                         <View style={styles.line2}>
@@ -149,8 +244,19 @@ export default class RecordScreen extends Component {
                 </View> 
             </View>
             
+            <BottomSheet
+              ref={this.bs}
+              snapPoints={[400, 0]}
+              renderContent={this.addInner}
+              renderHeader={this.addHeader}
+              initialSnap={1}
+              callbackNode={this.fall}
+              enabledGestureInteraction={true}
+            />
           </View>
-      </ScrollView>
+        </ScrollView>
+      </SafeAreaView>
+     
     );
   }
     //按數字
@@ -223,6 +329,16 @@ const styles = StyleSheet.create({
     height: 270,
     alignItems: 'center',
     backgroundColor:'#fff'
+  },
+  panel: {
+    height: 360,
+    alignItems: 'center',
+    borderRadius: 4,
+    backgroundColor: '#F2F2F2',
+  },
+  panelContent: {
+    marginTop: 15,
+    flexDirection: 'row',
   },
   record_date:{
     width:250,
@@ -349,6 +465,10 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'space-around',
       backgroundColor:'#63CFA8',
+      borderRadius: 10,
+      shadowColor: '#707070',
+      shadowOffset: { width: 0, height: 3,},
+      shadowOpacity: 6,
   },
   line2:{
       height:50,
