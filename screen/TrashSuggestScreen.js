@@ -15,8 +15,10 @@ export default function TrashSuggestScreen({ navigation }) {
                     />
             </TouchableOpacity>
         <Text style={styles.headerText}>統計分析</Text>
-        <Image source= {require('../assets/suggest/btn-moneySuggest.png')}
-               style= {{ marginTop: 30, marginLeft: 45,}}/>
+        <TouchableOpacity onPress={() => navigation.navigate('MoneySuggest')}>
+          <Image source= {require('../assets/suggest/btn-moneySuggest.png')}
+                style= {{ marginTop: 30, marginLeft: 45,}}/>
+        </TouchableOpacity>
         <Image source= {require('../assets/suggest/btn-trashOnTouch.png')}
                style= {{ marginTop: -44, marginLeft: 54,}}/>
       </View>
@@ -49,14 +51,14 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
     fontSize: 20,
-    marginTop: -170,
+    marginTop: -150,
     marginLeft: 50,
   },
   profileiconStyle:{
     width:58,
     height:58,
     marginLeft:325,
-    marginTop:-230
+    marginTop:-200
   },
   container: {
     alignItems: 'center',
@@ -72,7 +74,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 6,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: -50,
+    marginTop: -30,
   },
   trashSuggest: {
     backgroundColor: '#fff',
@@ -82,8 +84,8 @@ const styles = StyleSheet.create({
     shadowColor: '#707070',
     shadowOffset: { width: 0, height: 3,},
     shadowOpacity: 6,
-    marginTop: 80,
-    bottom: 30,
+    marginTop: 50,
+    bottom:30,
   },
   suggestText: {
     color: '#909090',

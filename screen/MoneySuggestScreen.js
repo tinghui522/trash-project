@@ -1,4 +1,5 @@
 import React from 'react';
+import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, ScrollView,TouchableOpacity } from 'react-native';
 
 export default function MoneySuggestScreen({ navigation }) {
@@ -14,8 +15,10 @@ export default function MoneySuggestScreen({ navigation }) {
                     />
             </TouchableOpacity>
         <Text style={styles.headerText}>統計分析</Text>
-        <Image source= {require('../assets/suggest/btn-trashSuggest.png')}
-               style= {{ marginTop: 30, marginLeft: 45,}}/>
+        <TouchableOpacity onPress={() => navigation.navigate('TrashSuggest')}>
+          <Image source= {require('../assets/suggest/btn-trashSuggest.png')}
+                style= {{ marginTop: 30, marginLeft: 45,}}/>
+        </TouchableOpacity>
         <Image source= {require('../assets/suggest/btn-moneyOnTouch.png')}
                style= {{ marginTop: -44, marginLeft: 208,}}/>
       </View>
@@ -32,8 +35,8 @@ export default function MoneySuggestScreen({ navigation }) {
             </View>
         </View>
       </View>
+      <StatusBar style="auto" />
     </ScrollView>
-    
   );
 }
 
@@ -45,7 +48,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
     fontSize: 20,
-    marginTop: -200,
+    marginTop: -150,
     marginLeft: 50,
   },
   profileiconStyle:{
@@ -56,6 +59,7 @@ const styles = StyleSheet.create({
   },
   container: {
     alignItems: 'center',
+    backgroundColor: '#fff',
   },
   chart: {
     backgroundColor: '#fff',

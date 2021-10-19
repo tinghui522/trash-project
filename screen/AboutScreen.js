@@ -1,16 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
-import { StyleSheet, Text, View ,Image,ScrollView} from 'react-native';
+import { StyleSheet, Text, View ,Image, ScrollView} from 'react-native';
+import { color } from 'react-native-reanimated';
 
 export default function AboutScreen({ navigation }) {
   return (
     <View style={styles.center}>
-      <Image source={require('../assets/setting/bg.png')}/>
+    <Image source={require('../assets/setting/bg.png')}/>
       <TouchableOpacity>
         {/* <Image source={require('../assets/setting/btn_back.png')} style={{bottom: 230,left: 20}}/> */}
       </TouchableOpacity>
-      <View style={styles.center}>
+       <View style={styles.center}>
         <View style={styles.bg_personal_form}>
           <View style={styles.personal_form}>
             <Image source={require('../assets/setting/big_icon-profile.png')}/>
@@ -25,23 +26,38 @@ export default function AboutScreen({ navigation }) {
           </View>
           <View style={styles.setting}>
             <TouchableOpacity>
-              <Text style={{marginBottom: 40,marginTop:40,fontWeight: 'bold',color:'#909090'}}>語言</Text>
+              <Image source={require('../assets/setting/language.png')} style={{width:35,height:35,top: 30,left: 15}}/>
+              <Text style={{marginBottom: 20,marginTop:3,marginLeft:60,fontWeight: 'bold',fontSize: 16,color:'#909090'}}>語言</Text>
+              <Image source={require('../assets/setting/arrow.png')} style={{width:16,height:18,marginLeft: 275,marginTop:-35}}/>
             </TouchableOpacity>
+            <View style={styles.underline}/>
             <TouchableOpacity>
-              <Text style={{marginBottom: 40,fontWeight: 'bold',color:'#909090'}}>提醒</Text>
+              <Image source={require('../assets/setting/alert.png')} style={{width:35,height:35,top: 15,left: 15}}/>
+              <Text style={{marginTop: -10,marginLeft:60,fontWeight: 'bold',fontSize: 16,color:'#909090'}}>提醒</Text>
+              <Image source={require('../assets/setting/arrow.png')} style={{width:16,height:18,marginLeft: 275,marginTop:-20}}/>
             </TouchableOpacity>
+            <View style={styles.underline}/>
             <TouchableOpacity>
-              <Text style={{marginBottom: 40,fontWeight: 'bold',color:'#909090'}}>備份</Text>
+              <Image source={require('../assets/setting/file.png')} style={{width:35,height:35,top:15,left: 15}}/>
+              <Text style={{marginTop:-10,marginLeft:60,fontWeight: 'bold',fontSize: 16,color:'#909090'}}>備份</Text>
+              <Image source={require('../assets/setting/arrow.png')} style={{width:16,height:18,marginLeft: 275,marginTop:-20}}/>
             </TouchableOpacity>
+            <View style={styles.underline}/>
             <TouchableOpacity>
-              <Text style={{marginBottom: 40,fontWeight: 'bold',color:'#909090'}}>Q & A</Text>
+              <Image source={require('../assets/setting/question.png')} style={{width:35,height:35,top: 15,left: 15}}/>
+              <Text style={{marginTop:-10,marginLeft:60,fontWeight: 'bold',fontSize: 16,color:'#909090'}}>常見問題</Text>
+              <Image source={require('../assets/setting/arrow.png')} style={{width:16,height:18,marginLeft: 275,marginTop:-20}}/>
             </TouchableOpacity>
+            <View style={styles.underline}/>
             <TouchableOpacity>
-              <Text style={{marginBottom: 40,fontWeight: 'bold',color:'#909090'}}>聯絡我們</Text>
+              <Image source={require('../assets/setting/contact.png')} style={{width:35,height:35,top: 15,left: 15}}/>
+              <Text style={{marginTop:-10,marginLeft:60,fontWeight: 'bold',fontSize: 16,color:'#909090'}}>聯絡我們</Text>
+              <Image source={require('../assets/setting/arrow.png')} style={{width:16,height:18,marginLeft: 275,marginTop:-20}}/>
             </TouchableOpacity>
-            <TouchableOpacity>
-              <Text style={{marginBottom: 40,fontWeight: 'bold',color:'#909090'}}>版本資訊</Text>
-            </TouchableOpacity>
+            <View style={styles.underline}/>
+              <Image source={require('../assets/setting/about.png')} style={{width:35,height:35,top: 15,left: 15}}/>
+              <Text style={{marginTop:-10,marginLeft:60,fontWeight: 'bold',fontSize: 16,color:'#909090'}}>版本資訊</Text>
+              <Text style={{marginTop:-20,marginLeft:270,fontSize: 16,color:'#909090'}}>1.0</Text>
           </View>
         </View>
       </View>
@@ -58,13 +74,12 @@ const styles = StyleSheet.create({
   },
   bg_personal_form: {
     width: 320,
-    height: 540,
+    height: 575,
+    top: -95,
     backgroundColor: '#63CFA8',
     alignItems: 'center',
-    marginTop:-100,
-    bottom: 50,
     shadowColor: '#707070',
-    shadowOffset: { width:0, height: 3},
+    shadowOffset: { width: 0, height: 3, },
     shadowOpacity: 6,
     elevation: 5,
     borderRadius: 20
@@ -77,14 +92,24 @@ const styles = StyleSheet.create({
   text_personal_form :{
     fontSize: 18,
     fontWeight: 'bold',
-    color: 'white'
+    color: 'white',
   },
   setting: {
     backgroundColor: '#fff',
     width: 320,
-    height: 380,
-    alignItems: 'center',
+    height: 420,
+    marginTop:-20,
+    alignItems:'flex-start',
     borderRadius: 20,
-    marginTop:-15
+    shadowColor: '#707070',
+    shadowOffset: { width: 0, height: 3, },
+    shadowOpacity: 6,
+  },
+  underline: {
+    marginTop:20,
+    width:300,
+    height:1,
+    backgroundColor:"#C7C7C7",
+    left:10,
   }
 });

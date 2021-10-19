@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
   },
   goal_content: {
     alignItems: 'center',
-    bottom: 180
+    bottom: 140
   },
   bg_date_goal: {
     alignItems: 'center',
@@ -74,12 +74,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#63CFA8',
     flexDirection: 'row',
     justifyContent: 'space-around',
-    shadowColor: "#909090",
-    shadowOffset: { width:5, height: 6 },
-    shadowOpacity: 0.2,
+    shadowColor: '#707070',
+    shadowOffset: { width: 0, height: 3,},
+    shadowOpacity: 0.5,
     elevation: 2,
     borderRadius: 10,
-    marginTop:40
+    zIndex: 5,
   },
   text_date: {
     fontSize: 16,
@@ -87,14 +87,14 @@ const styles = StyleSheet.create({
     color: 'white'
   },
   bg_item_goal: {
+    backgroundColor: '#fff',
     width: 350,
     height: 267,
     borderRadius: 20,
     bottom: 16,
-    backgroundColor:'white',
-    shadowColor: "#000",
-    shadowOffset: { width:3 },
-    shadowOpacity: 0.2,
+    shadowColor: '#707070',
+    shadowOffset: { width: 0, height: 3,},
+    shadowOpacity: 1,
     alignItems: 'center',
     zIndex:-3,
   },

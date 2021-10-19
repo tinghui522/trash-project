@@ -35,11 +35,11 @@ export default function MonthScreen({ navigation }) {
             },
           }}
           // Initially visible month. Default = Date()
-          curren={'2021-06-09'}
+          curren={'2021-09-28'}
           // Minimum date that can be selected, dates before minDate will be grayed out. Default = undefined
           minDate={'2021-06-01'}
           // Maximum date that can be selected, dates after maxDate will be grayed out. Default = undefined
-          maxDate={'2021-07-07'}
+          maxDate={'2021-10-31'}
           // Handler which gets executed on day press. Default = undefined
           onDayPress={(day) => {console.log('selected day', day)}}
           // Month format in calendar title. Formatting values: http://arshaw.com/xdate/#Formatting
@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
   detailTitle: {
     backgroundColor: '#63CFA8',
     width: 365,
-    height: 55,
+    height: 58,
     borderRadius: 20,
     shadowColor: '#707070',
     shadowOffset: { width: 0, height: 2,},

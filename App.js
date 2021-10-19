@@ -10,7 +10,6 @@ import TrashcanScreen from "./screen/TrashcanScreen";
 import MonthScreen from "./screen/MonthScreen";
 import GoalScreen from './screen/GoalScreen';
 import AboutScreen from './screen/AboutScreen';
-import CalScreen from './screen/CalScreen';
 
 
 const Tab = createBottomTabNavigator();
@@ -21,14 +20,24 @@ function HomeStack () {
   return (
       
       <Stack.Navigator>
-       <Stack.Screen name=" "component={TrashcanScreen}  
-        options={{
-          headerStyle:{
-            height:0,
-          }
-        }} />  
-        <Stack.Screen name="Record" component={RecordScreen} />
-        <Stack.Screen name="Profile" component={AboutScreen} />
+        <Stack.Screen name=" "component={TrashcanScreen}  
+          options={{
+            headerStyle:{
+              height:0,
+            },
+          }} />  
+        <Stack.Screen name="Record" component={RecordScreen} 
+          options={{
+            headerStyle:{
+              height:0,
+            },
+          }} />
+        <Stack.Screen name="Profile" component={AboutScreen} 
+          options={{
+            headerStyle:{
+              height:0,
+            },
+          }} />
       </Stack.Navigator>
   );
 }
@@ -43,7 +52,12 @@ function SuggestStack () {
             height:0,
           }
         }} />  
-      <Stack.Screen name="Profile" component={AboutScreen} />
+      <Stack.Screen name="Profile" component={AboutScreen} 
+        options={{
+          headerStyle:{
+            height:0,
+          }
+        }} /> 
     </StackSuggest.Navigator>
   );
 }
@@ -53,13 +67,18 @@ function MonthStack () {
   return (
       
       <StackMonth.Navigator>
-       <StackMonth.Screen name=" "component={MonthScreen}  
+      <StackMonth.Screen name=" "component={MonthScreen}  
         options={{
           headerStyle:{
             height:0,
           }
         }} />  
-        <StackMonth.Screen name="Profile" component={AboutScreen} />
+      <StackMonth.Screen name="Profile" component={AboutScreen} 
+        options={{
+          headerStyle:{
+            height:0,
+          }
+        }} /> 
       </StackMonth.Navigator>
   );
 }
@@ -69,13 +88,18 @@ function GoalStack () {
   return (
       
       <StackGoal.Navigator>
-       <StackGoal.Screen name=" "component={GoalScreen}  
+      <StackGoal.Screen name=" "component={GoalScreen}  
         options={{
           headerStyle:{
             height:0,
           }
         }} />  
-        <Stack.Screen name="Profile" component={AboutScreen} />
+      <Stack.Screen name="Profile" component={AboutScreen} 
+        options={{
+          headerStyle:{
+            height:0,
+          }
+        }} /> 
       </StackGoal.Navigator>
   );
 }
@@ -108,36 +132,45 @@ export default function App() {
   return (
     <NavigationContainer
       initialState={initialNavigationState}
-        
       >
       <Tab.Navigator
         initialRouteName="trash"
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color,size }) => {
             let iconPath;
+            let iconWidth;
+            let iconHeight;
 
             if (route.name === '首頁') {
               iconPath = focused
               ? require('./assets/btn-home.png'):
-              require('./assets/icon-home.png');
+              require('./assets/icon-home.png') ;
+              iconWidth = focused ? 80 : 30;
+              iconHeight = focused ? 40 : 30;
             } else if (route.name === '分析') {
               iconPath = focused
               ? require('./assets/btn-trend.png'):
               require('./assets/icon-trend.png');
+              iconWidth = focused ? 100 : 30;
+              iconHeight = focused ? 40 : 30;
             }else if (route.name == '月曆') {
               iconPath = focused
               ? require('./assets/btn-month.png'):
               require('./assets/icon-month.png');
+              iconWidth = focused ? 80 : 30;
+              iconHeight = focused ? 40 : 30;
             }else if (route.name == '目標') {
               iconPath = focused
               ? require('./assets/btn-goal.png'):
               require('./assets/icon-goal.png');
+              iconWidth = focused ? 80 : 30;
+              iconHeight = focused ? 40 : 30;
             }
 
             // You can return any component that you like here!
             return (
               <Image 
-                style={{width: 40, height: 40}}
+                style={{width: iconWidth, height: iconHeight, marginTop: 20,}}
                 source={iconPath} 
               />
             );
@@ -146,12 +179,15 @@ export default function App() {
         tabBarOptions={{
           activeTintColor: '#fff',
           inactiveTintColor: '#FFFFFF',
-          style:{
-            height:120,
+          showLabel: false,
+          style: {
+            height:90,
             backgroundColor:"#fff",
-            borderRadius:20,
+            borderRadius: 30,
+            shadowColor: '#707070',
+            shadowOffset: { width: 0, height: 3,},
+            shadowOpacity: 6,
           }
-          
         }} 
       >
         <Tab.Screen name="首頁" component={HomeStack} />
