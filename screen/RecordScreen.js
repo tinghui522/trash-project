@@ -1,5 +1,10 @@
 import React, { Component } from "react";
 import { 
+  StatusBar,
+  Button,
+  Plateform,
+  API,
+  ImageBackground,
   StyleSheet, 
   Text, 
   TouchableOpacity, 
@@ -12,6 +17,7 @@ import {
 } from 'react-native';
 import BottomSheet from 'reanimated-bottom-sheet';
 import Animated from "react-native-reanimated";
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 export default class RecordScreen extends Component {
     constructor(props) {
       super(props);
@@ -121,7 +127,7 @@ export default class RecordScreen extends Component {
                 <Text style={styles.dateText}>日期</Text>
                 <TouchableOpacity>
                   <View style={styles.date_bg}>
-                    <Text style={styles.date}>2021 / 4 / 8</Text>
+                    <Text style={styles.date}>2021 / 9 / 28</Text>
                   </View>
                 </TouchableOpacity>
               </View>
@@ -134,37 +140,37 @@ export default class RecordScreen extends Component {
               <TouchableHighlight>
                 <Image
                 style={styles.iconstyle}
-                source={require('../assets/icon-breakfast.png')}
+                source={require('../assets/record/icon-breakfast.png')}
                 />
               </TouchableHighlight>
               <TouchableHighlight>
                 <Image
                 style={styles.iconstyle}
-                source={require('../assets/icon-lunch.png')}
+                source={require('../assets/record/icon-lunch.png')}
                 />
               </TouchableHighlight>
               <TouchableHighlight>
                 <Image
                 style={styles.iconstyle}
-                source={require('../assets/icon-dinner.png')}
+                source={require('../assets/record/icon-dinner.png')}
                 />
               </TouchableHighlight>
               <TouchableHighlight>
                 <Image
                 style={styles.iconstyle}
-                source={require('../assets/icon-drink.png')}
+                source={require('../assets/record/icon-drink.png')}
                 />
               </TouchableHighlight>
               <TouchableHighlight>
                 <Image
                 style={styles.iconstyle}
-                source={require('../assets/icon-dessert.png')}
+                source={require('../assets/record/icon-dessert.png')}
                 />
               </TouchableHighlight>
               <TouchableHighlight>
                 <Image
                 style={styles.iconstyle}
-                source={require('../assets/icon-other.png')}
+                source={require('../assets/record/icon-other.png')}
                 />
               </TouchableHighlight>
             </View>
@@ -175,37 +181,37 @@ export default class RecordScreen extends Component {
             <TouchableHighlight>
                 <Image
                 style={styles.itemstyle}
-                source={require('../assets/icon-plate.png')}
+                source={require('../assets/record/icon-plate.png')}
                 />
               </TouchableHighlight>
               <TouchableHighlight>
                 <Image
                 style={styles.itemstyle}
-                source={require('../assets/icon-chopstick.png')}
+                source={require('../assets/record/icon-chopstick.png')}
                 />
               </TouchableHighlight>
               <TouchableHighlight>
                 <Image
                 style={styles.itemstyle}
-                source={require('../assets/icon-box.png')}
+                source={require('../assets/record/icon-box.png')}
                 />
               </TouchableHighlight>
               <TouchableOpacity onPress={() => this.bs.current.snapTo(0)}>
                 <Image
                 style={styles.btnstyle}
-                source={require('../assets/btn-addnew.png')}
+                source={require('../assets/record/btn-addnew.png')}
                 />
               </TouchableOpacity>
               <TouchableOpacity>
                 <Image
                 style={styles.btnstyle}
-                source={require('../assets/btn-clean.png')}
+                source={require('../assets/record/btn-clean.png')}
                 />
               </TouchableOpacity>
               <TouchableOpacity>
                 <Image
                 style={styles.btnstyle}
-                source={require('../assets/btn-store.png')}
+                source={require('../assets/record/btn-store.png')}
                 />
               </TouchableOpacity>
             </View> 
@@ -213,37 +219,37 @@ export default class RecordScreen extends Component {
                 <View style={styles.buttonContainer}>
                     <View style={styles.buttonContainerRight}>
                         <View style={styles.line1}>
-                            <Text style={{fontSize:20, color:'#fff'}}>金額</Text>
+                        <Text style={{fontSize:20, color:'#fff'}}>金額</Text>
                             <Text style={{fontSize:20, color:'#fff'}}>{this.state.displayValue} 元</Text>
                         </View>
                         <View style={styles.line2}>
-                            <TouchableNativeFeedback onPress={this.clickNum.bind(this,'7')}><View style={styles.mygrid}><Text style={{fontSize:20}}>7</Text></View></TouchableNativeFeedback>
-                            <TouchableNativeFeedback onPress={this.clickNum.bind(this,'8')}><View style={styles.mygrid}><Text style={{fontSize:20}}>8</Text></View></TouchableNativeFeedback>
-                            <TouchableNativeFeedback onPress={this.clickNum.bind(this,'9')}><View style={styles.mygrid}><Text style={{fontSize:20}}>9</Text></View></TouchableNativeFeedback>
-                            <TouchableNativeFeedback onPress={this.setOper.bind(this,4)}><View style={styles.mygrid2}><Text style={{fontSize:20}}>÷</Text></View></TouchableNativeFeedback>
+                            <TouchableOpacity onPress={this.clickNum.bind(this,'7')}><View style={styles.mygrid}><Text style={{fontSize:20}}>7</Text></View></TouchableOpacity>
+                            <TouchableOpacity onPress={this.clickNum.bind(this,'8')}><View style={styles.mygrid}><Text style={{fontSize:20}}>8</Text></View></TouchableOpacity>
+                            <TouchableOpacity onPress={this.clickNum.bind(this,'9')}><View style={styles.mygrid}><Text style={{fontSize:20}}>9</Text></View></TouchableOpacity>
+                            <TouchableOpacity onPress={this.setOper.bind(this,4)}><View style={styles.mygrid2}><Text style={{fontSize:20}}>-</Text></View></TouchableOpacity>
                         </View>
                         <View style={styles.line3}>
-                            <TouchableNativeFeedback onPress={this.clickNum.bind(this,'4')}><View style={styles.mygrid}><Text style={{fontSize:20}}>4</Text></View></TouchableNativeFeedback>
-                            <TouchableNativeFeedback onPress={this.clickNum.bind(this,'5')}><View style={styles.mygrid}><Text style={{fontSize:20}}>5</Text></View></TouchableNativeFeedback>
-                            <TouchableNativeFeedback onPress={this.clickNum.bind(this,'6')}><View style={styles.mygrid}><Text style={{fontSize:20}}>6</Text></View></TouchableNativeFeedback>
-                            <TouchableNativeFeedback onPress={this.setOper.bind(this,3)}><View style={styles.mygrid2}><Text style={{fontSize:20}}>×</Text></View></TouchableNativeFeedback>
+                            <TouchableOpacity onPress={this.clickNum.bind(this,'4')}><View style={styles.mygrid}><Text style={{fontSize:20}}>4</Text></View></TouchableOpacity>
+                            <TouchableOpacity onPress={this.clickNum.bind(this,'5')}><View style={styles.mygrid}><Text style={{fontSize:20}}>5</Text></View></TouchableOpacity>
+                            <TouchableOpacity onPress={this.clickNum.bind(this,'6')}><View style={styles.mygrid}><Text style={{fontSize:20}}>6</Text></View></TouchableOpacity>
+                            <TouchableOpacity onPress={this.setOper.bind(this,3)}><View style={styles.mygrid2}><Text style={{fontSize:20}}>+</Text></View></TouchableOpacity>
                         </View>
                         <View style={styles.line4}>
-                            <TouchableNativeFeedback onPress={this.clickNum.bind(this,'1')}><View style={styles.mygrid}><Text style={{fontSize:20}}>1</Text></View></TouchableNativeFeedback>
-                            <TouchableNativeFeedback onPress={this.clickNum.bind(this,'2')}><View style={styles.mygrid}><Text style={{fontSize:20}}>2</Text></View></TouchableNativeFeedback>
-                            <TouchableNativeFeedback onPress={this.clickNum.bind(this,'3')}><View style={styles.mygrid}><Text style={{fontSize:20}}>3</Text></View></TouchableNativeFeedback>
-                            <TouchableNativeFeedback onPress={this.setOper.bind(this,2)}><View style={styles.mygrid2}><Text style={{fontSize:20}}>-</Text></View></TouchableNativeFeedback>
+                            <TouchableOpacity onPress={this.clickNum.bind(this,'1')}><View style={styles.mygrid}><Text style={{fontSize:20}}>1</Text></View></TouchableOpacity>
+                            <TouchableOpacity onPress={this.clickNum.bind(this,'2')}><View style={styles.mygrid}><Text style={{fontSize:20}}>2</Text></View></TouchableOpacity>
+                            <TouchableOpacity onPress={this.clickNum.bind(this,'3')}><View style={styles.mygrid}><Text style={{fontSize:20}}>3</Text></View></TouchableOpacity>
+                            <TouchableOpacity onPress={this.setOper.bind(this,2)}><View style={styles.mygrid2}><Text style={{fontSize:20}}>r</Text></View></TouchableOpacity>
                         </View>
                         <View style={styles.line5}>
-                            <TouchableNativeFeedback onPress={this.calc}><View style={styles.mygrid2}><Text style={{fontSize:20}}>=</Text></View></TouchableNativeFeedback>
-                            <TouchableNativeFeedback onPress={this.clickNum.bind(this,'0')}><View style={styles.mygrid}><Text style={{fontSize:20}}>0</Text></View></TouchableNativeFeedback>
-                            <View style={styles.mygrid2}><Text style={{fontSize:33}}>.</Text></View>
-                            <TouchableNativeFeedback onPress={this.setOper.bind(this,1)}><View style={styles.mygrid2}><Text style={{fontSize:20}}>+</Text></View></TouchableNativeFeedback>
+                            <TouchableOpacity onPress={this.calc}><View style={styles.mygrid2}><Text style={{fontSize:20}}>c</Text></View></TouchableOpacity>
+                            <TouchableOpacity onPress={this.clickNum.bind(this,'0')}><View style={styles.mygrid}><Text style={{fontSize:20}}>0</Text></View></TouchableOpacity>
+                            <TouchableOpacity onPress={this.calc}><View style={styles.mygrid2}><Text style={{fontSize:20}}>=</Text></View></TouchableOpacity>
+                            <TouchableOpacity onPress={this.calc}><View style={styles.mygrid2}><Image style={styles.btncheckstyle}source={require('../assets/record/btn-check.png')}/></View></TouchableOpacity>
                         </View>
                     </View>
                 </View> 
             </View>
-            
+
             <BottomSheet
               ref={this.bs}
               snapPoints={[400, 0]}
@@ -472,23 +478,27 @@ const styles = StyleSheet.create({
   },
   line2:{
       height:50,
-      backgroundColor:'green',
-      flexDirection:'row'
+      backgroundColor:'white',
+      flexDirection:'row',
+      justifyContent: 'space-around',
   },
   line3:{
       height:50,
-      backgroundColor:'blue',
-      flexDirection:'row'
+      backgroundColor:'white',
+      flexDirection:'row',
+      justifyContent: 'space-around',
   },
   line4:{
       height:50,
-      backgroundColor:'red',
-      flexDirection:'row'
+      backgroundColor:'white',
+      flexDirection:'row',
+      justifyContent: 'space-around',
   },
   line5:{
       height:50,
-      backgroundColor:'pink',
-      flexDirection:'row'
+      backgroundColor:'white',
+      flexDirection:'row',
+      justifyContent: 'space-around',
   },
   mygrid:{
       flex:1,
@@ -501,5 +511,10 @@ const styles = StyleSheet.create({
       justifyContent:'center',
       alignItems:'center',
       backgroundColor:'#fff',
+  },
+  btncheckstyle:{
+    width:34,
+    height:33,
+    left: 10
   }
 });

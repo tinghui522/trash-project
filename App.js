@@ -12,6 +12,7 @@ import GoalScreen from './screen/GoalScreen';
 import AboutScreen from './screen/AboutScreen';
 import CalScreen from './screen/CalScreen';
 
+
 const Tab = createBottomTabNavigator();
 const PERSISTENCE_KEY = "NAVIGATION_STATE";
 
@@ -20,13 +21,13 @@ function HomeStack () {
   return (
       
       <Stack.Navigator>
-       <Stack.Screen name=" "component={TrashcanScreen}  
-        options={{
-          headerStyle:{
-            height:0,
-          }
-        }} />  
-        <Stack.Screen name="Record" component={RecordScreen}
+        <Stack.Screen name=" "component={TrashcanScreen}  
+          options={{
+            headerStyle:{
+              height:0,
+            },
+          }} />  
+        <Stack.Screen name="Record" component={RecordScreen} 
           options={{
             headerStyle:{
               height:0,
@@ -72,7 +73,7 @@ const StackMonth = createStackNavigator();
 function MonthStack () {
   return (
       <StackMonth.Navigator>
-       <StackMonth.Screen name=" "component={MonthScreen}  
+      <StackMonth.Screen name=" "component={MonthScreen}  
         options={{
           headerStyle:{
             height:0,
@@ -92,7 +93,7 @@ const StackGoal = createStackNavigator();
 function GoalStack () {
   return (
       <StackGoal.Navigator>
-       <StackGoal.Screen name=" "component={GoalScreen}  
+      <StackGoal.Screen name=" "component={GoalScreen}  
         options={{
           headerStyle:{
             height:0,
@@ -136,7 +137,6 @@ export default function App() {
   return (
     <NavigationContainer
       initialState={initialNavigationState}
-        
       >
       <Tab.Navigator
         initialRouteName="trash"

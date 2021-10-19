@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 6,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: -20,
+    marginTop: -30,
   },
   trashSuggest: {
     backgroundColor: '#fff',
@@ -85,6 +85,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 3,},
     shadowOpacity: 6,
     marginTop: 50,
+    bottom:30,
   },
   suggestText: {
     color: '#909090',

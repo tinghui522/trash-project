@@ -8,11 +8,11 @@ const TrashcanScreen = ({ navigation }) => {
             
             <Image
                 style={styles.circle1Style}
-                source={require('../assets/circle1.png')}
+                source={require('../assets/trashcan/circle1.png')}
                 />
             <Image
                 style={styles.circle2Style}
-                source={require('../assets/circle2.png')}
+                source={require('../assets/trashcan/circle2.png')}
                 />
             <Text style={styles.titleStyle}>本月垃圾量 16 件</Text>
             <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
@@ -23,16 +23,16 @@ const TrashcanScreen = ({ navigation }) => {
             </TouchableOpacity>
                 <Image
                 style={styles.trashledStyle}
-                source={require('../assets/trash-led.png')}
+                source={require('../assets/trashcan/trash-led.png')}
                 />
                 <Image
                 style={styles.trashcanStyle}
-                source={require('../assets/trashcan.png')}
+                source={require('../assets/trashcan/trashcan.png')}
                 />
                 <TouchableOpacity onPress={() => navigation.navigate('Record')}>
                     <Image
                         style={styles.btnaddtrashStyle}
-                        source={require('../assets/btn-addtrash.png')}
+                        source={require('../assets/trashcan/btn-addtrash.png')}
                         />
                 </TouchableOpacity>
             

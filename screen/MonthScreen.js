@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
   detailTitle: {
     backgroundColor: '#63CFA8',
     width: 365,
-    height: 55,
+    height: 58,
     borderRadius: 20,
     shadowColor: '#707070',
     shadowOffset: { width: 0, height: 2,},
