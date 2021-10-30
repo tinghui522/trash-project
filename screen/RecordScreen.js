@@ -101,9 +101,9 @@ export default class RecordScreen extends Component {
           </TouchableOpacity>
         </View>
         <View>
-          <TouchableOpacity onPress={() => this.bs.current.snapTo(1)}>
+          <TouchableOpacity onPress={() => this.bsAdd.current.snapTo(1)}>
             <Image
-              style={styles.iconstyle}
+              style={styles.btnCheck}
               source={require('../assets/btn-check.png')}
             />
           </TouchableOpacity>
@@ -143,14 +143,14 @@ export default class RecordScreen extends Component {
                     <TouchableOpacity onPress={this.calc}><View style={styles.mygrid2}><Text style={{fontSize:20}}>c</Text></View></TouchableOpacity>
                     <TouchableOpacity onPress={this.clickNum.bind(this,'0')}><View style={styles.mygrid}><Text style={{fontSize:20}}>0</Text></View></TouchableOpacity>
                     <TouchableOpacity onPress={this.calc}><View style={styles.mygrid2}><Text style={{fontSize:20}}>=</Text></View></TouchableOpacity>
-                    <TouchableOpacity onPress={this.calc}><View style={styles.mygrid2}><Image style={styles.btncheckstyle}source={require('../assets/record/btn-check.png')}/></View></TouchableOpacity>
+                    <TouchableOpacity onPress={() => this.bsCal.current.snapTo(1)}><View style={styles.mygrid2}><Image style={styles.btncheckstyle}source={require('../assets/record/btn-check.png')}/></View></TouchableOpacity>
                 </View>
             </View>
         </View> 
       </View>
     )
 
-    bs = React.createRef();
+    bsAdd = React.createRef();
     bsCal = React.createRef();
     fall = new Animated.Value(1);
 
@@ -177,42 +177,44 @@ export default class RecordScreen extends Component {
               <Text style={styles.item_text}>類別</Text>
             </View>
             <View style={styles.block_category}> 
-              <TouchableHighlight>
-                <Image
-                style={styles.iconstyle}
-                source={require('../assets/record/icon-breakfast.png')}
-                />
-              </TouchableHighlight>
-              <TouchableHighlight>
-                <Image
-                style={styles.iconstyle}
-                source={require('../assets/record/icon-lunch.png')}
-                />
-              </TouchableHighlight>
-              <TouchableHighlight>
-                <Image
-                style={styles.iconstyle}
-                source={require('../assets/record/icon-dinner.png')}
-                />
-              </TouchableHighlight>
-              <TouchableHighlight>
-                <Image
-                style={styles.iconstyle}
-                source={require('../assets/record/icon-drink.png')}
-                />
-              </TouchableHighlight>
-              <TouchableHighlight>
-                <Image
-                style={styles.iconstyle}
-                source={require('../assets/record/icon-dessert.png')}
-                />
-              </TouchableHighlight>
-              <TouchableHighlight>
-                <Image
-                style={styles.iconstyle}
-                source={require('../assets/record/icon-other.png')}
-                />
-              </TouchableHighlight>
+              <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+                <TouchableHighlight>
+                  <Image
+                  style={styles.iconstyle}
+                  source={require('../assets/record/icon-breakfast.png')}
+                  />
+                </TouchableHighlight>
+                <TouchableHighlight>
+                  <Image
+                  style={styles.iconstyle}
+                  source={require('../assets/record/icon-lunch.png')}
+                  />
+                </TouchableHighlight>
+                <TouchableHighlight>
+                  <Image
+                  style={styles.iconstyle}
+                  source={require('../assets/record/icon-dinner.png')}
+                  />
+                </TouchableHighlight>
+                <TouchableHighlight>
+                  <Image
+                  style={styles.iconstyle}
+                  source={require('../assets/record/icon-drink.png')}
+                  />
+                </TouchableHighlight>
+                <TouchableHighlight>
+                  <Image
+                  style={styles.iconstyle}
+                  source={require('../assets/record/icon-dessert.png')}
+                  />
+                </TouchableHighlight>
+                <TouchableHighlight>
+                  <Image
+                  style={styles.iconstyle}
+                  source={require('../assets/record/icon-other.png')}
+                  />
+                </TouchableHighlight>
+              </ScrollView>
             </View>
             <View style={styles.title_item_bg}> 
               <Text style={styles.item_text}>項目</Text>
@@ -241,7 +243,7 @@ export default class RecordScreen extends Component {
                   <Text style={styles.btn_text}>清空</Text>
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => this.bs.current.snapTo(0)}>
+              <TouchableOpacity onPress={() => this.bsAdd.current.snapTo(0)}>
                 <View style={styles.btn_change}>
                   <Text style={styles.btn_text}>修改</Text>
                 </View>
@@ -263,7 +265,7 @@ export default class RecordScreen extends Component {
               </View>
             </TouchableOpacity>
             <BottomSheet
-              ref={this.bs}
+              ref={this.bsAdd}
               snapPoints={[400, 0]}
               renderContent={this.addInner}
               renderHeader={this.addHeader}
@@ -413,7 +415,7 @@ const styles = StyleSheet.create({
   },
   block_category:{
     width:350,
-    height:75,
+    height:100,
     backgroundColor:'#fff',
     borderWidth: 1,
     borderColor:'#D9D9D9',
@@ -423,6 +425,8 @@ const styles = StyleSheet.create({
   },
   iconstyle:{
     margin: 12,
+    height: 70,
+    width: 45,
   },
   title_item_bg:{
     width: 60,
@@ -492,7 +496,7 @@ const styles = StyleSheet.create({
     borderColor:'#D9D9D9',
     borderRadius: 20,
     justifyContent: 'center',
-    marginTop: 30,
+    marginTop: 20,
   },
   moneyText_bg:{
     width:75,
@@ -607,10 +611,10 @@ const styles = StyleSheet.create({
     alignItems:'center',
     backgroundColor: '#F2F2F2',
   },
-  btncheck:{
-    width:34,
-    height:33,
-    left: 10
+  btnCheck:{
+    width: 35,
+    height: 35,
+    marginTop: 10,
   },
   qtyBlock:{
     width:240,
