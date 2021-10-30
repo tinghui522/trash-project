@@ -34,14 +34,14 @@ export default class RecordScreen extends Component {
 
     addHeader = () => (
       <View style={styles.line1}>
-        <Text style={{fontSize:18, color:'#fff'}}>新增</Text>
+        <Text style={{fontSize:18, color:'#fff', fontWeight:"bold"}}>修改</Text>
       </View>
     )
     
     addInner = () => (
       <View style={styles.panel}>
         <View style={styles.panelContent}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => this.bsqty.current.snapTo(0)}>
             <Image
               style={styles.iconstyle}
               source={require('../assets/icon-gray-box.png')}
@@ -92,12 +92,12 @@ export default class RecordScreen extends Component {
             />
           </TouchableOpacity>
         </View>
-        <View style={styles.btnCheck}>
-          <TouchableOpacity onPress={() => this.bs.current.snapTo(1)}>
-            <Image
-              style={styles.iconstyle}
-              source={require('../assets/btn-check.png')}
-            />
+        <View style={styles.qtyBlock}>
+          <Text style={styles.qtyText}>數量</Text>
+          <TouchableOpacity>
+            <View style={styles.qty_bg}>
+              <Text style={styles.qty}>1</Text>
+            </View>
           </TouchableOpacity>
         </View>
         <View>
@@ -111,7 +111,47 @@ export default class RecordScreen extends Component {
       </View>
     )
 
+    addCal = () =>(
+      <View style={styles.rootContainer}>
+        <View style={styles.buttonContainer}>
+            <View style={styles.buttonContainerRight}>
+                <View style={styles.line1}>
+                  <Text style={{fontSize:18, fontWeight:"bold", color:'#fff'}}>金額</Text>
+                  <View style={styles.line1_money_bg}>
+                    <Text style={{fontSize:18, fontWeight:"bold", color:'#909090'}}>{this.state.displayValue} 元</Text>
+                  </View>
+                </View>
+                <View style={styles.line2}>
+                    <TouchableOpacity onPress={this.clickNum.bind(this,'7')}><View style={styles.mygrid}><Text style={{fontSize:20}}>7</Text></View></TouchableOpacity>
+                    <TouchableOpacity onPress={this.clickNum.bind(this,'8')}><View style={styles.mygrid}><Text style={{fontSize:20}}>8</Text></View></TouchableOpacity>
+                    <TouchableOpacity onPress={this.clickNum.bind(this,'9')}><View style={styles.mygrid}><Text style={{fontSize:20}}>9</Text></View></TouchableOpacity>
+                    <TouchableOpacity onPress={this.setOper.bind(this,4)}><View style={styles.mygrid2}><Text style={{fontSize:20}}>-</Text></View></TouchableOpacity>
+                </View>
+                <View style={styles.line3}>
+                    <TouchableOpacity onPress={this.clickNum.bind(this,'4')}><View style={styles.mygrid}><Text style={{fontSize:20}}>4</Text></View></TouchableOpacity>
+                    <TouchableOpacity onPress={this.clickNum.bind(this,'5')}><View style={styles.mygrid}><Text style={{fontSize:20}}>5</Text></View></TouchableOpacity>
+                    <TouchableOpacity onPress={this.clickNum.bind(this,'6')}><View style={styles.mygrid}><Text style={{fontSize:20}}>6</Text></View></TouchableOpacity>
+                    <TouchableOpacity onPress={this.setOper.bind(this,3)}><View style={styles.mygrid2}><Text style={{fontSize:20}}>+</Text></View></TouchableOpacity>
+                </View>
+                <View style={styles.line4}>
+                    <TouchableOpacity onPress={this.clickNum.bind(this,'1')}><View style={styles.mygrid}><Text style={{fontSize:20}}>1</Text></View></TouchableOpacity>
+                    <TouchableOpacity onPress={this.clickNum.bind(this,'2')}><View style={styles.mygrid}><Text style={{fontSize:20}}>2</Text></View></TouchableOpacity>
+                    <TouchableOpacity onPress={this.clickNum.bind(this,'3')}><View style={styles.mygrid}><Text style={{fontSize:20}}>3</Text></View></TouchableOpacity>
+                    <TouchableOpacity onPress={this.setOper.bind(this,2)}><View style={styles.mygrid2}><Text style={{fontSize:20}}>r</Text></View></TouchableOpacity>
+                </View>
+                <View style={styles.line5}>
+                    <TouchableOpacity onPress={this.calc}><View style={styles.mygrid2}><Text style={{fontSize:20}}>c</Text></View></TouchableOpacity>
+                    <TouchableOpacity onPress={this.clickNum.bind(this,'0')}><View style={styles.mygrid}><Text style={{fontSize:20}}>0</Text></View></TouchableOpacity>
+                    <TouchableOpacity onPress={this.calc}><View style={styles.mygrid2}><Text style={{fontSize:20}}>=</Text></View></TouchableOpacity>
+                    <TouchableOpacity onPress={this.calc}><View style={styles.mygrid2}><Image style={styles.btncheckstyle}source={require('../assets/record/btn-check.png')}/></View></TouchableOpacity>
+                </View>
+            </View>
+        </View> 
+      </View>
+    )
+
     bs = React.createRef();
+    bsCal = React.createRef();
     fall = new Animated.Value(1);
 
   render() {
@@ -133,8 +173,8 @@ export default class RecordScreen extends Component {
               </View>
           </View>
           <View style={styles.content}>
-            <View style={styles.title_category}> 
-              <Text style={styles.category_text}>類別</Text>
+            <View style={styles.title_category_bg}> 
+              <Text style={styles.item_text}>類別</Text>
             </View>
             <View style={styles.block_category}> 
               <TouchableHighlight>
@@ -174,7 +214,7 @@ export default class RecordScreen extends Component {
                 />
               </TouchableHighlight>
             </View>
-            <View style={styles.title_item}> 
+            <View style={styles.title_item_bg}> 
               <Text style={styles.item_text}>項目</Text>
             </View>
             <View style={styles.block_item}> 
@@ -196,65 +236,45 @@ export default class RecordScreen extends Component {
                 source={require('../assets/record/icon-box.png')}
                 />
               </TouchableHighlight>
+              <TouchableOpacity>
+                <View style={styles.btn_clear}>
+                  <Text style={styles.btn_text}>清空</Text>
+                </View>
+              </TouchableOpacity>
               <TouchableOpacity onPress={() => this.bs.current.snapTo(0)}>
-                <Image
-                style={styles.btnstyle}
-                source={require('../assets/record/btn-addnew.png')}
-                />
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <Image
-                style={styles.btnstyle}
-                source={require('../assets/record/btn-clean.png')}
-                />
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <Image
-                style={styles.btnstyle}
-                source={require('../assets/record/btn-store.png')}
-                />
+                <View style={styles.btn_change}>
+                  <Text style={styles.btn_text}>修改</Text>
+                </View>
               </TouchableOpacity>
             </View> 
-            <View style={styles.rootContainer}>
-                <View style={styles.buttonContainer}>
-                    <View style={styles.buttonContainerRight}>
-                        <View style={styles.line1}>
-                        <Text style={{fontSize:20, color:'#fff'}}>金額</Text>
-                            <Text style={{fontSize:20, color:'#fff'}}>{this.state.displayValue} 元</Text>
-                        </View>
-                        <View style={styles.line2}>
-                            <TouchableOpacity onPress={this.clickNum.bind(this,'7')}><View style={styles.mygrid}><Text style={{fontSize:20}}>7</Text></View></TouchableOpacity>
-                            <TouchableOpacity onPress={this.clickNum.bind(this,'8')}><View style={styles.mygrid}><Text style={{fontSize:20}}>8</Text></View></TouchableOpacity>
-                            <TouchableOpacity onPress={this.clickNum.bind(this,'9')}><View style={styles.mygrid}><Text style={{fontSize:20}}>9</Text></View></TouchableOpacity>
-                            <TouchableOpacity onPress={this.setOper.bind(this,4)}><View style={styles.mygrid2}><Text style={{fontSize:20}}>-</Text></View></TouchableOpacity>
-                        </View>
-                        <View style={styles.line3}>
-                            <TouchableOpacity onPress={this.clickNum.bind(this,'4')}><View style={styles.mygrid}><Text style={{fontSize:20}}>4</Text></View></TouchableOpacity>
-                            <TouchableOpacity onPress={this.clickNum.bind(this,'5')}><View style={styles.mygrid}><Text style={{fontSize:20}}>5</Text></View></TouchableOpacity>
-                            <TouchableOpacity onPress={this.clickNum.bind(this,'6')}><View style={styles.mygrid}><Text style={{fontSize:20}}>6</Text></View></TouchableOpacity>
-                            <TouchableOpacity onPress={this.setOper.bind(this,3)}><View style={styles.mygrid2}><Text style={{fontSize:20}}>+</Text></View></TouchableOpacity>
-                        </View>
-                        <View style={styles.line4}>
-                            <TouchableOpacity onPress={this.clickNum.bind(this,'1')}><View style={styles.mygrid}><Text style={{fontSize:20}}>1</Text></View></TouchableOpacity>
-                            <TouchableOpacity onPress={this.clickNum.bind(this,'2')}><View style={styles.mygrid}><Text style={{fontSize:20}}>2</Text></View></TouchableOpacity>
-                            <TouchableOpacity onPress={this.clickNum.bind(this,'3')}><View style={styles.mygrid}><Text style={{fontSize:20}}>3</Text></View></TouchableOpacity>
-                            <TouchableOpacity onPress={this.setOper.bind(this,2)}><View style={styles.mygrid2}><Text style={{fontSize:20}}>r</Text></View></TouchableOpacity>
-                        </View>
-                        <View style={styles.line5}>
-                            <TouchableOpacity onPress={this.calc}><View style={styles.mygrid2}><Text style={{fontSize:20}}>c</Text></View></TouchableOpacity>
-                            <TouchableOpacity onPress={this.clickNum.bind(this,'0')}><View style={styles.mygrid}><Text style={{fontSize:20}}>0</Text></View></TouchableOpacity>
-                            <TouchableOpacity onPress={this.calc}><View style={styles.mygrid2}><Text style={{fontSize:20}}>=</Text></View></TouchableOpacity>
-                            <TouchableOpacity onPress={this.calc}><View style={styles.mygrid2}><Image style={styles.btncheckstyle}source={require('../assets/record/btn-check.png')}/></View></TouchableOpacity>
-                        </View>
-                    </View>
-                </View> 
+            <View style={styles.moneyBlock}>
+              <View style={styles.moneyText_bg}>
+                <Text style={styles.moneyText}>金額</Text>
+              </View>
+              <TouchableOpacity onPress={() => this.bsCal.current.snapTo(0)}>
+                <View style={styles.money_bg}>
+                  <Text style={styles.money}>{this.state.displayValue}元</Text>
+                </View>
+              </TouchableOpacity>
             </View>
-
+            <TouchableOpacity>
+              <View style={styles.btn_send}>
+                <Text style={styles.sendText}>丟垃圾</Text>
+              </View>
+            </TouchableOpacity>
             <BottomSheet
               ref={this.bs}
               snapPoints={[400, 0]}
               renderContent={this.addInner}
               renderHeader={this.addHeader}
+              initialSnap={1}
+              callbackNode={this.fall}
+              enabledGestureInteraction={true}
+            />
+            <BottomSheet
+              ref={this.bsCal}
+              snapPoints={[400, 0]}
+              renderContent={this.addCal}
               initialSnap={1}
               callbackNode={this.fall}
               enabledGestureInteraction={true}
@@ -265,68 +285,68 @@ export default class RecordScreen extends Component {
      
     );
   }
-    //按數字
-    clickNum(paramValue){
-      /*let beforeValue=this.state.displayValue;
-      let lastValue=‘0‘;
-      if(beforeValue===‘0‘){
-          lastValue=paramValue
+  //按數字
+  clickNum(paramValue){
+    /*let beforeValue=this.state.displayValue;
+    let lastValue=‘0‘;
+    if(beforeValue===‘0‘){
+        lastValue=paramValue
+    }else{
+        lastValue=beforeValue+paramValue
+    }
+    this.setState({
+        displayValue:lastValue
+    })*/
+    this.setState((beforeState,props)=>{
+      //先判斷操作符是否為空
+      if(beforeState.oper==null){
+        //如果操作符為空，代表客戶輸入的數字，為a
+        let lastValue='0';
+        if(beforeState.a==='0'){
+            lastValue=paramValue
+        }else{
+            lastValue=beforeState.a+paramValue
+        }
+        return{a:lastValue,displayValue: lastValue}
       }else{
-          lastValue=beforeValue+paramValue
+        //操作符不為null，代表客戶輸入的數字，屬於b
+        let lastValue='0';
+        if(beforeState.b==='0'){
+            lastValue=paramValue;
+        }else {
+            lastValue=beforeState.b+paramValue
+        }
+        return{b:lastValue,displayValue:lastValue}
       }
-      this.setState({
-          displayValue:lastValue
-      })*/
-      this.setState((beforeState,props)=>{
-          //先判斷操作符是否為空
-          if(beforeState.oper==null){
-              //如果操作符為空，代表客戶輸入的數字，為a
-              let lastValue='0';
-              if(beforeState.a==='0'){
-                  lastValue=paramValue
-              }else{
-                  lastValue=beforeState.a+paramValue
-              }
-              return{a:lastValue,displayValue: lastValue}
-          }else{
-              //操作符不為null，代表客戶輸入的數字，屬於b
-              let lastValue='0';
-              if(beforeState.b==='0'){
-                  lastValue=paramValue;
-              }else {
-                  lastValue=beforeState.b+paramValue
-              }
-              return{b:lastValue,displayValue:lastValue}
-          }
-      })
+    })
   }
   //按操作符
   setOper(param){
-      this.setState({
-          oper:param
-      })
+    this.setState({
+        oper:param
+    })
   }
   //按等號
   calc(){
-      let d=0;
-      if(this.state.oper===1){
-          d=(this.state.a*1.0)+this.state.b*1.0
-      }
-      if(this.state.oper==2){
-          d=(this.state.a*1.0)-this.state.b*1.0
-      }
-      if(this.state.oper==3){
-          d=(this.state.a*1.0)*this.state.b*1.0
-      }
-      if(this.state.oper==4){
-          d=(this.state.a*1.0)/this.state.b*1.0
-      }
-      this.setState({
-          a:'0',
-          b:'0',
-          oper:null,
-          displayValue:d
-      })
+    let d=0;
+    if(this.state.oper===1){
+        d=(this.state.a*1.0)+this.state.b*1.0
+    }
+    if(this.state.oper==2){
+        d=(this.state.a*1.0)-this.state.b*1.0
+    }
+    if(this.state.oper==3){
+        d=(this.state.a*1.0)*this.state.b*1.0
+    }
+    if(this.state.oper==4){
+        d=(this.state.a*1.0)/this.state.b*1.0
+    }
+    this.setState({
+        a:'0',
+        b:'0',
+        oper:null,
+        displayValue:d
+    })
   }
 }
 
@@ -350,17 +370,16 @@ const styles = StyleSheet.create({
     width:250,
     height:50,
     backgroundColor: '#fff',
+    borderWidth: 1,
+    borderColor:'#D9D9D9',
     borderRadius: 20,
     marginTop: -160,
-    shadowColor: '#707070',
-    shadowOffset: { width: 0, height: 3,},
-    shadowOpacity: 5,
   },
   dateText:{
     color: '#909090',
-    fontSize:16,
+    fontSize:18,
     fontWeight:"bold",
-    marginTop:18,
+    marginTop:16,
     left:35,
   },
   date_bg:{
@@ -368,7 +387,7 @@ const styles = StyleSheet.create({
     height:30,
     backgroundColor: '#f2f2f2',
     borderRadius: 20,
-    marginTop: -22,
+    marginTop: -24,
     left:100,
     
   },
@@ -376,67 +395,84 @@ const styles = StyleSheet.create({
     color: '#909090',
     fontSize:16,
     fontWeight:"bold",
-    left:18,
+    left:13,
     top:5
   },
   content:{
+    height:490,
     alignItems: 'center',
     backgroundColor:'#fff'
   },
-  title_category:{
-    width: 54,
-    height: 45,
+  title_category_bg:{
+    width: 60,
+    height: 50,
     backgroundColor: '#CCF2D6',
     borderRadius: 10,
     marginTop: -70,
-    left:-148
-  },
-  category_text:{
-    fontSize:14,
-    fontWeight:"bold",
-    color: '#909090',
-    marginTop:5,
-    left:12,
+    left:-145
   },
   block_category:{
     width:350,
     height:75,
     backgroundColor:'#fff',
+    borderWidth: 1,
+    borderColor:'#D9D9D9',
     borderRadius:20,
     marginTop:-20,
     flexDirection: 'row',
-    shadowColor: '#707070',
-    shadowOffset: { width: 0, height: 3,},
-    shadowOpacity: 5,
   },
   iconstyle:{
     margin: 12,
   },
-  title_item:{
-    width: 54,
-    height: 45,
+  title_item_bg:{
+    width: 60,
+    height: 50,
     backgroundColor: '#CCF2D6',
     borderRadius: 10,
     marginTop: 20,
-    left:-148
+    left:-145
   },
   item_text:{
-    fontSize:14,
+    fontSize:18,
     fontWeight:"bold",
     color: '#909090',
-    marginTop:5,
+    marginTop:7,
     left:12,
   },
   block_item:{
     width:350,
     height:180,
     backgroundColor:'#fff',
+    borderWidth: 1,
+    borderColor:'#D9D9D9',
     borderRadius:20,
     marginTop:-20,
     flexDirection: 'row',
-    shadowColor: '#707070',
-    shadowOffset: { width: 0, height: 3,},
-    shadowOpacity: 5,
+  },
+  btn_text:{
+    fontSize:18,
+    fontWeight:"bold",
+    color: '#fff',
+  },
+  btn_clear:{
+    width:65,
+    height:40,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#FF867C',
+    borderRadius:16,
+    marginTop:120,
+    left:-185,
+  },
+  btn_change:{
+    width:65,
+    height:40,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#63CFA8',
+    borderRadius:16,
+    marginTop:120,
+    left:-10,
   },
   itemstyle:{
     left:10,
@@ -448,73 +484,163 @@ const styles = StyleSheet.create({
     top:120,
     left:-80
   },
+  moneyBlock:{
+    width:350,
+    height:70,
+    backgroundColor: '#fff',
+    borderWidth: 1,
+    borderColor:'#D9D9D9',
+    borderRadius: 20,
+    justifyContent: 'center',
+    marginTop: 30,
+  },
+  moneyText_bg:{
+    width:75,
+    height:40,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#CCF2D6',
+    borderRadius:16,
+    left:20,
+  },
+  moneyText:{
+    color: '#909090',
+    fontSize:18,
+    fontWeight:"bold",
+  },
+  money_bg:{
+    width:150,
+    height:40,
+    backgroundColor: '#f2f2f2',
+    borderRadius: 16,
+    marginTop: -40,
+    left:178,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  money:{
+    color: '#909090',
+    fontSize:18,
+    fontWeight:"bold",
+  },
+  btn_send:{
+    width:130,
+    height:50,
+    marginTop:30,
+    backgroundColor: '#63CFA8',
+    borderRadius: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  sendText:{
+    fontSize:20,
+    fontWeight:"bold",
+    color: '#fff',
+  },
   rootContainer : {
-    top:30,
+    marginTop:120,
     width:414,
-    height:280,
+    height:300,
     flexDirection: 'column',
-    backgroundColor:'#fff',
+    backgroundColor: '#F2F2F2',
   },
   //底部view
   buttonContainer:{
-      flexDirection: 'row'
+    flexDirection: 'row'
   },
   //底部右邊view
   buttonContainerRight:{
-      flex:3,
-      flexDirection:'column'
+    flex:3,
+    flexDirection:'column'
   },
   //輸入列
   line1:{
-      flexDirection: 'row',
-      height:40,
-      alignItems: 'center',
-      justifyContent: 'space-around',
-      backgroundColor:'#63CFA8',
-      borderRadius: 10,
-      shadowColor: '#707070',
-      shadowOffset: { width: 0, height: 3,},
-      shadowOpacity: 6,
+    flexDirection: 'row',
+    height:50,
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    backgroundColor:'#63CFA8',
+    borderRadius: 10,
+  },
+  line1_money_bg:{
+    width:150,
+    height:30,
+    backgroundColor: '#fff',
+    borderRadius: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   line2:{
-      height:50,
-      backgroundColor:'white',
-      flexDirection:'row',
-      justifyContent: 'space-around',
+    height:50,
+    marginTop: 15,
+    backgroundColor: '#F2F2F2',
+    flexDirection:'row',
+    justifyContent: 'space-around',
   },
   line3:{
-      height:50,
-      backgroundColor:'white',
-      flexDirection:'row',
-      justifyContent: 'space-around',
+    height:50,
+    backgroundColor: '#F2F2F2',
+    flexDirection:'row',
+    justifyContent: 'space-around',
   },
   line4:{
-      height:50,
-      backgroundColor:'white',
-      flexDirection:'row',
-      justifyContent: 'space-around',
+    height:50,
+    backgroundColor: '#F2F2F2',
+    flexDirection:'row',
+    justifyContent: 'space-around',
   },
   line5:{
-      height:50,
-      backgroundColor:'white',
-      flexDirection:'row',
-      justifyContent: 'space-around',
+    height:50,
+    backgroundColor: '#F2F2F2',
+    flexDirection:'row',
+    justifyContent: 'space-around',
   },
   mygrid:{
-      flex:1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor:'#fff',
+    flex:1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F2F2F2',
   },
   mygrid2:{
-      flex:1,
-      justifyContent:'center',
-      alignItems:'center',
-      backgroundColor:'#fff',
+    flex:1,
+    justifyContent:'center',
+    alignItems:'center',
+    backgroundColor: '#F2F2F2',
   },
-  btncheckstyle:{
+  btncheck:{
     width:34,
     height:33,
     left: 10
-  }
+  },
+  qtyBlock:{
+    width:240,
+    height:50,
+    backgroundColor: '#fff',
+    borderWidth: 1,
+    borderColor:'#D9D9D9',
+    borderRadius: 20,
+    marginTop: 20,
+  },
+  qtyText:{
+    color: '#909090',
+    fontSize:18,
+    fontWeight:"bold",
+    marginTop:16,
+    left:35,
+  },
+  qty_bg:{
+    width:60,
+    height:30,
+    backgroundColor: '#f2f2f2',
+    borderRadius: 20,
+    marginTop: -24,
+    left:125,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  qty:{
+    color: '#909090',
+    fontSize:16,
+    fontWeight:"bold",
+  },
 });
