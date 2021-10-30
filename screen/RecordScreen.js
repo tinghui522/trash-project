@@ -17,7 +17,8 @@ import {
 } from 'react-native';
 import BottomSheet from 'reanimated-bottom-sheet';
 import Animated from "react-native-reanimated";
-import DateTimePickerModal from "react-native-modal-datetime-picker";
+import DateTimePicker from "react-native-modal-datetime-picker";
+import moment from "moment";
 export default class RecordScreen extends Component {
     constructor(props) {
       super(props);
@@ -25,11 +26,32 @@ export default class RecordScreen extends Component {
           a:'0',
           b:'0',
           oper:null,
-          displayValue:'0'
+          displayValue:'0',
+          isVisible: false,
+          chosenDate: ''
       };
       this.clickNum = this.clickNum.bind(this);
       this.setOper = this.setOper.bind(this);
       this.calc = this.calc.bind(this);
+    }
+
+    handlePicker = (datetime) => {
+      this.setState({
+        isVisible: false,
+        chosenDate: moment(datetime).format('YYYY-MM-DD')
+      })
+    }
+
+    showPicker = () => {
+      this.setState({
+        isVisible: true
+      })
+    }
+
+    hidePicker = () => {
+      this.setState({
+        isVisible: false
+      })
     }
 
     addHeader = () => (
@@ -165,11 +187,18 @@ export default class RecordScreen extends Component {
                   />
               <View style={styles.record_date}>
                 <Text style={styles.dateText}>日期</Text>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={this.showPicker}>
                   <View style={styles.date_bg}>
-                    <Text style={styles.date}>2021 / 9 / 28</Text>
+                    <Text style={styles.date}>{this.state.chosenDate}</Text>
                   </View>
                 </TouchableOpacity>
+              </View>
+              <View>
+                <DateTimePicker
+                  isVisible={this.state.isVisible}
+                  onConfirm={this.handlePicker}
+                  onCancel={this.hidePicker}
+                />
               </View>
           </View>
           <View style={styles.content}>
