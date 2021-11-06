@@ -62,7 +62,7 @@ export default class TrashcanScreen extends Component {
           </Animated.View>
           <BottomSheet
             ref={this.bs}
-            snapPoints={[760, 0]}
+            snapPoints={[890, 0]}
             renderContent={this.addTrash}
             initialSnap={1}
             callbackNode={this.fall}
