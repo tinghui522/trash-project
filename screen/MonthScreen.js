@@ -1,13 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, ScrollView,TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity} from 'react-native';
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 
 export default function MonthScreen({ navigation }) {
   return (
     <ScrollView>
       <View style={styles.header}>
-        <Image source= {require('../assets/suggest/header-bg.png')} 
-               style= {{ height: 275 }}/>
+        <Image source= {require('../assets/suggest/header-bg.png')} />
         <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
                 <Image
                     style={styles.profileiconStyle}
@@ -74,8 +73,8 @@ export default function MonthScreen({ navigation }) {
         </View>
         <View>
           <View style={styles.totalSection}>
-            <Text style={styles.totalText}>當天總數量 : ___</Text>
-            <Text style={styles.totalText}>當天總額 : ___</Text>
+            <Text style={styles.totalText}>當天總數量 : 6</Text>
+            <Text style={styles.totalText}>當天總額 : $300</Text>
           </View>
           <View style={styles.todayDetail}>
             <View style={styles.detailTitle}>
@@ -106,25 +105,24 @@ export default function MonthScreen({ navigation }) {
         </View>
       </View>
     </ScrollView>
-    
   );
 }
 
 const styles = StyleSheet.create({
   header: {
     height: 275,
-    alignItems: 'center',
   },
   headerText: {
-    color: '#fff',
+    color: '#909090',
     fontWeight: 'bold',
-    fontSize: 20,
-    marginTop: -150,
+    fontSize: 26,
+    marginTop: -180,
+    marginLeft: 50,
   },
   profileiconStyle:{
     width:58,
     height:58,
-    marginLeft:305,
+    marginLeft:330,
     marginTop:-230
   },
   container: {
@@ -133,9 +131,9 @@ const styles = StyleSheet.create({
   },
   calendar: {
     marginTop: -100, 
-    shadowColor: '#707070',
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 6,
+    borderRadius:20,
+    borderWidth: 1,
+    borderColor:'#D9D9D9',
   },
   totalSection: {
     width: 340,
@@ -146,28 +144,25 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   totalText: {
-    fontSize: 16,
-    color: '#000',
+    fontSize: 20,
+    color: '#909090',
+    fontWeight:'bold'
   },
   todayDetail: {
     backgroundColor: '#fff',
     width: 365,
     height: 360,
     borderRadius: 20,
-    shadowColor: '#707070',
-    shadowOffset: { width: 0, height: 3,},
-    shadowOpacity: 6,
+    borderWidth: 1,
+    borderColor:'#D9D9D9',
     marginTop: 70,
     bottom:30,
   },
   detailTitle: {
     backgroundColor: '#63CFA8',
     width: 365,
-    height: 58,
+    height: 62,
     borderRadius: 20,
-    shadowColor: '#707070',
-    shadowOffset: { width: 0, height: 2,},
-    shadowOpacity: 6,
     flexDirection: "row",
     marginBottom: -10,
     padding: 20,
@@ -176,22 +171,24 @@ const styles = StyleSheet.create({
   },
   detailText: {
     color: '#fff',
-    fontSize: 16,
+    fontSize: 20,
+    fontWeight:'bold'
   },
   mealDetail: {
     width: 320,
     flexDirection: "row",
-    marginTop: 50,
+    marginTop: 45,
     marginLeft: 20,
     justifyContent: 'space-between',
     alignItems: 'center',
   },
   mealDetailText: {
-    fontSize: 16,
-    color: '#707070',
+    fontSize: 20,
+    color: '#909090',
+    fontWeight:'bold'
   },
   dashLine: {
-    marginTop: 30,
+    marginTop: 20,
     borderStyle: 'dashed',
     borderWidth: 1,
     borderColor: '#35A67D',

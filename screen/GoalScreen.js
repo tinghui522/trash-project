@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { Component } from "react";
+import React, { Component , navigation } from "react";
 import {   
   StyleSheet, 
   Text, 
