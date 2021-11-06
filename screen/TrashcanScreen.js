@@ -1,48 +1,81 @@
-import React, { Component,Fragment } from "react";
-import {Text,StatusBar,Button,StyleSheet,Platform,API,TouchableOpacity,Image,View,ScrollView,TouchableHighlight,SafeAreaView} from 'react-native';
+import React, { Component, Fragment } from "react";
+import {
+  Text,
+  StatusBar,
+  Button,
+  StyleSheet,
+  Platform,
+  API,
+  TouchableOpacity,
+  Image,
+  View,
+  ScrollView,
+  TouchableHighlight,
+  SafeAreaView
+} from 'react-native';
+import BottomSheet from 'reanimated-bottom-sheet';
+import Animated from "react-native-reanimated";
+import RecordScreen from "./RecordScreen";
 
-const TrashcanScreen = ({ navigation }) => {
-  return (
-    <SafeAreaView style={{flex:1}}>
-        <View style={styles.contentStyle}>
-          <Image
-              style={styles.homebgStyle}
-              source={require('../assets/trashcan/home-bg.png')}
-              />
-          <Text style={styles.titleStyle}>本月垃圾量 16 件</Text>
-          <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
-              <Image
-                  style={styles.profileiconStyle}
-                  source={require('../assets/icon-profile.png')}
-                  />
-          </TouchableOpacity>
-          <Image
-          style={styles.trashledStyle}
-          source={require('../assets/trashcan/trash-led.png')}
-          />
-          <Image
-          style={styles.trashcanStyle}
-          source={require('../assets/trashcan/trashcan.png')}
-          />
-          <TouchableOpacity onPress={() => navigation.navigate('Record')}>
-              <Image
-                  style={styles.btnaddtrashStyle}
-                  source={require('../assets/trashcan/btn-addtrash.png')}
-                  />
-          </TouchableOpacity>
-        </View>
-    </SafeAreaView>
+export default class TrashcanScreen extends Component {
+
+  addTrash = () => (
+    <View style={styles.bsContainer}>
+      <RecordScreen></RecordScreen>
+    </View>
   )
+
+  bs = React.createRef();
+  fall = new Animated.Value(1);
+  
+  render() {
+    return (
+      <SafeAreaView style={{flex:1}}>
+        <View>
+          <Animated.View style={{backgroundColor: '#E5E5E5', width:414, height:896, alignItems: 'center',
+            opacity: Animated.add(0.3, Animated.multiply(this.fall, 1.0))}}>
+              <Image
+                style={styles.homebgStyle}
+                source={require('../assets/trashcan/home-bg.png')}
+                />
+              <Text style={styles.titleStyle}>本月垃圾量 16 件</Text>
+              <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+                  <Image
+                      style={styles.profileiconStyle}
+                      source={require('../assets/icon-profile.png')}
+                      />
+              </TouchableOpacity>
+                  <Image
+                  style={styles.trashledStyle}
+                  source={require('../assets/trashcan/trash-led.png')}
+                  />
+                  <Image
+                  style={styles.trashcanStyle}
+                  source={require('../assets/trashcan/trashcan.png')}
+                  />
+              <TouchableOpacity onPress={() => this.bs.current.snapTo(0)}>
+                  <Image
+                      style={styles.btnaddtrashStyle}
+                      source={require('../assets/trashcan/btn-addtrash.png')}
+                      />
+              </TouchableOpacity>
+          </Animated.View>
+          <BottomSheet
+            ref={this.bs}
+            snapPoints={[760, 0]}
+            renderContent={this.addTrash}
+            initialSnap={1}
+            callbackNode={this.fall}
+            enabledGestureInteraction={true}
+          />
+        </View>
+      </SafeAreaView>
+    )
+  }
 }
 
 const styles = StyleSheet.create({
   container0: { flex: 1},
-  contentStyle: {
-    backgroundColor: '#E5E5E5',
-    width:414,
-    height:896,
-    alignItems: 'center',
-  },
   titleStyle:{
     fontSize:26,
     fontWeight:"bold",
@@ -75,5 +108,3 @@ const styles = StyleSheet.create({
     marginLeft:250,
   },
 });
-
-export default TrashcanScreen;
