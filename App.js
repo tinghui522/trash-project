@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image } from 'react-native';
+import { Image, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -10,7 +10,6 @@ import TrashcanScreen from "./screen/TrashcanScreen";
 import MonthScreen from "./screen/MonthScreen";
 import GoalScreen from './screen/GoalScreen';
 import AboutScreen from './screen/AboutScreen';
-import CalScreen from './screen/CalScreen';
 
 
 const Tab = createBottomTabNavigator();
@@ -32,12 +31,14 @@ function HomeStack () {
             headerStyle:{
               height:0,
             },
+            headerLeft: null,
           }} />
         <Stack.Screen name="Profile" component={AboutScreen}
           options={{
             headerStyle:{
               height:0,
-            }
+            },
+            headerLeft: null,
           }} /> 
       </Stack.Navigator>
   );
@@ -57,7 +58,8 @@ function SuggestStack () {
         options={{
           headerStyle:{
             height:0,
-          }
+          },
+          headerLeft: null,
         }} />
       <Stack.Screen name="MoneySuggest" component={MoneySuggestScreen} 
         options={{
@@ -83,7 +85,8 @@ function MonthStack () {
           options={{
             headerStyle:{
               height:0,
-            }
+            },
+            headerLeft: null,
           }} />
       </StackMonth.Navigator>
   );
@@ -103,7 +106,8 @@ function GoalStack () {
           options={{
             headerStyle:{
               height:0,
-            }
+            },
+            headerLeft: null,
           }} />
       </StackGoal.Navigator>
   );

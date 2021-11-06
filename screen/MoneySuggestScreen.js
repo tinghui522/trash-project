@@ -1,43 +1,63 @@
-import React from 'react';
+import React, { Component ,useState, navigation }from 'react';
+import TabNavigator from 'react-native-tab-navigator';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, ScrollView,TouchableOpacity } from 'react-native';
 
-export default function MoneySuggestScreen({ navigation }) {
-  return (
-    <ScrollView>
-      <View style={styles.header}>
-        <Image source= {require('../assets/suggest/header-bg.png')} 
-               style= {{ height: 275 }}/>
-        <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
-                <Image
-                    style={styles.profileiconStyle}
-                    source={require('../assets/icon-profile.png')}
-                    />
-            </TouchableOpacity>
-        <Text style={styles.headerText}>統計分析</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('TrashSuggest')}>
-          <Image source= {require('../assets/suggest/btn-trashSuggest.png')}
-                style= {{ marginTop: 30, marginLeft: 45,}}/>
-        </TouchableOpacity>
-        <Image source= {require('../assets/suggest/btn-moneyOnTouch.png')}
-               style= {{ marginTop: -44, marginLeft: 208,}}/>
-      </View>
-      <View style={styles.container}>
-        <View style={styles.chart}>
-          <Image source= {require('../assets/suggest/money-chart.png')}/>
-        </View>
+export default class TrashSuggestScreen extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {selectedTab: 'suggest'};
+  }
 
-        <View style={styles.moneySuggest}>
-            <Text style={styles.suggestText}>小提醒</Text>
-            <View style={styles.suggestCharacter}>
-              <Image source= {require('../assets/suggest/character_Earth.png')} 
-                    style ={{ width: 167, height: 167 }}/>
-            </View>
+  render(){
+    return (
+      <ScrollView>
+        <View style={styles.header}>
+          <Image source= {require('../assets/suggest/header-bg.png')} 
+                style= {{ height: 275 }}/>
+          <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+                  <Image
+                      style={styles.profileiconStyle}
+                      source={require('../assets/icon-profile.png')}
+                      />
+              </TouchableOpacity>
+          <Text style={styles.headerText}>統計分析</Text>
+          <TabNavigator>
+            <TabNavigator.Item
+              selected={this.state.selectedTab === 'suggest'}
+              title="垃圾量"
+              renderIcon={() => <Image style={styles.btnimage} source={require('../assets/suggest/btn-trashSuggest.png')} />}
+              renderSelectedIcon={() => <Image style={styles.btnimage2} source={require('../assets/suggest/btn-trashOnTouch.png')} />}
+              onPress={() => this.setState({ selectedTab: 'suggest' })}>
+              <View style={styles.page1}></View>
+            </TabNavigator.Item>
+            <TabNavigator.Item
+              selected={this.state.selectedTab === 'money'}
+              title="食物費"
+              renderIcon={() => <Image style={styles.btnimage3} source={require('../assets/suggest/btn-moneySuggest.png')} />}
+              renderSelectedIcon={() => <Image style={styles.btnimage4} source={require('../assets/suggest/btn-moneyOnTouch.png')} />}
+              onPress={() => this.setState({ selectedTab: 'money' })}>
+              <View style={styles.page2}></View>
+            </TabNavigator.Item>
+          </TabNavigator>
         </View>
-      </View>
-      <StatusBar style="auto" />
-    </ScrollView>
-  );
+        <View style={styles.container}>
+          <View style={styles.chart}>
+            <Image source= {require('../assets/suggest/money-chart.png')}/>
+          </View>
+
+          <View style={styles.moneySuggest}>
+              <Text style={styles.suggestText}>小提醒</Text>
+              <View style={styles.suggestCharacter}>
+                <Image source= {require('../assets/suggest/character_Earth.png')} 
+                      style ={{ width: 167, height: 167 }}/>
+              </View>
+          </View>
+        </View>
+        <StatusBar style="auto" />
+      </ScrollView>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
