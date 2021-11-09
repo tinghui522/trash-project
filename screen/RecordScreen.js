@@ -117,9 +117,13 @@ export default class RecordScreen extends Component {
         <View style={styles.qtyBlock}>
           <Text style={styles.qtyText}>數量</Text>
           <TouchableOpacity>
-            <View style={styles.qty_bg}>
-              <Text style={styles.qty}>1</Text>
-            </View>
+            <Text style={styles.btnQty}>-</Text>
+          </TouchableOpacity>
+          <View style={styles.qty_bg}>
+            <Text style={styles.qty}>1</Text>
+          </View>
+          <TouchableOpacity>
+            <Text style={styles.btnQty}>+</Text>
           </TouchableOpacity>
         </View>
         <View>
@@ -179,139 +183,133 @@ export default class RecordScreen extends Component {
   render() {
     return (
       <SafeAreaView>
-         <ScrollView>
-           <View style={styles.header}>
-              <Image
-                  style={styles.record_bg}
-                  source={require('../assets/page-bg.png')}
-                  />
-              <View style={styles.record_date}>
-                <Text style={styles.dateText}>日期</Text>
-                <TouchableOpacity onPress={this.showPicker}>
-                  <View style={styles.date_bg}>
-                    <Text style={styles.date}>{this.state.chosenDate}</Text>
-                  </View>
-                </TouchableOpacity>
-              </View>
-              <View>
-                <DateTimePicker
-                  isVisible={this.state.isVisible}
-                  onConfirm={this.handlePicker}
-                  onCancel={this.hidePicker}
-                />
-              </View>
-          </View>
-          <View style={styles.content}>
-            <View style={styles.title_category_bg}> 
-              <Text style={styles.item_text}>類別</Text>
+        <View style={styles.dateContainer}>
+        <View style={styles.record_date}>
+          <Text style={styles.dateText}>日期</Text>
+          <TouchableOpacity onPress={this.showPicker}>
+            <View style={styles.date_bg}>
+              <Text style={styles.date}>{this.state.chosenDate}</Text>
             </View>
-            <View style={styles.block_category}> 
-              <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-                <TouchableHighlight>
-                  <Image
-                  style={styles.iconstyle}
-                  source={require('../assets/record/icon-breakfast.png')}
-                  />
-                </TouchableHighlight>
-                <TouchableHighlight>
-                  <Image
-                  style={styles.iconstyle}
-                  source={require('../assets/record/icon-lunch.png')}
-                  />
-                </TouchableHighlight>
-                <TouchableHighlight>
-                  <Image
-                  style={styles.iconstyle}
-                  source={require('../assets/record/icon-dinner.png')}
-                  />
-                </TouchableHighlight>
-                <TouchableHighlight>
-                  <Image
-                  style={styles.iconstyle}
-                  source={require('../assets/record/icon-drink.png')}
-                  />
-                </TouchableHighlight>
-                <TouchableHighlight>
-                  <Image
-                  style={styles.iconstyle}
-                  source={require('../assets/record/icon-dessert.png')}
-                  />
-                </TouchableHighlight>
-                <TouchableHighlight>
-                  <Image
-                  style={styles.iconstyle}
-                  source={require('../assets/record/icon-other.png')}
-                  />
-                </TouchableHighlight>
-              </ScrollView>
-            </View>
-            <View style={styles.title_item_bg}> 
-              <Text style={styles.item_text}>項目</Text>
-            </View>
-            <View style={styles.block_item}> 
+          </TouchableOpacity>
+        </View>
+        <View>
+          <DateTimePicker
+            isVisible={this.state.isVisible}
+            onConfirm={this.handlePicker}
+            onCancel={this.hidePicker}
+          />
+        </View>
+      </View>
+      <View style={styles.content}>
+        <View style={styles.title_category_bg}> 
+          <Text style={styles.item_text}>類別</Text>
+        </View>
+        <View style={styles.block_category}> 
+          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             <TouchableHighlight>
-                <Image
-                style={styles.itemstyle}
-                source={require('../assets/record/icon-plate.png')}
-                />
-              </TouchableHighlight>
-              <TouchableHighlight>
-                <Image
-                style={styles.itemstyle}
-                source={require('../assets/record/icon-chopstick.png')}
-                />
-              </TouchableHighlight>
-              <TouchableHighlight>
-                <Image
-                style={styles.itemstyle}
-                source={require('../assets/record/icon-box.png')}
-                />
-              </TouchableHighlight>
-              <TouchableOpacity>
-                <View style={styles.btn_clear}>
-                  <Text style={styles.btn_text}>清空</Text>
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => this.bsAdd.current.snapTo(0)}>
-                <View style={styles.btn_change}>
-                  <Text style={styles.btn_text}>修改</Text>
-                </View>
-              </TouchableOpacity>
-            </View> 
-            <View style={styles.moneyBlock}>
-              <View style={styles.moneyText_bg}>
-                <Text style={styles.moneyText}>金額</Text>
-              </View>
-              <TouchableOpacity onPress={() => this.bsCal.current.snapTo(0)}>
-                <View style={styles.money_bg}>
-                  <Text style={styles.money}>{this.state.displayValue}元</Text>
-                </View>
-              </TouchableOpacity>
+              <Image
+              style={styles.iconstyle}
+              source={require('../assets/record/icon-breakfast.png')}
+              />
+            </TouchableHighlight>
+            <TouchableHighlight>
+              <Image
+              style={styles.iconstyle}
+              source={require('../assets/record/icon-lunch.png')}
+              />
+            </TouchableHighlight>
+            <TouchableHighlight>
+              <Image
+              style={styles.iconstyle}
+              source={require('../assets/record/icon-dinner.png')}
+              />
+            </TouchableHighlight>
+            <TouchableHighlight>
+              <Image
+              style={styles.iconstyle}
+              source={require('../assets/record/icon-drink.png')}
+              />
+            </TouchableHighlight>
+            <TouchableHighlight>
+              <Image
+              style={styles.iconstyle}
+              source={require('../assets/record/icon-dessert.png')}
+              />
+            </TouchableHighlight>
+            <TouchableHighlight>
+              <Image
+              style={styles.iconstyle}
+              source={require('../assets/record/icon-other.png')}
+              />
+            </TouchableHighlight>
+          </ScrollView>
+        </View>
+        <View style={styles.title_item_bg}> 
+          <Text style={styles.item_text}>項目</Text>
+        </View>
+        <View style={styles.block_item}> 
+        <TouchableHighlight>
+            <Image
+            style={styles.itemstyle}
+            source={require('../assets/record/icon-plate.png')}
+            />
+          </TouchableHighlight>
+          <TouchableHighlight>
+            <Image
+            style={styles.itemstyle}
+            source={require('../assets/record/icon-chopstick.png')}
+            />
+          </TouchableHighlight>
+          <TouchableHighlight>
+            <Image
+            style={styles.itemstyle}
+            source={require('../assets/record/icon-box.png')}
+            />
+          </TouchableHighlight>
+          <TouchableOpacity>
+            <View style={styles.btn_clear}>
+              <Text style={styles.btn_text}>清空</Text>
             </View>
-            <TouchableOpacity>
-              <View style={styles.btn_send}>
-                <Text style={styles.sendText}>丟垃圾</Text>
-              </View>
-            </TouchableOpacity>
-            <BottomSheet
-              ref={this.bsAdd}
-              snapPoints={[400, 0]}
-              renderContent={this.addInner}
-              renderHeader={this.addHeader}
-              initialSnap={1}
-              callbackNode={this.fall}
-              enabledGestureInteraction={true}
-            />
-            <BottomSheet
-              ref={this.bsCal}
-              snapPoints={[400, 0]}
-              renderContent={this.addCal}
-              initialSnap={1}
-              callbackNode={this.fall}
-              enabledGestureInteraction={true}
-            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => this.bsAdd.current.snapTo(0)}>
+            <View style={styles.btn_change}>
+              <Text style={styles.btn_text}>修改</Text>
+            </View>
+          </TouchableOpacity>
+        </View> 
+        <View style={styles.moneyBlock}>
+          <View style={styles.moneyText_bg}>
+            <Text style={styles.moneyText}>金額</Text>
           </View>
-        </ScrollView>
+          <TouchableOpacity onPress={() => this.bsCal.current.snapTo(0)}>
+            <View style={styles.money_bg}>
+              <Text style={styles.money}>{this.state.displayValue}元</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+        <TouchableOpacity>
+          <View style={styles.btn_send}>
+            <Text style={styles.sendText}>丟垃圾</Text>
+          </View>
+        </TouchableOpacity>
+        <BottomSheet
+          ref={this.bsAdd}
+          snapPoints={[400, 0]}
+          renderContent={this.addInner}
+          renderHeader={this.addHeader}
+          initialSnap={1}
+          callbackNode={this.fall}
+          enabledGestureInteraction={true}
+        />
+        <BottomSheet
+          ref={this.bsCal}
+          snapPoints={[400, 0]}
+          renderContent={this.addCal}
+          initialSnap={1}
+          callbackNode={this.fall}
+          enabledGestureInteraction={true}
+        />
+      </View>
       </SafeAreaView>
      
     );
@@ -382,10 +380,10 @@ export default class RecordScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-  header: {
-    height: 270,
+  dateContainer: {
+    height: 200,
     alignItems: 'center',
-    backgroundColor:'#fff'
+    backgroundColor:'#F6F6F6'
   },
   panel: {
     height: 360,
@@ -404,7 +402,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor:'#D9D9D9',
     borderRadius: 20,
-    marginTop: -160,
+    marginTop: 45,
   },
   dateText:{
     color: '#909090',
@@ -420,7 +418,6 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     marginTop: -24,
     left:100,
-    
   },
   date:{
     color: '#909090',
@@ -432,7 +429,7 @@ const styles = StyleSheet.create({
   content:{
     height:490,
     alignItems: 'center',
-    backgroundColor:'#fff'
+    backgroundColor:'#F6F6F6'
   },
   title_category_bg:{
     width: 60,
@@ -646,6 +643,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   qtyBlock:{
+    flexDirection: 'row',
     width:240,
     height:50,
     backgroundColor: '#fff',
@@ -653,21 +651,27 @@ const styles = StyleSheet.create({
     borderColor:'#D9D9D9',
     borderRadius: 20,
     marginTop: 20,
+    paddingRight: 15,
+    alignItems: 'center',
+    justifyContent: 'space-around',
   },
   qtyText:{
     color: '#909090',
     fontSize:18,
     fontWeight:"bold",
-    marginTop:16,
-    left:35,
+    marginRight: 15,
+    marginLeft: 15
+  },
+  btnQty: {
+    color: '#909090',
+    fontSize: 22,
+    fontWeight:"bold",
   },
   qty_bg:{
-    width:60,
+    width:70,
     height:30,
     backgroundColor: '#f2f2f2',
     borderRadius: 20,
-    marginTop: -24,
-    left:125,
     alignItems: 'center',
     justifyContent: 'center',
   },

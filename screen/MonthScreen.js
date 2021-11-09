@@ -8,11 +8,11 @@ export default function MonthScreen({ navigation }) {
       <View style={styles.header}>
         <Image source= {require('../assets/suggest/header-bg.png')} />
         <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
-                <Image
-                    style={styles.profileiconStyle}
-                    source={require('../assets/icon-profile.png')}
-                    />
-            </TouchableOpacity>
+          <Image
+              style={styles.profileiconStyle}
+              source={require('../assets/icon-profile.png')}
+              />
+        </TouchableOpacity>
         <Text style={styles.headerText}>月曆</Text>
       </View>
       <View style={styles.container}>
@@ -84,19 +84,25 @@ export default function MonthScreen({ navigation }) {
             </View>
             <View>
               <View style={styles.mealDetail}>
-                <Text style={styles.mealDetailText}>早餐</Text>
+                <TouchableOpacity>
+                  <Text style={styles.mealDetailText}>早餐</Text>
+                </TouchableOpacity>
                 <Text style={styles.mealDetailText}>2</Text>
                 <Text style={styles.mealDetailText}>$30</Text>
               </View>
               <View style={styles.dashLine} />
               <View style={styles.mealDetail}>
-                <Text style={styles.mealDetailText}>午餐</Text>
+                <TouchableOpacity>
+                  <Text style={styles.mealDetailText}>午餐</Text>
+                </TouchableOpacity>
                 <Text style={styles.mealDetailText}>3</Text>
                 <Text style={styles.mealDetailText}>$120</Text>
               </View>
               <View style={styles.dashLine} />
               <View style={styles.mealDetail}>
-                <Text style={styles.mealDetailText}>晚餐</Text>
+                <TouchableOpacity>
+                  <Text style={styles.mealDetailText}>晚餐</Text>
+                </TouchableOpacity>
                 <Text style={styles.mealDetailText}>1</Text>
                 <Text style={styles.mealDetailText}>$150</Text>
               </View>

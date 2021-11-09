@@ -19,6 +19,15 @@ import RecordScreen from "./RecordScreen";
 
 export default class TrashcanScreen extends Component {
 
+  addHeader = () => (
+    <View style={styles.header_bg}>
+      <Image
+        style={styles.headerLine}
+        source={require('../assets/trashcan/header_線線.png')}
+        />
+    </View>
+  )
+
   addTrash = () => (
     <View style={styles.bsContainer}>
       <RecordScreen></RecordScreen>
@@ -62,7 +71,8 @@ export default class TrashcanScreen extends Component {
           </Animated.View>
           <BottomSheet
             ref={this.bs}
-            snapPoints={[890, 0]}
+            snapPoints={[875, 0]}
+            renderHeader={this.addHeader}
             renderContent={this.addTrash}
             initialSnap={1}
             callbackNode={this.fall}
@@ -107,4 +117,16 @@ const styles = StyleSheet.create({
     marginTop:20,
     marginLeft:250,
   },
+  header_bg:{
+    height: 50,
+    alignItems: 'center',
+    paddingTop: 30,
+    backgroundColor:'#F6F6F6',
+    borderTopStartRadius: 20,
+    borderTopEndRadius: 20,
+  },
+  bsContainer:{
+    backgroundColor:'#F6F6F6',
+  },
 });
+
