@@ -2,9 +2,9 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
 import { StyleSheet, Text, View ,Image, ScrollView} from 'react-native';
-import { color } from 'react-native-reanimated';
 
 export default function AboutScreen({ navigation }) {
+  
   return (
     <View style={styles.center}>
     <Image source={require('../assets/setting/bg.png')}/>

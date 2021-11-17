@@ -183,7 +183,7 @@ export default class RecordScreen extends Component {
   render() {
     return (
       <SafeAreaView>
-        <View style={styles.dateContainer}>
+      <View style={styles.dateContainer}>
         <View style={styles.record_date}>
           <Text style={styles.dateText}>日期</Text>
           <TouchableOpacity onPress={this.showPicker}>
@@ -191,8 +191,6 @@ export default class RecordScreen extends Component {
               <Text style={styles.date}>{this.state.chosenDate}</Text>
             </View>
           </TouchableOpacity>
-        </View>
-        <View>
           <DateTimePicker
             isVisible={this.state.isVisible}
             onConfirm={this.handlePicker}

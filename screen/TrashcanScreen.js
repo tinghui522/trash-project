@@ -38,6 +38,7 @@ export default class TrashcanScreen extends Component {
   fall = new Animated.Value(1);
   
   render() {
+    const { navigation } = this.props;
     return (
       <SafeAreaView style={{flex:1}}>
         <View>

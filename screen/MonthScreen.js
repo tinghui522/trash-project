@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity} from 'react-native';
-import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
+import DatePicker, { getToday, getFormatedDate } from 'react-native-modern-datepicker';
 
 export default function MonthScreen({ navigation }) {
+  
+  const [selectedDate, setSelectedDate] = useState('');
+
   return (
     <ScrollView>
       <View style={styles.header}>
@@ -17,58 +20,27 @@ export default function MonthScreen({ navigation }) {
       </View>
       <View style={styles.container}>
         <View style={styles.calendar}>
-        <Calendar
-          style={{ width: 365, height: 330, borderRadius: 20,}}
-          markingType={'custom'}
-          markedDates={{
-            'selected day': {
-              customStyles: {
-                container: {
-                  backgroundColor: '#63CFA8'
-                },
-                text: {
-                  color: 'black',
-                  fontWeight: 'bold'
-                }
-              }
-            },
+        <DatePicker
+          options={{
+            backgroundColor: '#FFFFFF',
+            headerColor: '#909090',
+            textHeaderColor: '#63CFA8',
+            textDefaultColor: '#909090',
+            selectedTextColor: '#fff',
+            mainColor: '#63CFA8',
+            textSecondaryColor: '#909090',
+            borderColor: '#63CFA8',
           }}
-          // Initially visible month. Default = Date()
-          curren={new Date() .toDateString()}
-          // Minimum date that can be selected, dates before minDate will be grayed out. Default = undefined
-          minDate={'2021-06-01'}
-          // Maximum date that can be selected, dates after maxDate will be grayed out. Default = undefined
-          maxDate={new Date() .toDateString()}
-          // Handler which gets executed on day press. Default = undefined
-          onDayPress={(day) => {console.log('selected day', day)}}
-          // Month format in calendar title. Formatting values: http://arshaw.com/xdate/#Formatting
-          monthFormat={'yyyy年   M月'}
-          // Handler which gets executed when visible month changes in calendar. Default = undefined
-          onMonthChange={(month) => {console.log('month changed', month)}}
-          // Hide month navigation arrows. Default = false
-          hideArrows={true}
-          // Replace default arrows with custom ones (direction can be 'left' or 'right')
-          renderArrow={(direction) => (<Arrow />)}
-          // Do not show days of other months in month page. Default = false
-          hideExtraDays={true}
-          // If hideArrows=false and hideExtraDays=false do not switch month when tapping on greyed out
-          // day from another month that is visible in calendar page. Default = false
-          disableMonthChange={true}
-          // If firstDay=1 week starts from Monday. Note that dayNames and dayNamesShort should still start from Sunday.
-          firstDay={1}
-          // Hide day names. Default = false
-          hideDayNames={true}
-          // Handler which gets executed when press arrow icon right. It receive a callback can go next month
-          onPressArrowRight={addMonth => addMonth()}
-          // Disable all touch events for disabled days. can be override with disableTouchEvent in markedDates
-          disableAllTouchEventsForDisabledDays={true}
-          // Enable the option to swipe between months. Default = false
-          enableSwipeMonths={true}
-          // Enable horizontal scrolling, default = false
-          horizontal={true}
-          // Enable paging on horizontal, default = false
-          pagingEnabled={true}
-          // Set custom calendarWidth.
+          current={getToday()}
+          maximumDate={getToday()}
+          placeholder="select date"
+          onSelectedChange={date => setSelectedDate(date)}
+          mode="calendar"
+          style={{
+            width: 350,
+            height: 325,
+            borderRadius: 20 
+          }}
         />
         </View>
         <View>
