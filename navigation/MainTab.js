@@ -1,68 +1,96 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 import { Image } from 'react-native';
-import TrashSuggestScreen from './screen/TrashSuggestScreen';
-import TrashcanScreen from "./screen/TrashcanScreen";
-import MonthScreen from "./screen/MonthScreen";
-import GoalScreen from './screen/GoalScreen';
 
+import { TrashcanStack, TrashSuggestStack, MonthStack, GoalStack } from '../screen';
 const Tab = createBottomTabNavigator();
 
 const HomeTabNavigation = () => {
   return (
-    <Tab.Navigator 
-      tabBarOptions={{
-        style:{
-          backgroundColor:'#fff',
-          height:120,
-        }
-      }}>
-      <Tab.Screen
-        name="Home"
-        component={TrashcanScreen}
-        options={{
-          tabBarIcon: ({ focused }) => (
-          focused
-            ? <Image source={require('./assets/btn-home.png')} style={{height:40,width:80 }}  />
-            : <Image source={require('./assets/icon-home.png')} style={{height:30,width:30 }}  />
-          )
-        }}
-      />
-      <Tab.Screen
-        name="TrashSuggest"
-        component={TrashSuggestScreen}
-        options={{
-          tabBarIcon: ({ focused }) => (
-            focused
-              ? <Image source={require('./assets/btn-trend.png')} style={{height:40,width:80 }}  />
-              : <Image source={require('./assets/icon-trend.png')} style={{height:30,width:30 }}  />
-            )
-        }}
-      />
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color,size }) => {
+          let iconPath;
+          let iconWidth;
+          let iconHeight;
+          let iconSize;
 
-      <Tab.Screen
-        name="Month"
-        component={MonthScreen}
-        options={{
-          tabBarIcon: ({ focused }) => (
-            focused
-              ? <Image source={require('./assets/btn-month.png')} style={{height:40,width:80 }}  />
-              : <Image source={require('./assets/icon-month.png')} style={{height:30,width:30 }}  />
-            )
-        }}
-      />
-      <Tab.Screen
-        name="Goal"
-        component={GoalScreen}
-        options={{
-          tabBarIcon: ({ focused }) => (
-            focused
-              ? <Image source={require('./assets/btn-goal.png')} style={{height:40,width:80 }}  />
-              : <Image source={require('./assets/icon-goal.png')} style={{height:30,width:30 }}  />
-            )
-        }}
-      />
-    </Tab.Navigator>
-  );
-}
+          if (route.name === '首頁') {
+            iconPath = focused
+            ? require('../assets/btn-homeOntouch.png'):
+            require('../assets/btn-home.png') ;
+            iconWidth = focused ? 35 : 35;
+            iconHeight = focused ? 42 : 42;
+          } else if (route.name === '分析') {
+            iconPath = focused
+            ? require('../assets/btn-trendOntouch.png'):
+            require('../assets/btn-trend.png');
+            iconWidth = focused ? 37 : 37;
+            iconHeight = focused ? 35 : 35;
+          }else if (route.name == '月曆') {
+            iconPath = focused
+            ? require('../assets/btn-monthOntouch.png'):
+            require('../assets/btn-month.png');
+            iconWidth = focused ? 35 : 35;
+            iconHeight = focused ? 35 : 35;
+          }else if (route.name == '目標') {
+            iconPath = focused
+            ? require('../assets/btn-goalOntouch.png'):
+            require('../assets/btn-goal.png');
+            iconWidth = focused ? 24 : 24;
+            iconHeight = focused ? 36 : 36;
+          }
+
+          // You can return any component that you like here!
+          return (
+            <Image 
+              style={{width: iconWidth, height: iconHeight, marginTop: 20,}}
+              source={iconPath} 
+            />
+          );
+        },
+      })}
+      tabBarOptions={{
+        activeTintColor: '#fff',
+        inactiveTintColor: '#707070',
+        showLabel:false,
+        style: {
+          height:90,
+          backgroundColor:"#fff",
+          borderRadius: 30,
+          borderWidth: 1,
+          borderColor:'#D9D9D9',
+        },
+      }}
+    ><Tab.Screen name="首頁" component={TrashcanStack}
+    options={props => {
+      return {
+        tabBarVisible: !props.route.state || props.route.state.index === 0,
+      };
+    }}
+    />
+    <Tab.Screen name="分析" component={TrashSuggestStack}
+      options={props => {
+        return {
+          tabBarVisible: !props.route.state || props.route.state.index === 0,
+        };
+      }} />
+    <Tab.Screen name="月曆" component={MonthStack}
+      options={props => {
+        return {
+          tabBarVisible: !props.route.state || props.route.state.index === 0 ,
+        };
+      }} />
+    <Tab.Screen name="目標" component={GoalStack}
+      options={props => {
+        return {
+          tabBarVisible: !props.route.state || props.route.state.index === 0 ,
+        };
+      }} />
+  </Tab.Navigator>
+);
+};
+
+export default HomeTabNavigation;

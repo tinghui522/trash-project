@@ -16,8 +16,13 @@ import {
 import BottomSheet from 'reanimated-bottom-sheet';
 import Animated from "react-native-reanimated";
 import RecordScreen from "./RecordScreen";
+import trashbar from "../trash_homePage-main/js/trashbar";
 
 export default class TrashcanScreen extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
 
   addHeader = () => (
     <View style={styles.header_bg}>
@@ -36,12 +41,13 @@ export default class TrashcanScreen extends Component {
 
   bs = React.createRef();
   fall = new Animated.Value(1);
-  
+
   render() {
+    const { navigation } = this.props;
     return (
       <SafeAreaView style={{flex:1}}>
         <View>
-          <Animated.View style={{backgroundColor: '#E5E5E5', width:414, height:896, alignItems: 'center',
+          <Animated.View style={{backgroundColor: '#E5E5E5', width:414, height:900, alignItems: 'center',
             opacity: Animated.add(0.3, Animated.multiply(this.fall, 1.0))}}>
               <Image
                 style={styles.homebgStyle}
@@ -61,7 +67,34 @@ export default class TrashcanScreen extends Component {
                   <Image
                   style={styles.trashcanStyle}
                   source={require('../assets/trashcan/trashcan.png')}
+                  /> 
+                  <Image
+                  style={styles.trash1Style}
+                  source={require('../assets/item-bag.png')}
+                  /> 
+                  <Image
+                  style={styles.trash2Style}
+                  source={require('../assets/item-box.png')}
+                  /> 
+                  <Image
+                  style={styles.trash3Style}
+                  source={require('../assets/item-chopstick.png')}
+                  /> 
+                  <Image
+                  style={styles.trash4Style}
+                  source={require('../assets/item-cup.png')}
+                  /> 
+                  <Image
+                  style={styles.trash5Style}
+                  source={require('../assets/item-box.png')}
                   />
+                  <Image
+                  style={styles.trash6Style}
+                  source={require('../assets/item-plate.png')}
+                  />
+                  {/* <View>
+                  <trashbar></trashbar>
+                  </View> */}
               <TouchableOpacity onPress={() => this.bs.current.snapTo(0)}>
                   <Image
                       style={styles.btnaddtrashStyle}
@@ -113,8 +146,43 @@ const styles = StyleSheet.create({
     height:396,
     marginTop:30,
   },
+  trash1Style:{
+    width:80,
+    height:80,
+    marginTop:-100,
+  },
+  trash2Style:{
+    width:80,
+    height:80,
+    marginTop:-80,
+    marginLeft:120
+  },
+  trash3Style:{
+    width:80,
+    height:80,
+    marginTop:-80,
+    marginLeft:-130
+  },
+  trash4Style:{
+    width:80,
+    height:80,
+    marginTop:-130,
+    marginLeft:150
+  },
+  trash5Style:{
+    width:80,
+    height:80,
+    marginTop:-100,
+    marginLeft:-140
+  },
+  trash6Style:{
+    width:80,
+    height:80,
+    marginTop:-80,
+    marginLeft:20
+  },
   btnaddtrashStyle:{
-    marginTop:20,
+    marginTop:120,
     marginLeft:250,
   },
   header_bg:{

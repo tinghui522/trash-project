@@ -4,12 +4,8 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, ScrollView,TouchableOpacity } from 'react-native';
 
 export default class TrashSuggestScreen extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {selectedTab: 'suggest'};
-  }
-
   render(){
+    const { navigation } = this.props;
     return (
       <ScrollView>
         <View style={styles.header}>

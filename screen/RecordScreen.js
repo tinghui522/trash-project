@@ -206,42 +206,48 @@ export default class RecordScreen extends Component {
         </View>
         <View style={styles.block_category}> 
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-            <TouchableHighlight>
+            <View>
               <Image
               style={styles.iconstyle}
               source={require('../assets/record/icon-breakfast.png')}
               />
-            </TouchableHighlight>
-            <TouchableHighlight>
+              <Text style={styles.icon_text}>早餐</Text>
+            </View>
+            <View>
               <Image
               style={styles.iconstyle}
               source={require('../assets/record/icon-lunch.png')}
               />
-            </TouchableHighlight>
-            <TouchableHighlight>
+              <Text style={styles.icon_text}>午餐</Text>
+            </View>
+            <View>
               <Image
               style={styles.iconstyle}
               source={require('../assets/record/icon-dinner.png')}
               />
-            </TouchableHighlight>
-            <TouchableHighlight>
+              <Text style={styles.icon_text}>晚餐</Text>
+            </View>
+            <View>
               <Image
               style={styles.iconstyle}
               source={require('../assets/record/icon-drink.png')}
               />
-            </TouchableHighlight>
-            <TouchableHighlight>
+              <Text style={styles.icon_text}>飲料</Text>
+            </View>
+            <View>
               <Image
               style={styles.iconstyle}
               source={require('../assets/record/icon-dessert.png')}
               />
-            </TouchableHighlight>
-            <TouchableHighlight>
+              <Text style={styles.icon_text}>點心</Text>
+            </View>
+            <View>
               <Image
               style={styles.iconstyle}
               source={require('../assets/record/icon-other.png')}
               />
-            </TouchableHighlight>
+              <Text style={styles.icon_text}>其他</Text>
+            </View>
           </ScrollView>
         </View>
         <View style={styles.title_item_bg}> 
@@ -450,9 +456,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   iconstyle:{
-    margin: 12,
-    height: 70,
-    width: 45,
+    margin: 7,
+    marginTop:15,
+    marginLeft:8,
+    width: 50,
+  },
+  icon_text:{
+    fontSize:16,
+    fontWeight:"bold",
+    color: '#909090',
+    left:16,
   },
   title_item_bg:{
     width: 60,

@@ -106,9 +106,17 @@ export default class GoalScreen extends Component {
   fall = new Animated.Value(1);
 
   render() {
+    const { navigation } = this.props;
     return (
       <View style={styles.container}>
+        
         <Text style={styles.titleText}>垃圾量目標</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+          <Image
+              style={styles.profileiconStyle}
+              source={require('../assets/icon-profile.png')}
+              />
+        </TouchableOpacity>
         <View style={styles.allGoal}>
           <Animated.ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             <View style={styles.goal_bg}>
@@ -160,6 +168,12 @@ const styles = StyleSheet.create({
   container:{
     backgroundColor:'#F6F6F6',
     alignItems:'center',
+  },
+  profileiconStyle:{
+    width:58,
+    height:58,
+    marginLeft:325,
+    marginTop:-80
   },
   titleText: {
     fontSize: 26,

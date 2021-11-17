@@ -11,6 +11,7 @@ export default class TrashSuggestScreen extends Component {
   }
 
   render(){
+    const { navigation } = this.props;
     return (
       <ScrollView>
         <View style={styles.bg}>
