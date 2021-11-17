@@ -1,88 +1,92 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React , { Component, Fragment }from 'react';
 import { TouchableOpacity } from 'react-native';
 import { StyleSheet, Text, View ,Image, ScrollView} from 'react-native';
-
-export default function AboutScreen({ navigation }) {
-  
-  return (
-    <View style={styles.center}>
-    <Image source={require('../assets/setting/bg.png')}/>
-      <TouchableOpacity>
-        {/* <Image source={require('../assets/setting/btn_back.png')} style={{bottom: 230,left: 20}}/> */}
-      </TouchableOpacity>
-       <View style={styles.center}>
-        <View style={styles.bg_personal_form}>
-          <View style={styles.personal_form}>
-            <Image source={require('../assets/setting/big_icon-profile.png')}/>
-            <TouchableOpacity>
-              <Image source={require('../assets/setting/btn_about_edit.png')} style={{bottom: 30,left: 30}}/>
-            </TouchableOpacity>
-            <Text style={styles.text_personal_form}>Sandy</Text>
-            <TouchableOpacity>
-              <Image source={require('../assets/setting/btn_about_edit.png')} style={{bottom: 18,left: 40}}/>
-            </TouchableOpacity>
-            <Text style={styles.text_personal_form}>開始日期：2021 / 4 / 9</Text>
-          </View>
-          <View style={styles.setting}>
-            <TouchableOpacity>
-              <Image source={require('../assets/setting/language.png')} style={{width:35,height:35,top: 30,left: 15}}/>
-              <Text style={{marginBottom: 20,marginTop:3,marginLeft:60,fontWeight: 'bold',fontSize: 16,color:'#909090'}}>語言</Text>
-              <Image source={require('../assets/setting/arrow.png')} style={{width:16,height:18,marginLeft: 275,marginTop:-35}}/>
-            </TouchableOpacity>
-            <View style={styles.underline}/>
-            <TouchableOpacity>
-              <Image source={require('../assets/setting/alert.png')} style={{width:35,height:35,top: 15,left: 15}}/>
-              <Text style={{marginTop: -10,marginLeft:60,fontWeight: 'bold',fontSize: 16,color:'#909090'}}>提醒</Text>
-              <Image source={require('../assets/setting/arrow.png')} style={{width:16,height:18,marginLeft: 275,marginTop:-20}}/>
-            </TouchableOpacity>
-            <View style={styles.underline}/>
-            <TouchableOpacity>
-              <Image source={require('../assets/setting/file.png')} style={{width:35,height:35,top:15,left: 15}}/>
-              <Text style={{marginTop:-10,marginLeft:60,fontWeight: 'bold',fontSize: 16,color:'#909090'}}>備份</Text>
-              <Image source={require('../assets/setting/arrow.png')} style={{width:16,height:18,marginLeft: 275,marginTop:-20}}/>
-            </TouchableOpacity>
-            <View style={styles.underline}/>
-            <TouchableOpacity>
-              <Image source={require('../assets/setting/question.png')} style={{width:35,height:35,top: 15,left: 15}}/>
-              <Text style={{marginTop:-10,marginLeft:60,fontWeight: 'bold',fontSize: 16,color:'#909090'}}>常見問題</Text>
-              <Image source={require('../assets/setting/arrow.png')} style={{width:16,height:18,marginLeft: 275,marginTop:-20}}/>
-            </TouchableOpacity>
-            <View style={styles.underline}/>
-            <TouchableOpacity>
-              <Image source={require('../assets/setting/contact.png')} style={{width:35,height:35,top: 15,left: 15}}/>
-              <Text style={{marginTop:-10,marginLeft:60,fontWeight: 'bold',fontSize: 16,color:'#909090'}}>聯絡我們</Text>
-              <Image source={require('../assets/setting/arrow.png')} style={{width:16,height:18,marginLeft: 275,marginTop:-20}}/>
-            </TouchableOpacity>
-            <View style={styles.underline}/>
-              <Image source={require('../assets/setting/about.png')} style={{width:35,height:35,top: 15,left: 15}}/>
-              <Text style={{marginTop:-10,marginLeft:60,fontWeight: 'bold',fontSize: 16,color:'#909090'}}>版本資訊</Text>
-              <Text style={{marginTop:-20,marginLeft:270,fontSize: 16,color:'#909090'}}>1.0</Text>
-          </View>
+export default class AboutScreen extends Component {
+  render(){
+    const { navigation } = this.props;
+    return (
+      <View style={styles.center}>
+        <View style={styles.topbg}>
+          <TouchableOpacity onPress={() => navigation.goback()}>
+            <Image source={require('../assets/setting/btn_back.png')} style={{left: 30,top:40}}/>
+          </TouchableOpacity>
+          <Text style={styles.title}>設定</Text>
         </View>
+          <View style={styles.bg_personal_form}>
+            <View style={styles.setting}>
+              <TouchableOpacity>
+                <Image source={require('../assets/setting/language.png')} style={{width:35,height:35,top: 50,left: 15}}/>
+                <Text style={{marginBottom: 20,marginTop:20,marginLeft:60,fontWeight: 'bold',fontSize: 20,color:'#909090'}}>語言</Text>
+                <Image source={require('../assets/setting/arrow.png')} style={{width:16,height:18,marginLeft: 275,marginTop:-35}}/>
+              </TouchableOpacity>
+              <View style={styles.underline}/>
+              <TouchableOpacity>
+                <Image source={require('../assets/setting/alert.png')} style={{width:35,height:35,top: 15,left: 15}}/>
+                <Text style={{marginTop: -15,marginLeft:60,fontWeight: 'bold',fontSize: 20,color:'#909090'}}>提醒</Text>
+                <Image source={require('../assets/setting/arrow.png')} style={{width:16,height:18,marginLeft: 275,marginTop:-20}}/>
+              </TouchableOpacity>
+              <View style={styles.underline}/>
+              <TouchableOpacity>
+                <Image source={require('../assets/setting/file.png')} style={{width:35,height:35,top:15,left: 15}}/>
+                <Text style={{marginTop:-15,marginLeft:60,fontWeight: 'bold',fontSize: 20,color:'#909090'}}>備份</Text>
+                <Image source={require('../assets/setting/arrow.png')} style={{width:16,height:18,marginLeft: 275,marginTop:-20}}/>
+              </TouchableOpacity>
+              <View style={styles.underline}/>
+              <TouchableOpacity>
+                <Image source={require('../assets/setting/question.png')} style={{width:35,height:35,top: 15,left: 15}}/>
+                <Text style={{marginTop:-15,marginLeft:60,fontWeight: 'bold',fontSize: 20,color:'#909090'}}>常見問題</Text>
+                <Image source={require('../assets/setting/arrow.png')} style={{width:16,height:18,marginLeft: 275,marginTop:-20}}/>
+              </TouchableOpacity>
+              <View style={styles.underline}/>
+              <TouchableOpacity>
+                <Image source={require('../assets/setting/contact.png')} style={{width:35,height:35,top: 15,left: 15}}/>
+                <Text style={{marginTop:-15,marginLeft:60,fontWeight: 'bold',fontSize: 20,color:'#909090'}}>聯絡我們</Text>
+                <Image source={require('../assets/setting/arrow.png')} style={{width:16,height:18,marginLeft: 275,marginTop:-20}}/>
+              </TouchableOpacity>
+              <View style={styles.underline}/>
+                <Image source={require('../assets/setting/about.png')} style={{width:35,height:35,top: 15,left: 15}}/>
+                <Text style={{marginTop:-15,marginLeft:60,fontWeight: 'bold',fontSize: 20,color:'#909090'}}>版本資訊</Text>
+                <Text style={{marginTop:-20,marginLeft:260,fontSize: 20,color:'#909090'}}>1.0.0</Text>
+            </View>
+          </View>
+        <StatusBar style="auto" />
       </View>
-      
-      <StatusBar style="auto" />
-    </View>
-  );
+    )
+  }
 }
 
 const styles = StyleSheet.create({
   center: {
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: '#E5E5E5',
+    width:415,
+    height:896,
+  },
+  topbg:{
+    width:414,
+    height:132,
+    backgroundColor: '#63CFA8',
+    borderRadius: 20,
+    borderWidth:1,
+    borderColor:'#D9D9D9',
+  },
+  title:{
+    fontSize:24,
+    fontWeight: 'bold',
+    color: 'white',
+    marginTop:50,
+    marginLeft:185,
   },
   bg_personal_form: {
     width: 320,
-    height: 575,
-    top: -95,
+    height: 550,
+    top: 55,
     backgroundColor: '#63CFA8',
     alignItems: 'center',
-    shadowColor: '#707070',
-    shadowOffset: { width: 0, height: 3, },
-    shadowOpacity: 6,
-    elevation: 5,
-    borderRadius: 20
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor:'#D9D9D9',
   },
   personal_form: {
     alignItems: 'center',
@@ -97,13 +101,12 @@ const styles = StyleSheet.create({
   setting: {
     backgroundColor: '#fff',
     width: 320,
-    height: 420,
-    marginTop:-20,
+    height: 480,
+    marginTop:80,
     alignItems:'flex-start',
     borderRadius: 20,
-    shadowColor: '#707070',
-    shadowOffset: { width: 0, height: 3, },
-    shadowOpacity: 6,
+    borderWidth: 1,
+    borderColor:'#D9D9D9',
   },
   underline: {
     marginTop:20,

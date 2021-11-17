@@ -109,6 +109,7 @@ export default class GoalScreen extends Component {
     const { navigation } = this.props;
     return (
       <View style={styles.container}>
+        
         <Text style={styles.titleText}>垃圾量目標</Text>
         <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
           <Image
@@ -167,6 +168,12 @@ const styles = StyleSheet.create({
   container:{
     backgroundColor:'#F6F6F6',
     alignItems:'center',
+  },
+  profileiconStyle:{
+    width:58,
+    height:58,
+    marginLeft:325,
+    marginTop:-80
   },
   titleText: {
     fontSize: 26,
