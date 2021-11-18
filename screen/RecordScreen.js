@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import { 
-  StatusBar,
   Button,
   Plateform,
   API,
-  ImageBackground,
   StyleSheet, 
   Text, 
   TouchableOpacity, 
@@ -176,9 +174,9 @@ export default class RecordScreen extends Component {
       </View>
     )
 
-    bsAdd = React.createRef();
-    bsCal = React.createRef();
-    fall = new Animated.Value(1);
+  bsAdd = React.createRef();
+  bsCal = React.createRef();
+  fall = new Animated.Value(1);
 
   render() {
     return (
@@ -205,45 +203,57 @@ export default class RecordScreen extends Component {
         <View style={styles.block_category}> 
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             <View>
-              <Image
-              style={styles.iconstyle}
-              source={require('../assets/record/icon-breakfast.png')}
-              />
+              <TouchableOpacity>
+                <Image
+                style={styles.iconstyle}
+                source={require('../assets/record/icon-breakfast.png')}
+                />
+              </TouchableOpacity>
               <Text style={styles.icon_text}>早餐</Text>
             </View>
             <View>
-              <Image
-              style={styles.iconstyle}
-              source={require('../assets/record/icon-lunch.png')}
-              />
+              <TouchableOpacity>
+                <Image
+                style={styles.iconstyle}
+                source={require('../assets/record/icon-lunch.png')}
+                />
+              </TouchableOpacity>
               <Text style={styles.icon_text}>午餐</Text>
             </View>
             <View>
-              <Image
-              style={styles.iconstyle}
-              source={require('../assets/record/icon-dinner.png')}
-              />
+              <TouchableOpacity>
+                <Image
+                style={styles.iconstyle}
+                source={require('../assets/record/icon-dinner.png')}
+                />
+              </TouchableOpacity>
               <Text style={styles.icon_text}>晚餐</Text>
             </View>
             <View>
-              <Image
-              style={styles.iconstyle}
-              source={require('../assets/record/icon-drink.png')}
-              />
+              <TouchableOpacity>
+                <Image
+                style={styles.iconstyle}
+                source={require('../assets/record/icon-drink.png')}
+                />
+              </TouchableOpacity>
               <Text style={styles.icon_text}>飲料</Text>
             </View>
             <View>
-              <Image
-              style={styles.iconstyle}
-              source={require('../assets/record/icon-dessert.png')}
-              />
+              <TouchableOpacity>
+                <Image
+                style={styles.iconstyle}
+                source={require('../assets/record/icon-dessert.png')}
+                />
+              </TouchableOpacity>
               <Text style={styles.icon_text}>點心</Text>
             </View>
             <View>
-              <Image
-              style={styles.iconstyle}
-              source={require('../assets/record/icon-other.png')}
-              />
+              <TouchableOpacity>
+                <Image
+                style={styles.iconstyle}
+                source={require('../assets/record/icon-other.png')}
+                />
+              </TouchableOpacity>
               <Text style={styles.icon_text}>其他</Text>
             </View>
           </ScrollView>
