@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React , { Component, Fragment }from 'react';
+import React , { Component, navigation }from 'react';
 import { TouchableOpacity } from 'react-native';
 import { StyleSheet, Text, View ,Image, ScrollView} from 'react-native';
 export default class AboutScreen extends Component {
@@ -24,18 +24,6 @@ export default class AboutScreen extends Component {
               <TouchableOpacity>
                 <Image source={require('../assets/setting/alert.png')} style={{width:35,height:35,top: 15,left: 15}}/>
                 <Text style={{marginTop: -15,marginLeft:60,fontWeight: 'bold',fontSize: 20,color:'#909090'}}>提醒</Text>
-                <Image source={require('../assets/setting/arrow.png')} style={{width:16,height:18,marginLeft: 275,marginTop:-20}}/>
-              </TouchableOpacity>
-              <View style={styles.underline}/>
-              <TouchableOpacity>
-                <Image source={require('../assets/setting/file.png')} style={{width:35,height:35,top:15,left: 15}}/>
-                <Text style={{marginTop:-15,marginLeft:60,fontWeight: 'bold',fontSize: 20,color:'#909090'}}>備份</Text>
-                <Image source={require('../assets/setting/arrow.png')} style={{width:16,height:18,marginLeft: 275,marginTop:-20}}/>
-              </TouchableOpacity>
-              <View style={styles.underline}/>
-              <TouchableOpacity>
-                <Image source={require('../assets/setting/question.png')} style={{width:35,height:35,top: 15,left: 15}}/>
-                <Text style={{marginTop:-15,marginLeft:60,fontWeight: 'bold',fontSize: 20,color:'#909090'}}>常見問題</Text>
                 <Image source={require('../assets/setting/arrow.png')} style={{width:16,height:18,marginLeft: 275,marginTop:-20}}/>
               </TouchableOpacity>
               <View style={styles.underline}/>
@@ -65,7 +53,7 @@ const styles = StyleSheet.create({
   },
   topbg:{
     width:414,
-    height:132,
+    height:140,
     backgroundColor: '#63CFA8',
     borderRadius: 20,
     borderWidth:1,
@@ -109,7 +97,8 @@ const styles = StyleSheet.create({
     borderColor:'#D9D9D9',
   },
   underline: {
-    marginTop:20,
+    marginTop:15,
+    marginBottom:15,
     width:300,
     height:1,
     backgroundColor:"#C7C7C7",

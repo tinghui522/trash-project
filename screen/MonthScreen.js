@@ -128,7 +128,7 @@ export default class MonthScreen extends Component {
         </Animated.ScrollView>
         <BottomSheet
         ref={this.bs}
-        snapPoints={[400, 0]}
+        snapPoints={[500, 0]}
         renderContent={this.addGoalInner}
         renderHeader={this.addGoalHeader}
         initialSnap={1}
@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
   },
   container: {
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: '#F6F6F6',
   },
   calendar: {
     marginTop: -100, 
@@ -239,7 +239,7 @@ const styles = StyleSheet.create({
     borderTopEndRadius: 20,
   },
   panel: {
-    height: 475,
+    height: 350,
     alignItems: 'center',
     borderRadius: 4,
     backgroundColor: '#FFFFFF',

@@ -53,10 +53,9 @@ const HomeTabNavigation = () => {
         },
       })}
       tabBarOptions={{
-        activeTintColor: '#fff',
-        inactiveTintColor: '#707070',
         showLabel:false,
         style: {
+          position: 'absolute',
           height:90,
           backgroundColor:"#fff",
           borderRadius: 30,

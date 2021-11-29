@@ -153,7 +153,7 @@ export default class GoalScreen extends Component {
         </Animated.View>
         <BottomSheet
           ref={this.bs}
-          snapPoints={[610, 0]}
+          snapPoints={[700, 0]}
           renderContent={this.addGoalInner}
           renderHeader={this.addGoalHeader}
           initialSnap={1}
@@ -241,7 +241,7 @@ const styles = StyleSheet.create({
     borderTopEndRadius: 20,
   },
   panel: {
-    height: 560,
+    height: 580,
     alignItems: 'center',
     borderRadius: 4,
     backgroundColor: '#FFFFFF',
