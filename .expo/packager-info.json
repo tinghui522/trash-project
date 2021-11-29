@@ -1,10 +1,10 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
+  "expoServerPort": null,
   "packagerPort": 19000,
   "expoServerNgrokUrl": "https://xe-vu2.anonymous.trash-project.exp.direct",
   "packagerNgrokUrl": "https://packager.xe-vu2.anonymous.trash-project.exp.direct",
-  "ngrokPid": 23124,
+  "ngrokPid": 23776,
   "webpackServerPort": null,
   "packagerPid": null
 }
