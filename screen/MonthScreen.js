@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity} from 'react-native';
 import DatePicker, { getToday, getFormatedDate } from 'react-native-modern-datepicker';
+=======
+import React from 'react';
+import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity} from 'react-native';
+import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
+>>>>>>> main
 
 export default function MonthScreen({ navigation }) {
   

@@ -6,53 +6,57 @@ import { StyleSheet, Text, View, Image, ScrollView,TouchableOpacity } from 'reac
 export default class TrashSuggestScreen extends Component {
   render(){
     const { navigation } = this.props;
-    return (
-      <ScrollView>
-        <View style={styles.header}>
-          <Image source= {require('../assets/suggest/header-bg.png')} 
-                style= {{ height: 275 }}/>
-          <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
-                  <Image
-                      style={styles.profileiconStyle}
-                      source={require('../assets/icon-profile.png')}
-                      />
-              </TouchableOpacity>
-          <Text style={styles.headerText}>統計分析</Text>
-          <TabNavigator>
-            <TabNavigator.Item
-              selected={this.state.selectedTab === 'suggest'}
-              title="垃圾量"
-              renderIcon={() => <Image style={styles.btnimage} source={require('../assets/suggest/btn-trashSuggest.png')} />}
-              renderSelectedIcon={() => <Image style={styles.btnimage2} source={require('../assets/suggest/btn-trashOnTouch.png')} />}
-              onPress={() => this.setState({ selectedTab: 'suggest' })}>
-              <View style={styles.page1}></View>
-            </TabNavigator.Item>
-            <TabNavigator.Item
-              selected={this.state.selectedTab === 'money'}
-              title="食物費"
-              renderIcon={() => <Image style={styles.btnimage3} source={require('../assets/suggest/btn-moneySuggest.png')} />}
-              renderSelectedIcon={() => <Image style={styles.btnimage4} source={require('../assets/suggest/btn-moneyOnTouch.png')} />}
-              onPress={() => this.setState({ selectedTab: 'money' })}>
-              <View style={styles.page2}></View>
-            </TabNavigator.Item>
-          </TabNavigator>
+    // constructor(props) {
+    //   super(props);
+    //   this.state = {selectedTab: 'suggest'};
+    // }
+  return (
+    <ScrollView>
+      <View style={styles.header}>
+        <Image source= {require('../assets/suggest/header-bg.png')} 
+              style= {{ height: 275 }}/>
+        <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+                <Image
+                    style={styles.profileiconStyle}
+                    source={require('../assets/icon-profile.png')}
+                    />
+            </TouchableOpacity>
+        <Text style={styles.headerText}>統計分析</Text>
+        <TabNavigator>
+          <TabNavigator.Item
+            selected={this.state.selectedTab === 'suggest'}
+            title="垃圾量"
+            renderIcon={() => <Image style={styles.btnimage} source={require('../assets/suggest/btn-trashSuggest.png')} />}
+            renderSelectedIcon={() => <Image style={styles.btnimage2} source={require('../assets/suggest/btn-trashOnTouch.png')} />}
+            onPress={() => this.setState({ selectedTab: 'suggest' })}>
+            <View style={styles.page1}></View>
+          </TabNavigator.Item>
+          <TabNavigator.Item
+            selected={this.state.selectedTab === 'money'}
+            title="食物費"
+            renderIcon={() => <Image style={styles.btnimage3} source={require('../assets/suggest/btn-moneySuggest.png')} />}
+            renderSelectedIcon={() => <Image style={styles.btnimage4} source={require('../assets/suggest/btn-moneyOnTouch.png')} />}
+            onPress={() => this.setState({ selectedTab: 'money' })}>
+            <View style={styles.page2}></View>
+          </TabNavigator.Item>
+        </TabNavigator>
+      </View>
+      <View style={styles.container}>
+        <View style={styles.chart}>
+          <Image source= {require('../assets/suggest/money-chart.png')}/>
         </View>
-        <View style={styles.container}>
-          <View style={styles.chart}>
-            <Image source= {require('../assets/suggest/money-chart.png')}/>
-          </View>
 
-          <View style={styles.moneySuggest}>
-              <Text style={styles.suggestText}>小提醒</Text>
-              <View style={styles.suggestCharacter}>
-                <Image source= {require('../assets/suggest/character_Earth.png')} 
-                      style ={{ width: 167, height: 167 }}/>
-              </View>
-          </View>
+        <View style={styles.moneySuggest}>
+            <Text style={styles.suggestText}>小提醒</Text>
+            <View style={styles.suggestCharacter}>
+              <Image source= {require('../assets/suggest/character_Earth.png')} 
+                    style ={{ width: 167, height: 167 }}/>
+            </View>
         </View>
-        <StatusBar style="auto" />
-      </ScrollView>
-    );
+      </View>
+      <StatusBar style="auto" />
+    </ScrollView>
+  );
   }
 }
 

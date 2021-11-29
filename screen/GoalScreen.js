@@ -1,4 +1,5 @@
 import React, { Component , useState } from "react";
+import { StatusBar } from 'expo-status-bar';
 import {   
   StyleSheet, Text, TouchableOpacity, Image, View, ScrollView, } from 'react-native';
 import { ProgressBar } from 'react-native-paper';

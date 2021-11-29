@@ -3,7 +3,11 @@
   "lanType": "ip",
   "dev": true,
   "minify": false,
+<<<<<<< HEAD
   "urlRandomness": "xe-vu2",
+=======
+  "urlRandomness": "dp-v9a",
+>>>>>>> main
   "https": false,
   "scheme": null,
   "devClient": false

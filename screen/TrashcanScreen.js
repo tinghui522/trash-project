@@ -17,7 +17,6 @@ import BottomSheet from 'reanimated-bottom-sheet';
 import Animated from "react-native-reanimated";
 import RecordScreen from "./RecordScreen";
 import trashbar from "../trash_homePage-main/js/trashbar";
-
 export default class TrashcanScreen extends Component {
   constructor(props) {
     super(props);
@@ -111,6 +110,7 @@ export default class TrashcanScreen extends Component {
             callbackNode={this.fall}
             enabledGestureInteraction={true}
           />
+
         </View>
       </SafeAreaView>
     )
@@ -119,6 +119,12 @@ export default class TrashcanScreen extends Component {
 
 const styles = StyleSheet.create({
   container0: { flex: 1},
+  contentStyle: {
+    backgroundColor: '#E5E5E5',
+    width:414,
+    height:896,
+    alignItems: 'center',
+  },
   titleStyle:{
     fontSize:26,
     fontWeight:"bold",
@@ -195,6 +201,10 @@ const styles = StyleSheet.create({
   },
   bsContainer:{
     backgroundColor:'#F6F6F6',
+  },
+  btnaddtrashStyle:{
+    marginTop:20,
+    marginLeft:250,
   },
 });
 
