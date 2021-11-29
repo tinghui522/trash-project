@@ -1,9 +1,6 @@
 import React, { Component , useState } from "react";
 import { StatusBar } from 'expo-status-bar';
 import {   
-<<<<<<< HEAD
-  StyleSheet, Text, TouchableOpacity, Image, View, ScrollView, } from 'react-native';
-=======
   StyleSheet, 
   Text, 
   TouchableOpacity, 
@@ -12,11 +9,9 @@ import {
   ScrollView, 
   SafeAreaView, 
 } from 'react-native';
->>>>>>> origin/main
 import { ProgressBar } from 'react-native-paper';
 import BottomSheet from 'reanimated-bottom-sheet';
 import Animated, { interpolate }from "react-native-reanimated";
-
 export default class GoalScreen extends Component {
   addGoalHeader = () => (
     <View style={styles.header_bg}>
@@ -110,47 +105,6 @@ export default class GoalScreen extends Component {
 
   render() {
     return (
-<<<<<<< HEAD
-      <View style={styles.container}>
-        <Text style={styles.titleText}>垃圾量目標</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
-          <Image
-            style={styles.profileiconStyle}
-            source={require('../assets/icon-profile.png')}
-          />
-        </TouchableOpacity>
-        <View style={styles.allGoal}>
-          <Animated.ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-            <View style={styles.goal_bg}>
-              <Image
-                style={styles.faceGifStyle}
-                source={require('../assets/faceGif/faceIcon_box.gif')}
-              />
-              <ProgressBar progress={0.2} style={styles.probarStyle} color={'#63CFA8'}/>
-              <Text style={styles.probarText}>4/20</Text>
-            </View>
-            <View style={styles.goal_bg}>
-              <Image
-                style={styles.faceGifStyle}
-                source={require('../assets/faceGif/faceIcon_cup.gif')}
-              />
-              <ProgressBar progress={0.8} style={styles.probarStyle} color={'#63CFA8'}/>
-              <Text style={styles.probarText}>8/10</Text>
-            </View>
-            <View style={styles.goal_bg}>
-              <Image
-                style={styles.faceGifStyle}
-                source={require('../assets/faceGif/faceIcon_chopstick.gif')}
-              />
-              <ProgressBar progress={0.5} style={styles.probarStyle} color={'#63CFA8'}/>
-              <Text style={styles.probarText}>5/10</Text>
-            </View>
-          </Animated.ScrollView>
-        </View>
-        <TouchableOpacity onPress={() => this.bs.current.snapTo(0)}>
-          <View style={styles.btn_addgoal}>
-            <Text style={styles.addgoalText}>+新目標</Text>
-=======
       <View style={{flex:1}}>
         <Animated.View style={{backgroundColor:'#F6F6F6', alignItems:'center', height: 845,
           opacity: Animated.add(0.3, Animated.multiply(this.fall, 0.8))}}>
@@ -188,7 +142,6 @@ export default class GoalScreen extends Component {
                 <Text style={styles.probarText}>5/10</Text>
               </View>
             </Animated.ScrollView>
->>>>>>> origin/main
           </View>
           <TouchableOpacity onPress={() => this.bs.current.snapTo(0)}>
             <View style={styles.btn_addgoal}>
@@ -218,14 +171,12 @@ export default class GoalScreen extends Component {
   }
 
 const styles = StyleSheet.create({
-<<<<<<< HEAD
+
   container:{
     backgroundColor:'#F6F6F6',
     alignItems:'center',
     flex: 1,
   },
-=======
->>>>>>> origin/main
   profileiconStyle:{
     width:58,
     height:58,

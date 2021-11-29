@@ -1,11 +1,7 @@
-
 import React, { useContext, useEffect }  from 'react';
 import { Image, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import MainTab from './navigation/MainTab';
-import React from 'react';
-import { Image, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
 
 const PERSISTENCE_KEY = "NAVIGATION_STATE";
 

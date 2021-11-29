@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
     backgroundColor:'#F6F6F6',
   },
   btnaddtrashStyle:{
-    marginTop:20,
+    marginTop:120,
     marginLeft:250,
   },
 });

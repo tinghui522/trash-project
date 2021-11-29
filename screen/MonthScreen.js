@@ -1,20 +1,10 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity} from 'react-native';
-import DatePicker, { getToday, getFormatedDate } from 'react-native-modern-datepicker';
-=======
-import React from 'react';
-import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity} from 'react-native';
-import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
->>>>>>> main
-=======
 import React, { useState, Component } from 'react';
 import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity} from 'react-native';
 import DatePicker, { getToday, getFormatedDate } from 'react-native-modern-datepicker';
+import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
+
 import BottomSheet from 'reanimated-bottom-sheet';
 import Animated from "react-native-reanimated";
->>>>>>> origin/main
 
 export default class MonthScreen extends Component {
   addGoalHeader = () => (

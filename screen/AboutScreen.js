@@ -26,22 +26,7 @@ const AboutScreen = ({ navigation }) => {
                 <Image source={require('../assets/setting/arrow.png')} style={{width:16,height:18,marginLeft: 275,marginTop:-20}}/>
               </TouchableOpacity>
               <View style={styles.underline}/>
-              <TouchableOpacity>
-<<<<<<< HEAD
-                <Image source={require('../assets/setting/file.png')} style={{width:35,height:35,top:15,left: 15}}/>
-                <Text style={{marginTop:-15,marginLeft:60,fontWeight: 'bold',fontSize: 20,color:'#909090'}}>備份</Text>
-                <Image source={require('../assets/setting/arrow.png')} style={{width:16,height:18,marginLeft: 275,marginTop:-20}}/>
-              </TouchableOpacity>
-              <View style={styles.underline}/>
-              <TouchableOpacity>
-                <Image source={require('../assets/setting/question.png')} style={{width:35,height:35,top: 15,left: 15}}/>
-                <Text style={{marginTop:-15,marginLeft:60,fontWeight: 'bold',fontSize: 20,color:'#909090'}}>常見問題</Text>
-                <Image source={require('../assets/setting/arrow.png')} style={{width:16,height:18,marginLeft: 275,marginTop:-20}}/>
-              </TouchableOpacity>
-              <View style={styles.underline}/>
               <TouchableOpacity onPress={() => navigation.navigate('Mail')}>
-=======
->>>>>>> origin/main
                 <Image source={require('../assets/setting/contact.png')} style={{width:35,height:35,top: 15,left: 15}}/>
                 <Text style={{marginTop:-15,marginLeft:60,fontWeight: 'bold',fontSize: 20,color:'#909090'}}>聯絡我們</Text>
                 <Image source={require('../assets/setting/arrow.png')} style={{width:16,height:18,marginLeft: 275,marginTop:-20}}/>
