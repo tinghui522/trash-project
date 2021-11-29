@@ -1,25 +1,14 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { 
-  StatusBar,
-  Button,
-  Plateform,
-  API,
-  ImageBackground,
-  StyleSheet, 
-  Text, 
-  TouchableOpacity, 
-  Image, 
-  View, 
-  ScrollView, 
-  TouchableHighlight, 
-  SafeAreaView, 
-  TouchableNativeFeedback
+  StatusBar,Button,Plateform,API,ImageBackground,StyleSheet, Text, TouchableOpacity, Image, View, ScrollView, TouchableHighlight, 
+  SafeAreaView, TouchableNativeFeedback
 } from 'react-native';
 import BottomSheet from 'reanimated-bottom-sheet';
 import Animated from "react-native-reanimated";
 import DateTimePicker from "react-native-modal-datetime-picker";
 import moment from "moment";
 export default class RecordScreen extends Component {
+    
     constructor(props) {
       super(props);
       this.state = {
@@ -116,14 +105,18 @@ export default class RecordScreen extends Component {
         </View>
         <View style={styles.qtyBlock}>
           <Text style={styles.qtyText}>數量</Text>
-          <TouchableOpacity>
-            <Text style={styles.btnQty}>-</Text>
+          <TouchableOpacity onPress={this.onDecrement}>
+            <View>
+              <Text style={styles.btnQty}>-</Text>
+            </View>
           </TouchableOpacity>
           <View style={styles.qty_bg}>
             <Text style={styles.qty}>1</Text>
           </View>
-          <TouchableOpacity>
-            <Text style={styles.btnQty}>+</Text>
+          <TouchableOpacity onPress={this.onIncrement}>
+            <View>
+              <Text style={styles.btnQty}>+</Text>
+            </View>
           </TouchableOpacity>
         </View>
         <View>
@@ -151,13 +144,13 @@ export default class RecordScreen extends Component {
                     <TouchableOpacity onPress={this.clickNum.bind(this,'7')}><View style={styles.mygrid}><Text style={{fontSize:20}}>7</Text></View></TouchableOpacity>
                     <TouchableOpacity onPress={this.clickNum.bind(this,'8')}><View style={styles.mygrid}><Text style={{fontSize:20}}>8</Text></View></TouchableOpacity>
                     <TouchableOpacity onPress={this.clickNum.bind(this,'9')}><View style={styles.mygrid}><Text style={{fontSize:20}}>9</Text></View></TouchableOpacity>
-                    <TouchableOpacity onPress={this.setOper.bind(this,4)}><View style={styles.mygrid2}><Text style={{fontSize:20}}>-</Text></View></TouchableOpacity>
+                    <TouchableOpacity onPress={this.setOper.bind(this,2)}><View style={styles.mygrid2}><Text style={{fontSize:20}}>-</Text></View></TouchableOpacity>
                 </View>
                 <View style={styles.line3}>
                     <TouchableOpacity onPress={this.clickNum.bind(this,'4')}><View style={styles.mygrid}><Text style={{fontSize:20}}>4</Text></View></TouchableOpacity>
                     <TouchableOpacity onPress={this.clickNum.bind(this,'5')}><View style={styles.mygrid}><Text style={{fontSize:20}}>5</Text></View></TouchableOpacity>
                     <TouchableOpacity onPress={this.clickNum.bind(this,'6')}><View style={styles.mygrid}><Text style={{fontSize:20}}>6</Text></View></TouchableOpacity>
-                    <TouchableOpacity onPress={this.setOper.bind(this,3)}><View style={styles.mygrid2}><Text style={{fontSize:20}}>+</Text></View></TouchableOpacity>
+                    <TouchableOpacity onPress={this.setOper.bind(this,1)}><View style={styles.mygrid2}><Text style={{fontSize:20}}>+</Text></View></TouchableOpacity>
                 </View>
                 <View style={styles.line4}>
                     <TouchableOpacity onPress={this.clickNum.bind(this,'1')}><View style={styles.mygrid}><Text style={{fontSize:20}}>1</Text></View></TouchableOpacity>
@@ -367,12 +360,6 @@ export default class RecordScreen extends Component {
     }
     if(this.state.oper==2){
         d=(this.state.a*1.0)-this.state.b*1.0
-    }
-    if(this.state.oper==3){
-        d=(this.state.a*1.0)*this.state.b*1.0
-    }
-    if(this.state.oper==4){
-        d=(this.state.a*1.0)/this.state.b*1.0
     }
     this.setState({
         a:'0',

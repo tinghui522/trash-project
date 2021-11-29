@@ -1,6 +1,5 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { Text } from 'react-native';
 
 import TrashcanScreen from './TrashcanScreen';
 import RecordScreen from './RecordScreen';
@@ -8,6 +7,10 @@ import AboutScreen from './AboutScreen';
 import TrashSuggestScreen from './TrashSuggestScreen';
 import MonthScreen from './MonthScreen';
 import GoalScreen from './GoalScreen';
+
+import LanguageScreen from './LanguageScreen';
+import AlertScreen from './AlertScreen';
+import MailScreen from './MailScreen';
 
 export const Stack = createStackNavigator();
 
@@ -97,3 +100,19 @@ export const GoalStack = () => {
        </Stack.Navigator>
     );
   }
+
+export const AboutStack = () => {
+  return (
+      <Stack.Navigator>
+      <Stack.Screen name=" "component={Aboutcreen}  
+          options={{
+          headerStyle:{
+              height:0,
+          }
+          }} />  
+      <Stack.Screen name="Language" component={LanguageScreen} />
+      <Stack.Screen name="Alert" component={AlertScreen} />
+      <Stack.Screen name="Mail" component={MailScreen} />
+      </Stack.Navigator>
+  );
+}

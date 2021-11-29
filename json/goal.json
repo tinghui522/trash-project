@@ -1,0 +1,52 @@
+{
+    "goalitemList": [
+       {
+          "title": "餐盒",
+          "image": "../assets/icon-gray-box.png",
+          "touchimage": "../assets/icon-box.png",
+          "array":0
+       },
+       {
+          "title": "餐盤",
+          "image": "../assets/icon-gray-plate.png",
+          "touchimage": "../assets/icon-plate.png",
+          "array":1
+       },      
+       {
+          "title": "餐具",
+          "image": "../assets/icon-gray-chopstick.png",
+          "touchimage": "../assets/icon-chopstick.png",
+          "array":2
+       },
+       {
+          "title": "醬包",
+          "image": "../assets/icon-gray-ketchup.png",
+          "touchimage": "../assets/icon-ketchup.png",
+          "array":3
+       },
+       {
+          "title": "杯子",
+          "image": "../assets/icon-gray-cup.png",
+          "touchimage": "../assets/icon-cup.png",
+          "array":4
+       },
+       {
+          "title": "吸管",
+          "image": "../assets/icon-gray-strow.png",
+          "touchimage": "../assets/icon-strow.png",
+          "array":5
+       },
+       {
+          "title": "袋子",
+          "image": "../assets/icon-gray-bag.png",
+          "touchimage": "../assets/icon-bag.png",
+          "bigpic":"../assets/faceIcon/faceIcon_bag.png",
+          "array":6
+       },
+       {
+          "title": "自訂",
+          "image": "../assets/icon-gray-trashother.png",
+          "touchimage": "../assets/icon-trashother.png",
+          "array":7
+       }
+ ]}

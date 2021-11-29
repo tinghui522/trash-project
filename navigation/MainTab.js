@@ -57,6 +57,7 @@ const HomeTabNavigation = () => {
         inactiveTintColor: '#707070',
         showLabel:false,
         style: {
+          position:'absolute',
           height:90,
           backgroundColor:"#fff",
           borderRadius: 30,

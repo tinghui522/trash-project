@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useEffect }  from 'react';
 import { Image, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import MainTab from './navigation/MainTab';

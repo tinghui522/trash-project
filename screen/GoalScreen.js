@@ -1,16 +1,9 @@
-import { StatusBar } from 'expo-status-bar';
-import React, { Component , navigation } from "react";
+import React, { Component , useState } from "react";
 import {   
-  StyleSheet, 
-  Text, 
-  TouchableOpacity, 
-  Image, 
-  View, 
-  ScrollView, 
-} from 'react-native';
+  StyleSheet, Text, TouchableOpacity, Image, View, ScrollView, } from 'react-native';
 import { ProgressBar } from 'react-native-paper';
 import BottomSheet from 'reanimated-bottom-sheet';
-import Animated, { interpolate } from "react-native-reanimated";
+import Animated, { interpolate }from "react-native-reanimated";
 
 export default class GoalScreen extends Component {
   addGoalHeader = () => (
@@ -106,10 +99,8 @@ export default class GoalScreen extends Component {
   fall = new Animated.Value(1);
 
   render() {
-    const { navigation } = this.props;
     return (
       <View style={styles.container}>
-        
         <Text style={styles.titleText}>垃圾量目標</Text>
         <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
           <Image
@@ -162,12 +153,20 @@ export default class GoalScreen extends Component {
       </View>
     );
   }
+  onValueChange = (flag,value) => {
+    if(flag ==1){
+    this.setState({selected:value});
+    }else{
+      this.setState({dropdown:value});
+    }
+  };
   }
 
 const styles = StyleSheet.create({
   container:{
     backgroundColor:'#F6F6F6',
     alignItems:'center',
+    flex: 1,
   },
   profileiconStyle:{
     width:58,
@@ -187,6 +186,7 @@ const styles = StyleSheet.create({
     marginLeft:290,
     marginTop:-80
   },
+  
   allGoal: {
     marginTop: 50,
     height: 550,
@@ -196,6 +196,8 @@ const styles = StyleSheet.create({
     height: 470,
     backgroundColor:'#fff',
     borderRadius: 20,
+    borderWidth: 1,
+    borderColor:'#D9D9D9',
     alignItems:'center',
     marginLeft: 10,
     marginRight: 10,

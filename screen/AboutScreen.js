@@ -1,10 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import React , { Component, Fragment }from 'react';
 import { TouchableOpacity } from 'react-native';
-import { StyleSheet, Text, View ,Image, ScrollView} from 'react-native';
-export default class AboutScreen extends Component {
-  render(){
-    const { navigation } = this.props;
+import { StyleSheet, Text, View ,Image} from 'react-native';
+
+const AboutScreen = ({ navigation }) => {
     return (
       <View style={styles.center}>
         <View style={styles.topbg}>
@@ -15,13 +14,13 @@ export default class AboutScreen extends Component {
         </View>
           <View style={styles.bg_personal_form}>
             <View style={styles.setting}>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate('Language')}>
                 <Image source={require('../assets/setting/language.png')} style={{width:35,height:35,top: 50,left: 15}}/>
                 <Text style={{marginBottom: 20,marginTop:20,marginLeft:60,fontWeight: 'bold',fontSize: 20,color:'#909090'}}>語言</Text>
                 <Image source={require('../assets/setting/arrow.png')} style={{width:16,height:18,marginLeft: 275,marginTop:-35}}/>
               </TouchableOpacity>
               <View style={styles.underline}/>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate('Alert')}>
                 <Image source={require('../assets/setting/alert.png')} style={{width:35,height:35,top: 15,left: 15}}/>
                 <Text style={{marginTop: -15,marginLeft:60,fontWeight: 'bold',fontSize: 20,color:'#909090'}}>提醒</Text>
                 <Image source={require('../assets/setting/arrow.png')} style={{width:16,height:18,marginLeft: 275,marginTop:-20}}/>
@@ -39,7 +38,7 @@ export default class AboutScreen extends Component {
                 <Image source={require('../assets/setting/arrow.png')} style={{width:16,height:18,marginLeft: 275,marginTop:-20}}/>
               </TouchableOpacity>
               <View style={styles.underline}/>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate('Mail')}>
                 <Image source={require('../assets/setting/contact.png')} style={{width:35,height:35,top: 15,left: 15}}/>
                 <Text style={{marginTop:-15,marginLeft:60,fontWeight: 'bold',fontSize: 20,color:'#909090'}}>聯絡我們</Text>
                 <Image source={require('../assets/setting/arrow.png')} style={{width:16,height:18,marginLeft: 275,marginTop:-20}}/>
@@ -52,8 +51,8 @@ export default class AboutScreen extends Component {
           </View>
         <StatusBar style="auto" />
       </View>
+      
     )
-  }
 }
 
 const styles = StyleSheet.create({
@@ -116,3 +115,5 @@ const styles = StyleSheet.create({
     left:10,
   }
 });
+
+export default AboutScreen;

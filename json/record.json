@@ -1,0 +1,34 @@
+{
+    "recordTitle": "類別",
+    "recordList": [
+       {
+          "title": "早餐",
+          "image": "../assets/record/icon-breakfast.png",
+          "array":0
+       },
+       {
+          "title": "午餐",
+          "image": "../assets/record/icon-lunch.png",
+          "array":1
+       },      
+       {
+          "title": "晚餐",
+          "image": "../assets/record/icon-dinner.png",
+          "array":2
+       },
+       {
+          "title": "飲料",
+          "image": "../assets/record/icon-drink.png",
+          "array":3
+       },
+       {
+          "title": "點心",
+          "image": "../assets/record/icon-dessert.png",
+          "array":4
+       },
+       {
+          "title": "其他",
+          "image": "../assets/record/icon-other.png",
+          "array":5
+       }
+ ]}
