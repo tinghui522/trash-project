@@ -4,7 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import TrashcanScreen from './TrashcanScreen';
 import RecordScreen from './RecordScreen';
 import AboutScreen from './AboutScreen';
-import TrashSuggestScreen from './TrashSuggestScreen';
+import SuggestScreen from './SuggestScreen';
 import MonthScreen from './MonthScreen';
 import GoalScreen from './GoalScreen';
 
@@ -44,7 +44,7 @@ export const TrashcanStack = () => {
 export const TrashSuggestStack = () => {
     return (
         <Stack.Navigator>
-            <Stack.Screen name="TrashSuggest"component={TrashSuggestScreen}  
+            <Stack.Screen name="Suggest"component={SuggestScreen}  
                 options={{
                 headerStyle:{
                     height:0,
