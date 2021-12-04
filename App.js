@@ -1,13 +1,18 @@
 import React, { useContext, useEffect }  from 'react';
 import { Image, View } from 'react-native';
+//import AsyncStorage from '@react-native-community/async-storage';
 import { NavigationContainer } from '@react-navigation/native';
 import MainTab from './navigation/MainTab';
+import { StatusBar } from 'expo-status-bar';
+import { SplashScreen } from 'expo';
 
 const PERSISTENCE_KEY = "NAVIGATION_STATE";
 
 export default function App() {
   const [isLoadingComplete, setLoadingComplete] = React.useState(false);
   const [initialNavigationState, setInitialNavigationState] = React.useState();
+  // const containerRef = React.useRef();
+  // const {getInitialState} = useLinking(containerRef);
   
   React.useEffect(() => {
     async function loadResourcesAndDataAsync() {
@@ -30,13 +35,15 @@ export default function App() {
   if (!isLoadingComplete) {
     return null;
   } else {
-  return (
-    <NavigationContainer
-      initialState={initialNavigationState}
-      >
-      <MainTab/>
-    </NavigationContainer>
-    
-    );
+      return (
+          <NavigationContainer
+            initialState={initialNavigationState}
+            // onStateChange={(state) =>
+            //   AsyncStorage.setItem(PERSISTENCE_KEY, JSON.stringify(state))
+            // }
+          >
+            <MainTab/>
+          </NavigationContainer>
+        );
   }
 }

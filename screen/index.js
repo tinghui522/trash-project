@@ -17,19 +17,12 @@ export const Stack = createStackNavigator();
 export const TrashcanStack = () => {
     return (
         <Stack.Navigator>
-        <Stack.Screen name=" "component={TrashcanScreen}  
+        <Stack.Screen name="Trashcan"component={TrashcanScreen}  
           options={{
             headerStyle:{
               height:0,
             },
           }} />  
-        <Stack.Screen name="Record" component={RecordScreen} 
-          options={{
-            headerStyle:{
-              height:0,
-            },
-            headerLeft: null,
-          }} />
         <Stack.Screen name="Profile" component={AboutScreen}
           options={{
             headerStyle:{

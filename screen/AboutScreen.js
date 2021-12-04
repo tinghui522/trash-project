@@ -1,15 +1,15 @@
-import { StatusBar } from 'expo-status-bar';
 import React , { Component, navigation }from 'react';
 import { TouchableOpacity } from 'react-native';
-import { StyleSheet, Text, View ,Image} from 'react-native';
+import { StyleSheet, Text, View ,Image, Button} from 'react-native';
 
 const AboutScreen = ({ navigation }) => {
     return (
       <View style={styles.center}>
         <View style={styles.topbg}>
-          <TouchableOpacity onPress={() => navigation.goback()}>
-            <Image source={require('../assets/setting/btn_back.png')} style={{left: 30,top:40}}/>
-          </TouchableOpacity>
+          <Button title="Go back" color="#fff" onPress={() => navigation.goBack()} />
+            {/* <TouchableOpacity onPress={() => navigation.goback()}>
+              <Image source={require('../assets/setting/btn_back.png')} style={{left: 30,top:40}}/>
+            </TouchableOpacity>  */}
           <Text style={styles.title}>設定</Text>
         </View>
           <View style={styles.bg_personal_form}>
@@ -32,12 +32,11 @@ const AboutScreen = ({ navigation }) => {
                 <Image source={require('../assets/setting/arrow.png')} style={{width:16,height:18,marginLeft: 275,marginTop:-20}}/>
               </TouchableOpacity>
               <View style={styles.underline}/>
-                <Image source={require('../assets/setting/about.png')} style={{width:35,height:35,top: 15,left: 15}}/>
-                <Text style={{marginTop:-15,marginLeft:60,fontWeight: 'bold',fontSize: 20,color:'#909090'}}>版本資訊</Text>
+                <Image source={require('../assets/setting/about.png')} style={{width:35,height:35,top: 10,left: 15}}/>
+                <Text style={{marginTop:-20,marginLeft:60,fontWeight: 'bold',fontSize: 20,color:'#909090'}}>版本資訊</Text>
                 <Text style={{marginTop:-20,marginLeft:260,fontSize: 20,color:'#909090'}}>1.0.0</Text>
             </View>
           </View>
-        <StatusBar style="auto" />
       </View>
       
     )

@@ -146,27 +146,27 @@ export default class RecordScreen extends Component {
                   </View>
                 </View>
                 <View style={styles.line2}>
-                    <TouchableOpacity onPress={this.clickNum.bind(this,'7')}><View style={styles.mygrid}><Text style={{fontSize:20}}>7</Text></View></TouchableOpacity>
-                    <TouchableOpacity onPress={this.clickNum.bind(this,'8')}><View style={styles.mygrid}><Text style={{fontSize:20}}>8</Text></View></TouchableOpacity>
-                    <TouchableOpacity onPress={this.clickNum.bind(this,'9')}><View style={styles.mygrid}><Text style={{fontSize:20}}>9</Text></View></TouchableOpacity>
-                    <TouchableOpacity onPress={this.setOper.bind(this,4)}><View style={styles.mygrid2}><Text style={{fontSize:20}}>-</Text></View></TouchableOpacity>
+                    <TouchableOpacity onPress={this.clickNum.bind(this,'7')}><View style={styles.mygrid}><Text style={styles.money_btn}>7</Text></View></TouchableOpacity>
+                    <TouchableOpacity onPress={this.clickNum.bind(this,'8')}><View style={styles.mygrid}><Text style={styles.money_btn}>8</Text></View></TouchableOpacity>
+                    <TouchableOpacity onPress={this.clickNum.bind(this,'9')}><View style={styles.mygrid}><Text style={styles.money_btn}>9</Text></View></TouchableOpacity>
+                    <TouchableOpacity onPress={this.setOper.bind(this,2)}><View style={styles.mygrid2}><Text style={styles.money_btn}>-</Text></View></TouchableOpacity>
                 </View>
                 <View style={styles.line3}>
-                    <TouchableOpacity onPress={this.clickNum.bind(this,'4')}><View style={styles.mygrid}><Text style={{fontSize:20}}>4</Text></View></TouchableOpacity>
-                    <TouchableOpacity onPress={this.clickNum.bind(this,'5')}><View style={styles.mygrid}><Text style={{fontSize:20}}>5</Text></View></TouchableOpacity>
-                    <TouchableOpacity onPress={this.clickNum.bind(this,'6')}><View style={styles.mygrid}><Text style={{fontSize:20}}>6</Text></View></TouchableOpacity>
-                    <TouchableOpacity onPress={this.setOper.bind(this,3)}><View style={styles.mygrid2}><Text style={{fontSize:20}}>+</Text></View></TouchableOpacity>
+                    <TouchableOpacity onPress={this.clickNum.bind(this,'4')}><View style={styles.mygrid}><Text style={styles.money_btn}>4</Text></View></TouchableOpacity>
+                    <TouchableOpacity onPress={this.clickNum.bind(this,'5')}><View style={styles.mygrid}><Text style={styles.money_btn}>5</Text></View></TouchableOpacity>
+                    <TouchableOpacity onPress={this.clickNum.bind(this,'6')}><View style={styles.mygrid}><Text style={styles.money_btn}>6</Text></View></TouchableOpacity>
+                    <TouchableOpacity onPress={this.setOper.bind(this,1)}><View style={styles.mygrid2}><Text style={styles.money_btn}>+</Text></View></TouchableOpacity>
                 </View>
                 <View style={styles.line4}>
-                    <TouchableOpacity onPress={this.clickNum.bind(this,'1')}><View style={styles.mygrid}><Text style={{fontSize:20}}>1</Text></View></TouchableOpacity>
-                    <TouchableOpacity onPress={this.clickNum.bind(this,'2')}><View style={styles.mygrid}><Text style={{fontSize:20}}>2</Text></View></TouchableOpacity>
-                    <TouchableOpacity onPress={this.clickNum.bind(this,'3')}><View style={styles.mygrid}><Text style={{fontSize:20}}>3</Text></View></TouchableOpacity>
-                    <TouchableOpacity onPress={this.setOper.bind(this,2)}><View style={styles.mygrid2}><Text style={{fontSize:20}}>r</Text></View></TouchableOpacity>
+                    <TouchableOpacity onPress={this.clickNum.bind(this,'1')}><View style={styles.mygrid}><Text style={styles.money_btn}>1</Text></View></TouchableOpacity>
+                    <TouchableOpacity onPress={this.clickNum.bind(this,'2')}><View style={styles.mygrid}><Text style={styles.money_btn}>2</Text></View></TouchableOpacity>
+                    <TouchableOpacity onPress={this.clickNum.bind(this,'3')}><View style={styles.mygrid}><Text style={styles.money_btn}>3</Text></View></TouchableOpacity>
+                    <TouchableOpacity onPress={this.calc}><View style={styles.mygrid2}><Text style={styles.money_btn}>C</Text></View></TouchableOpacity>
                 </View>
                 <View style={styles.line5}>
-                    <TouchableOpacity onPress={this.calc}><View style={styles.mygrid2}><Text style={{fontSize:20}}>c</Text></View></TouchableOpacity>
-                    <TouchableOpacity onPress={this.clickNum.bind(this,'0')}><View style={styles.mygrid}><Text style={{fontSize:20}}>0</Text></View></TouchableOpacity>
-                    <TouchableOpacity onPress={this.calc}><View style={styles.mygrid2}><Text style={{fontSize:20}}>=</Text></View></TouchableOpacity>
+                    <TouchableOpacity onPress={this.clickNum.bind(this,'00')}><View style={styles.mygrid2}><Text style={styles.money_btn}>00</Text></View></TouchableOpacity>
+                    <TouchableOpacity onPress={this.clickNum.bind(this,'0')}><View style={styles.mygrid}><Text style={styles.money_btn}>0</Text></View></TouchableOpacity>
+                    <TouchableOpacity onPress={this.calc}><View style={styles.mygrid2}><Text style={styles.money_btn}>=</Text></View></TouchableOpacity>
                     <TouchableOpacity onPress={() => this.bsCal.current.snapTo(1)}><View style={styles.mygrid2}><Image style={styles.btncheckstyle}source={require('../assets/record/btn-check.png')}/></View></TouchableOpacity>
                 </View>
             </View>
@@ -378,12 +378,6 @@ export default class RecordScreen extends Component {
     if(this.state.oper==2){
         d=(this.state.a*1.0)-this.state.b*1.0
     }
-    if(this.state.oper==3){
-        d=(this.state.a*1.0)*this.state.b*1.0
-    }
-    if(this.state.oper==4){
-        d=(this.state.a*1.0)/this.state.b*1.0
-    }
     this.setState({
         a:'0',
         b:'0',
@@ -572,6 +566,11 @@ const styles = StyleSheet.create({
   money:{
     color: '#909090',
     fontSize:18,
+    fontWeight:"bold",
+  },
+  money_btn:{
+    color: '#909090',
+    fontSize:20,
     fontWeight:"bold",
   },
   btn_send:{

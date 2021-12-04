@@ -1,18 +1,6 @@
 import React, { Component, Fragment } from "react";
 import {
-  Text,
-  StatusBar,
-  Button,
-  StyleSheet,
-  Platform,
-  API,
-  TouchableOpacity,
-  Image,
-  View,
-  ScrollView,
-  TouchableHighlight,
-  SafeAreaView
-} from 'react-native';
+  Text,StatusBar,Button,StyleSheet,Platform,API,TouchableOpacity,Image,View,ScrollView,TouchableHighlight,SafeAreaView} from 'react-native';
 import BottomSheet from 'reanimated-bottom-sheet';
 import Animated from "react-native-reanimated";
 import RecordScreen from "./RecordScreen";
@@ -53,11 +41,11 @@ export default class TrashcanScreen extends Component {
                 source={require('../assets/trashcan/home-bg.png')}
                 />
               <Text style={styles.titleStyle}>本月垃圾量 16 件</Text>
-              <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+              <TouchableOpacity onPress={() => this.props.navigation.navigate('Profile')}>
                   <Image
-                      style={styles.profileiconStyle}
-                      source={require('../assets/icon-profile.png')}
-                      />
+                    style={styles.profileiconStyle}
+                    source={require('../assets/icon-profile.png')}
+                    />
               </TouchableOpacity>
                   <Image
                   style={styles.trashledStyle}

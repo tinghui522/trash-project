@@ -139,8 +139,8 @@ export default class SuggestScreen extends Component {
                         <Image source={require('../assets/suggest/btn_clickMe.png')}
                               style={{ width: 95, height: 46, marginLeft: 35, marginBottom: -10}}/>
                       </TouchableOpacity>
-                      <Image source= {require('../assets/suggest/character_Earth.png')} 
-                            style={{ width: 167, height: 167 }}/>
+                        <Image source= {require('../assets/suggest/character_Earth.png')} 
+                              style={{ width: 167, height: 167 }}/>
                     </View>
                   </View>
               </View>

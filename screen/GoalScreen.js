@@ -1,17 +1,9 @@
 import React, { Component , useState } from "react";
-import { StatusBar } from 'expo-status-bar';
-import {   
-  StyleSheet, 
-  Text, 
-  TouchableOpacity, 
-  Image, 
-  View, 
-  ScrollView, 
-  SafeAreaView, 
-} from 'react-native';
+import {   StyleSheet, Text, TouchableOpacity, Image, View, ScrollView, SafeAreaView } from 'react-native';
 import { ProgressBar } from 'react-native-paper';
 import BottomSheet from 'reanimated-bottom-sheet';
 import Animated, { interpolate }from "react-native-reanimated";
+import SelectDropdown from 'react-native-select-dropdown';
 export default class GoalScreen extends Component {
   addGoalHeader = () => (
     <View style={styles.header_bg}>
@@ -104,6 +96,8 @@ export default class GoalScreen extends Component {
   fall = new Animated.Value(1);
 
   render() {
+    const { navigation } = this.props;
+    const month = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
     return (
       <View style={{flex:1}}>
         <Animated.View style={{backgroundColor:'#F6F6F6', alignItems:'center', height: 845,
@@ -115,6 +109,23 @@ export default class GoalScreen extends Component {
               source={require('../assets/icon-profile.png')}
             />
           </TouchableOpacity>
+          <SelectDropdown
+            style={styles.monthselected}
+            data={month}
+            onSelect={(selectedItem, index) => {
+              console.log(selectedItem, index)
+            }}
+            buttonTextAfterSelection={(selectedItem, index) => {
+              // text represented after item is selected
+              // if data array is an array of objects then return selectedItem.property to render after item is selected
+              return selectedItem
+            }}
+            rowTextForSelection={(item, index) => {
+              // text represented for each item in dropdown
+              // if data array is an array of objects then return item.property to represent item in dropdown
+              return item
+            }}
+          />
           <View style={styles.allGoal}>
             <Animated.ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
               <View style={styles.goal_bg}>
@@ -195,7 +206,12 @@ const styles = StyleSheet.create({
     marginLeft:290,
     marginTop:-80
   },
-  
+  monthselected:{
+    backgroundColor:'#E2E2E2', 
+    fontSize: 26,
+    fontWeight: 'bold',
+    color: '#909090' 
+  },
   allGoal: {
     marginTop: 50,
     height: 550,
@@ -236,8 +252,7 @@ const styles = StyleSheet.create({
     height:50,
     backgroundColor: '#FF867C',
     borderRadius: 20,
-    marginTop: -20,
-    marginBottom: 20,
+    marginTop: -50,
     alignItems: 'center',
     justifyContent: 'center',
   },
