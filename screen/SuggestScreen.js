@@ -1,7 +1,7 @@
 import React, { Component , useState, navigation }from 'react';
 import TabNavigator from 'react-native-tab-navigator';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity, TextComponent } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { VictoryPie } from 'victory-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import BottomSheet from 'reanimated-bottom-sheet';
@@ -105,7 +105,7 @@ export default class SuggestScreen extends Component {
         <View>
           <Image source= {require('../assets/suggest/header-bg.png')} 
                 style= {{ height: 275 }}/>
-          <TouchableOpacity onPress={() => navigation.navigate('Profile')} style={{zIndex: 10}}>
+          <TouchableOpacity onPress={() => navigation.navigate('Profile')} style={{zIndex:10}}>
             <Image
                 style={styles.profileiconStyle}
                 source={require('../assets/icon-profile.png')}
@@ -244,10 +244,11 @@ const styles = StyleSheet.create({
     marginLeft: 50,
   },
   profileiconStyle:{
-    width:50,
-    height:50,
+    width:58,
+    height:58,
     marginLeft:325,
-    marginTop:-230
+    marginTop:-230,
+    zIndex: 100,
   },
   tab:{
     height: 232,

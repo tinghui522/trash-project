@@ -1,59 +1,101 @@
-import React , { Component }from 'react';
+import { StatusBar } from 'expo-status-bar';
+import React , { Component, navigation }from 'react';
 import { TouchableOpacity } from 'react-native';
-import { StyleSheet, Text, View ,Image, Button} from 'react-native';
-
+import { StyleSheet, Text, View ,Image} from 'react-native';
+import Modal from 'react-native-modal';
+import LanguageScreen from './LanguageScreen';
+import ReminderScreen from './ReminderScreen';
+import ContactScreen from './ContactScreen';
 export default class AboutScreen extends Component {
-  render() {
+  state = {
+    isModalVisible: false,
+  };
+
+  languageModal = () => {
+    this.setState({isModalVisible:!this.state.isModalVisible})
+  }
+
+  reminderModal = () => {
+    this.setState({isModalVisible:!this.state.isModalVisible})
+  }
+
+  contactModal = () => {
+    this.setState({isModalVisible:!this.state.isModalVisible})
+  }
+
+  render(){
     const { navigation } = this.props;
     return (
       <View style={styles.center}>
         <View style={styles.topbg}>
-            {/* <TouchableOpacity onPress={() => navigation.goback()}>
-              <Image source={require('../assets/setting/btn_back.png')} style={{left: 30,top:40}}/>
-            </TouchableOpacity>  */}
+          <TouchableOpacity onPress={() => navigation.goback()}>
+            <Image source={require('../assets/setting/btn_back.png')} style={{left: 30,top:40}}/>
+          </TouchableOpacity>
           <Text style={styles.title}>設定</Text>
         </View>
           <View style={styles.bg_personal_form}>
             <View style={styles.setting}>
-              <TouchableOpacity onPress={() => navigation.navigate('Language')}>
+              <TouchableOpacity onPress={this.languageModal}>
                 <Image source={require('../assets/setting/language.png')} style={{width:35,height:35,top: 50,left: 15}}/>
                 <Text style={{marginBottom: 20,marginTop:20,marginLeft:60,fontWeight: 'bold',fontSize: 20,color:'#909090'}}>語言</Text>
                 <Image source={require('../assets/setting/arrow.png')} style={{width:16,height:18,marginLeft: 275,marginTop:-35}}/>
               </TouchableOpacity>
+              <Modal isVisible={this.state.isModalVisible} style={{ marginTop: 70, marginLeft: 48 }}>
+                <LanguageScreen></LanguageScreen>
+                <TouchableOpacity onPress={this.languageModal}>
+                  <Image source={require('../assets/setting/btn_back.png')} style={{left: 30,top:-440}}/>
+                </TouchableOpacity> 
+              </Modal>
               <View style={styles.underline}/>
-              <TouchableOpacity onPress={() => navigation.navigate('Alert')}>
+              
+              <TouchableOpacity onPress={this.reminderModal}>
                 <Image source={require('../assets/setting/alert.png')} style={{width:35,height:35,top: 15,left: 15}}/>
                 <Text style={{marginTop: -15,marginLeft:60,fontWeight: 'bold',fontSize: 20,color:'#909090'}}>提醒</Text>
                 <Image source={require('../assets/setting/arrow.png')} style={{width:16,height:18,marginLeft: 275,marginTop:-20}}/>
               </TouchableOpacity>
+              <Modal isVisible={this.state.isModalVisible} style={{ marginTop: 70, marginLeft: 48 }}>
+                <ReminderScreen></ReminderScreen>
+                <TouchableOpacity onPress={this.reminderModal}>
+                  <Image source={require('../assets/setting/btn_back.png')} style={{left: 30,top:-440}}/>
+                </TouchableOpacity> 
+              </Modal>
               <View style={styles.underline}/>
-              <TouchableOpacity onPress={() => navigation.navigate('Mail')}>
+
+              <TouchableOpacity onPress={this.contactModal}>
                 <Image source={require('../assets/setting/contact.png')} style={{width:35,height:35,top: 15,left: 15}}/>
                 <Text style={{marginTop:-15,marginLeft:60,fontWeight: 'bold',fontSize: 20,color:'#909090'}}>聯絡我們</Text>
                 <Image source={require('../assets/setting/arrow.png')} style={{width:16,height:18,marginLeft: 275,marginTop:-20}}/>
               </TouchableOpacity>
+              <Modal isVisible={this.state.isModalVisible} style={{ marginTop: 70, marginLeft: 48 }}>
+                <ContactScreen></ContactScreen>
+                <TouchableOpacity onPress={this.contactModal}>
+                  <Image source={require('../assets/setting/btn_back.png')} style={{left: 30,top:-440}}/>
+                </TouchableOpacity> 
+              </Modal>
               <View style={styles.underline}/>
-                <Image source={require('../assets/setting/about.png')} style={{width:35,height:35,top: 10,left: 15}}/>
-                <Text style={{marginTop:-20,marginLeft:60,fontWeight: 'bold',fontSize: 20,color:'#909090'}}>版本資訊</Text>
+
+                <Image source={require('../assets/setting/about.png')} style={{width:35,height:35,top: 15,left: 15}}/>
+                <Text style={{marginTop:-15,marginLeft:60,fontWeight: 'bold',fontSize: 20,color:'#909090'}}>版本資訊</Text>
                 <Text style={{marginTop:-20,marginLeft:260,fontSize: 20,color:'#909090'}}>1.0.0</Text>
             </View>
           </View>
+        <StatusBar style="auto" />
       </View>
-      );
-    }
+      
+    )
+  }
 }
 
 const styles = StyleSheet.create({
   center: {
     alignItems: 'center',
     backgroundColor: '#E5E5E5',
-    width:414,
+    width:415,
     height:896,
   },
   topbg:{
-    width:416,
+    width:414,
     height:140,
-    marginTop:-1,
     backgroundColor: '#63CFA8',
     borderRadius: 20,
     borderWidth:1,
@@ -63,7 +105,7 @@ const styles = StyleSheet.create({
     fontSize:24,
     fontWeight: 'bold',
     color: 'white',
-    marginTop:80,
+    marginTop:50,
     marginLeft:185,
   },
   bg_personal_form: {
