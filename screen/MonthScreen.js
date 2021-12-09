@@ -7,7 +7,7 @@ import BottomSheet from 'reanimated-bottom-sheet';
 import Animated from "react-native-reanimated";
 
 export default class MonthScreen extends Component {
-  addGoalHeader = () => (
+  bfDetailHeader = () => (
    <View>
     <View style={styles.header_earth}>
       <Image
@@ -22,7 +22,7 @@ export default class MonthScreen extends Component {
     </View>
   )
 
-  addGoalInner = () => (
+  bfDetailInner = () => (
     <View style={styles.panel}>
       <View style={styles.panelContent}>
         <Text style={styles.panelTitle}>早餐</Text>
@@ -51,8 +51,8 @@ export default class MonthScreen extends Component {
     const { navigation } = this.props;
     // const [selectedDate, setSelectedDate] = useState('');
     return (
-      <View>
-        <Animated.ScrollView style={{opacity: Animated.add(0.3, Animated.multiply(this.fall, 0.8))}}>
+      <ScrollView>
+        <Animated.View style={{opacity: Animated.add(0.3, Animated.multiply(this.fall, 0.8))}}>
           <View style={styles.header}>
             <Image source= {require('../assets/suggest/header-bg.png')} />
             <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
@@ -127,17 +127,17 @@ export default class MonthScreen extends Component {
               </View>
             </View>
           </View>
-        </Animated.ScrollView>
+        </Animated.View>
         <BottomSheet
         ref={this.bs}
         snapPoints={[500, 0]}
-        renderContent={this.addGoalInner}
-        renderHeader={this.addGoalHeader}
+        renderContent={this.bfDetailInner}
+        renderHeader={this.bfDetailHeader}
         initialSnap={1}
         callbackNode={this.fall}
         enabledGestureInteraction={true}
       />
-    </View>
+    </ScrollView>
     );
   }
 }
@@ -154,14 +154,15 @@ const styles = StyleSheet.create({
     marginLeft: 50,
   },
   profileiconStyle:{
-    width:58,
-    height:58,
-    marginLeft:330,
+    width:50,
+    height:50,
+    marginLeft:325,
     marginTop:-230
   },
   container: {
     alignItems: 'center',
     backgroundColor: '#F6F6F6',
+    height: 850,
   },
   calendar: {
     marginTop: -100, 
@@ -185,7 +186,7 @@ const styles = StyleSheet.create({
   todayDetail: {
     backgroundColor: '#fff',
     width: 365,
-    height: 360,
+    height: 350,
     borderRadius: 20,
     borderWidth: 1,
     borderColor:'#D9D9D9',

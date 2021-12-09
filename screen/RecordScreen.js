@@ -308,7 +308,7 @@ export default class RecordScreen extends Component {
         </TouchableOpacity>
         <BottomSheet
           ref={this.bsAdd}
-          snapPoints={[400, 0]}
+          snapPoints={[420, -10]}
           renderContent={this.addInner}
           renderHeader={this.addHeader}
           initialSnap={1}
@@ -317,7 +317,7 @@ export default class RecordScreen extends Component {
         />
         <BottomSheet
           ref={this.bsCal}
-          snapPoints={[400, 0]}
+          snapPoints={[420, -10]}
           renderContent={this.addCal}
           initialSnap={1}
           callbackNode={this.fall}
@@ -435,7 +435,7 @@ const styles = StyleSheet.create({
     top:5
   },
   content:{
-    height:490,
+    height:500,
     alignItems: 'center',
     backgroundColor:'#F6F6F6'
   },

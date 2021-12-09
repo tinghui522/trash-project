@@ -1,9 +1,10 @@
 import React, { Component , useState } from "react";
-import {   StyleSheet, Text, TouchableOpacity, Image, View, ScrollView, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, Image, View, ScrollView, SafeAreaView, Modal} from 'react-native';
 import { ProgressBar } from 'react-native-paper';
 import BottomSheet from 'reanimated-bottom-sheet';
 import Animated, { interpolate }from "react-native-reanimated";
 import SelectDropdown from 'react-native-select-dropdown';
+import { ModalPicker } from "../component/ModalPicker";
 export default class GoalScreen extends Component {
   addGoalHeader = () => (
     <View style={styles.header_bg}>
@@ -97,6 +98,17 @@ export default class GoalScreen extends Component {
 
   render() {
     const { navigation } = this.props;
+    // const [chooseData, setchooseData] = useState('月份');
+    // const [isModalVisible,setisModalVisible] = useState(false);
+
+    // const changeModalVisibility = (bool) => {
+    //   setisModalVisible(bool)
+    // }
+
+    // const setData = (option) =>{
+    //   setchooseData(option)
+    // }
+    //const [pickerValue, setPickerValue] = useState('Java')
     const month = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
     return (
       <View style={{flex:1}}>
@@ -109,6 +121,24 @@ export default class GoalScreen extends Component {
               source={require('../assets/icon-profile.png')}
             />
           </TouchableOpacity>
+          {/* <ModalPicker/> */}
+          {/* <TouchableOpacity 
+            onPress={() => changeModalVisibility(true)}
+            style={styles.touchableOpacity}  
+          >
+            <Text style={styles.text}>{chooseData}</Text>
+          </TouchableOpacity>
+          <Modal
+            transparent={true}
+            animationType='fade'
+            visible={isModalVisible}
+            nRequestClose={() => changeModalVisibility(false)}
+          >
+            <ModalPicker
+              changeModalVisibility={changeModalVisibility}
+              setData={setData}
+            />
+          </Modal>  */}
           <SelectDropdown
             style={styles.monthselected}
             data={month}
@@ -126,6 +156,15 @@ export default class GoalScreen extends Component {
               return item
             }}
           />
+          {/* <Picker
+            style={styles.picker}
+            selectedValue={pickerValue}
+            onValueChange={(itemValue) => setPickerValue(itemValue)}
+          >
+            <Picker.Item label="Java" value="Java" />
+            <Picker.Item label="C" value="C" />
+            <Picker.Item label="C#" value="C#" />
+          </Picker> */}
           <View style={styles.allGoal}>
             <Animated.ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
               <View style={styles.goal_bg}>
@@ -182,7 +221,6 @@ export default class GoalScreen extends Component {
   }
 
 const styles = StyleSheet.create({
-
   container:{
     backgroundColor:'#F6F6F6',
     alignItems:'center',
@@ -201,19 +239,32 @@ const styles = StyleSheet.create({
     marginTop: 100,
   },
   profileiconStyle:{
-    width:58,
-    height:58,
+    width:50,
+    height:50,
     marginLeft:290,
-    marginTop:-80
+    marginTop:-90
   },
-  monthselected:{
-    backgroundColor:'#E2E2E2', 
-    fontSize: 26,
-    fontWeight: 'bold',
-    color: '#909090' 
+  text:{
+    marginVertical:20,
+    fontSize:26,
+    fontWeight:'bold'
+  },
+  touchableOpacity:{
+    backgroundColor:'#E2E2E2',
+    alignSelf:'stretch',
+    paddingHorizontal:20,
+    marginHorizontal:20
+  },
+  picker:{
+    width: 100,
+    height: 58,
+    backgroundColor:'#E2E2E2',
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor:'#D9D9D9',
   },
   allGoal: {
-    marginTop: 50,
+    marginTop: 20,
     height: 550,
   },
   goal_bg: {
@@ -248,8 +299,8 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   btn_addgoal: {
-    width:130,
-    height:50,
+    width:170,
+    height:45,
     backgroundColor: '#FF867C',
     borderRadius: 20,
     marginTop: -50,

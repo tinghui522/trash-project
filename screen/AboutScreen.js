@@ -1,12 +1,13 @@
-import React , { Component, navigation }from 'react';
+import React , { Component }from 'react';
 import { TouchableOpacity } from 'react-native';
 import { StyleSheet, Text, View ,Image, Button} from 'react-native';
 
-const AboutScreen = ({ navigation }) => {
+export default class AboutScreen extends Component {
+  render() {
+    const { navigation } = this.props;
     return (
       <View style={styles.center}>
         <View style={styles.topbg}>
-          <Button title="Go back" color="#fff" onPress={() => navigation.goBack()} />
             {/* <TouchableOpacity onPress={() => navigation.goback()}>
               <Image source={require('../assets/setting/btn_back.png')} style={{left: 30,top:40}}/>
             </TouchableOpacity>  */}
@@ -38,20 +39,21 @@ const AboutScreen = ({ navigation }) => {
             </View>
           </View>
       </View>
-      
-    )
+      );
+    }
 }
 
 const styles = StyleSheet.create({
   center: {
     alignItems: 'center',
     backgroundColor: '#E5E5E5',
-    width:415,
+    width:414,
     height:896,
   },
   topbg:{
-    width:414,
+    width:416,
     height:140,
+    marginTop:-1,
     backgroundColor: '#63CFA8',
     borderRadius: 20,
     borderWidth:1,
@@ -61,7 +63,7 @@ const styles = StyleSheet.create({
     fontSize:24,
     fontWeight: 'bold',
     color: 'white',
-    marginTop:50,
+    marginTop:80,
     marginLeft:185,
   },
   bg_personal_form: {
@@ -103,5 +105,3 @@ const styles = StyleSheet.create({
     left:10,
   }
 });
-
-export default AboutScreen;

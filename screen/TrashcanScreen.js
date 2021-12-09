@@ -34,7 +34,7 @@ export default class TrashcanScreen extends Component {
     return (
       <SafeAreaView style={{flex:1}}>
         <View>
-          <Animated.View style={{backgroundColor: '#E5E5E5', width:414, height:900, alignItems: 'center',
+          <Animated.View style={{backgroundColor: '#F6F3F6', width:414, height:900, alignItems: 'center',
             opacity: Animated.add(0.3, Animated.multiply(this.fall, 1.0))}}>
               <Image
                 style={styles.homebgStyle}
@@ -42,12 +42,12 @@ export default class TrashcanScreen extends Component {
                 />
               <Text style={styles.titleStyle}>本月垃圾量 16 件</Text>
               <TouchableOpacity onPress={() => this.props.navigation.navigate('Profile')}>
-                  <Image
-                    style={styles.profileiconStyle}
-                    source={require('../assets/icon-profile.png')}
-                    />
+                <Image
+                  style={styles.profileiconStyle}
+                  source={require('../assets/icon-profile.png')}
+                  />
               </TouchableOpacity>
-                  <Image
+                  {/* <Image
                   style={styles.trashledStyle}
                   source={require('../assets/trashcan/trash-led.png')}
                   />
@@ -78,15 +78,19 @@ export default class TrashcanScreen extends Component {
                   <Image
                   style={styles.trash6Style}
                   source={require('../assets/item-plate.png')}
+                  /> */}
+                  <Image
+                  style={styles.trashcangifStyle}
+                  source={require('../assets/homeTrash.gif')}
                   />
                   {/* <View>
                   <trashbar></trashbar>
                   </View> */}
               <TouchableOpacity onPress={() => this.bs.current.snapTo(0)}>
-                  <Image
-                      style={styles.btnaddtrashStyle}
-                      source={require('../assets/trashcan/btn-addtrash.png')}
-                      />
+                <Image
+                  style={styles.btnaddtrashStyle}
+                  source={require('../assets/trashcan/btn-addtrash.png')}
+                />
               </TouchableOpacity>
           </Animated.View>
           <BottomSheet
@@ -125,8 +129,8 @@ const styles = StyleSheet.create({
     marginTop:-48
   },
   profileiconStyle:{
-    width:58,
-    height:58,
+    width:50,
+    height:50,
     marginLeft:290,
     marginTop:-110
   },
@@ -175,9 +179,9 @@ const styles = StyleSheet.create({
     marginTop:-80,
     marginLeft:20
   },
-  btnaddtrashStyle:{
-    marginTop:120,
-    marginLeft:250,
+  trashcangifStyle:{
+    width:414,
+    marginTop:50
   },
   header_bg:{
     height: 50,
@@ -191,7 +195,7 @@ const styles = StyleSheet.create({
     backgroundColor:'#F6F6F6',
   },
   btnaddtrashStyle:{
-    marginTop:120,
+    marginTop:30,
     marginLeft:250,
   },
 });

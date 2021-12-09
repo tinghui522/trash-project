@@ -1,6 +1,7 @@
 import React , { Component, Fragment }from 'react';
 import { TouchableOpacity,StyleSheet, Text, View ,Image} from 'react-native';
-export default  LanguageScreen = ({ navigation }) => {
+export default class LanguageScreen extends Component {
+  render(){
     return (
         <SafeAreaView>
             <View style={styles.center}>
@@ -17,19 +18,20 @@ export default  LanguageScreen = ({ navigation }) => {
             </View>
             </View>
         </SafeAreaView>
-    )
+    );
+  }
 }
 
 const styles = StyleSheet.create({
   center: {
     alignItems: 'center',
     backgroundColor: '#E5E5E5',
-    width:415,
+    width:414,
     height:896,
   },
   topbg:{
-    width:414,
-    height:132,
+    width:416,
+    height:140,
     backgroundColor: '#63CFA8',
     borderRadius: 20,
     borderWidth:1,
