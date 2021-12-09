@@ -83,9 +83,6 @@ export default class TrashcanScreen extends Component {
                   style={styles.trashcangifStyle}
                   source={require('../assets/homeTrash.gif')}
                   />
-                  {/* <View>
-                  <trashbar></trashbar>
-                  </View> */}
               <TouchableOpacity onPress={() => this.bs.current.snapTo(0)}>
                 <Image
                   style={styles.btnaddtrashStyle}
