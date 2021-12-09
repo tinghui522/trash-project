@@ -7,7 +7,7 @@ import BottomSheet from 'reanimated-bottom-sheet';
 import Animated from "react-native-reanimated";
 
 export default class MonthScreen extends Component {
-  bfDetailHeader = () => (
+  detailHeader = () => (
    <View>
     <View style={styles.header_earth}>
       <Image
@@ -44,12 +44,57 @@ export default class MonthScreen extends Component {
     </View>
   )
 
-  bs = React.createRef();
+  lunchDetailInner = () => (
+    <View style={{height: 420, alignItems: 'center', borderRadius: 4, backgroundColor: '#FFFFFF',}}>
+      <View style={styles.panelContent}>
+        <Text style={styles.panelTitle}>午餐</Text>
+        <View style={styles.detailItem}>
+          <Image style={styles.detailItemImg}
+            source={require('../assets/item-box.png')}
+            />
+          <Text style={styles.detailItemText}>x</Text>
+          <Text style={styles.detailItemText}>1</Text>
+        </View>
+        <View style={styles.detailItem}>
+          <Image style={styles.detailItemImg}
+            source={require('../assets/item-chopstick.png')}
+            />
+          <Text style={styles.detailItemText}>x</Text>
+          <Text style={styles.detailItemText}>1</Text>
+        </View>
+        <View style={styles.detailItem}>
+          <Image style={styles.detailItemImg}
+            source={require('../assets/item-cup.png')}
+            />
+          <Text style={styles.detailItemText}>x</Text>
+          <Text style={styles.detailItemText}>1</Text>
+        </View>
+      </View>
+    </View>
+  )
+
+  dinnerDetailInner = () => (
+    <View style={{height: 200, alignItems: 'center', borderRadius: 4, backgroundColor: '#FFFFFF',}}>
+      <View style={styles.panelContent}>
+        <Text style={styles.panelTitle}>晚餐</Text>
+        <View style={styles.detailItem}>
+          <Image style={styles.detailItemImg}
+            source={require('../assets/item-plate.png')}
+            />
+          <Text style={styles.detailItemText}>x</Text>
+          <Text style={styles.detailItemText}>1</Text>
+        </View>
+      </View>
+    </View>
+  )
+  
+  bfBs = React.createRef();
+  lunchBs = React.createRef();
+  dinnerBs = React.createRef();
   fall = new Animated.Value(1);
 
   render() {
     const { navigation } = this.props;
-    // const [selectedDate, setSelectedDate] = useState('');
     return (
       <ScrollView>
         <Animated.View style={{opacity: Animated.add(0.3, Animated.multiply(this.fall, 0.8))}}>
@@ -79,8 +124,8 @@ export default class MonthScreen extends Component {
               current={getToday()}
               maximumDate={getToday()}
               placeholder="select date"
-              onSelectedChange={date => setSelectedDate(date)}
               mode="calendar"
+              
               style={{
                 width: 350,
                 height: 325,
@@ -101,7 +146,7 @@ export default class MonthScreen extends Component {
                 </View>
                 <View>
                   <View style={styles.mealDetail}>
-                    <TouchableOpacity onPress={() => this.bs.current.snapTo(0)}>
+                    <TouchableOpacity onPress={() => this.bfBs.current.snapTo(0)}>
                       <Text style={styles.mealDetailText}>早餐</Text>
                     </TouchableOpacity>
                     <Text style={styles.mealDetailText}>2</Text>
@@ -109,7 +154,7 @@ export default class MonthScreen extends Component {
                   </View>
                   <View style={styles.dashLine} />
                   <View style={styles.mealDetail}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => this.lunchBs.current.snapTo(0)}>
                       <Text style={styles.mealDetailText}>午餐</Text>
                     </TouchableOpacity>
                     <Text style={styles.mealDetailText}>3</Text>
@@ -117,7 +162,7 @@ export default class MonthScreen extends Component {
                   </View>
                   <View style={styles.dashLine} />
                   <View style={styles.mealDetail}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => this.dinnerBs.current.snapTo(0)}>
                       <Text style={styles.mealDetailText}>晚餐</Text>
                     </TouchableOpacity>
                     <Text style={styles.mealDetailText}>1</Text>
@@ -129,15 +174,33 @@ export default class MonthScreen extends Component {
           </View>
         </Animated.View>
         <BottomSheet
-        ref={this.bs}
-        snapPoints={[500, 0]}
-        renderContent={this.bfDetailInner}
-        renderHeader={this.bfDetailHeader}
-        initialSnap={1}
-        callbackNode={this.fall}
-        enabledGestureInteraction={true}
-      />
-    </ScrollView>
+          ref={this.bfBs}
+          snapPoints={[500, 0]}
+          renderContent={this.bfDetailInner}
+          renderHeader={this.detailHeader}
+          initialSnap={1}
+          callbackNode={this.fall}
+          enabledGestureInteraction={true}
+        />
+        <BottomSheet
+          ref={this.lunchBs}
+          snapPoints={[560, 0]}
+          renderContent={this.lunchDetailInner}
+          renderHeader={this.detailHeader}
+          initialSnap={1}
+          callbackNode={this.fall}
+          enabledGestureInteraction={true}
+        />
+        <BottomSheet
+          ref={this.dinnerBs}
+          snapPoints={[400, 0]}
+          renderContent={this.dinnerDetailInner}
+          renderHeader={this.detailHeader}
+          initialSnap={1}
+          callbackNode={this.fall}
+          enabledGestureInteraction={true}
+        />
+      </ScrollView>
     );
   }
 }

@@ -1,7 +1,7 @@
 import React , { Component, Fragment }from 'react';
 import { TouchableOpacity,StyleSheet, Text, View ,Image} from 'react-native';
 
-export default function LanguageScreen() {
+export default function ContactScreen() {
   return (
     <View style={styles.setting}>
       <View style={styles.content}>

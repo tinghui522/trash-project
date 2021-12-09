@@ -1,12 +1,12 @@
 import React , { Component, Fragment }from 'react';
 import { TouchableOpacity,StyleSheet, Text, View ,Image} from 'react-native';
 
-export default function LanguageScreen() {
+export default function ReminderScreen() {
   return (
     <View style={styles.setting}>
       <View style={styles.content}>
-        <Image source={require('../assets/setting/language.png')} style={{ width: 80, height: 80 }}/>
-        <Text style={styles.title}>語言</Text>
+        <Image source={require('../assets/setting/alert.png')} style={{ width: 80, height: 80 }}/>
+        <Text style={styles.title}>提醒</Text>
         <TouchableOpacity>
           <View style={styles.btn_cn}>
             <Text style={styles.cnText}>繁體中文</Text>
