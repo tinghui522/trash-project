@@ -11,7 +11,6 @@ import {
   ScrollView, 
   TouchableHighlight, 
   SafeAreaView, 
-  TouchableNativeFeedback
 } from 'react-native';
 import BottomSheet from 'reanimated-bottom-sheet';
 import Animated from "react-native-reanimated";
@@ -181,7 +180,9 @@ export default class RecordScreen extends Component {
   render() {
     return (
       <SafeAreaView>
-      <View style={styles.dateContainer}>
+      <Animated.View
+        style={{ height: 200, alignItems: 'center', backgroundColor:'#F6F6F6',
+              opacity: Animated.add(0.3, Animated.multiply(this.fall, 0.8))}}>
         <View style={styles.record_date}>
           <Text style={styles.dateText}>日期</Text>
           <TouchableOpacity onPress={this.showPicker}>
@@ -195,8 +196,10 @@ export default class RecordScreen extends Component {
             onCancel={this.hidePicker}
           />
         </View>
-      </View>
-      <View style={styles.content}>
+      </Animated.View>
+      <Animated.View
+        style={{ height:500, alignItems: 'center', backgroundColor:'#F6F6F6',
+              opacity: Animated.add(0.3, Animated.multiply(this.fall, 0.8))}}>
         <View style={styles.title_category_bg}> 
           <Text style={styles.item_text}>類別</Text>
         </View>
@@ -306,26 +309,25 @@ export default class RecordScreen extends Component {
             <Text style={styles.sendText}>丟垃圾</Text>
           </View>
         </TouchableOpacity>
-        <BottomSheet
-          ref={this.bsAdd}
-          snapPoints={[420, -10]}
-          renderContent={this.addInner}
-          renderHeader={this.addHeader}
-          initialSnap={1}
-          callbackNode={this.fall}
-          enabledGestureInteraction={true}
-        />
-        <BottomSheet
-          ref={this.bsCal}
-          snapPoints={[420, -10]}
-          renderContent={this.addCal}
-          initialSnap={1}
-          callbackNode={this.fall}
-          enabledGestureInteraction={true}
-        />
-      </View>
+      </Animated.View>
+      <BottomSheet
+        ref={this.bsAdd}
+        snapPoints={[420, -10]}
+        renderContent={this.addInner}
+        renderHeader={this.addHeader}
+        initialSnap={1}
+        callbackNode={this.fall}
+        enabledGestureInteraction={true}
+      />
+      <BottomSheet
+        ref={this.bsCal}
+        snapPoints={[420, -10]}
+        renderContent={this.addCal}
+        initialSnap={1}
+        callbackNode={this.fall}
+        enabledGestureInteraction={true}
+      />
       </SafeAreaView>
-     
     );
   }
   //按數字
