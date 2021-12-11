@@ -15,104 +15,103 @@ import MailScreen from './MailScreen';
 export const Stack = createStackNavigator();
 
 export const TrashcanStack = () => {
-    return (
-        <Stack.Navigator>
-        <Stack.Screen name=" "component={TrashcanScreen}  
-          options={{
-            headerStyle:{
-              height:0,
-            },
-          }} />  
-        <Stack.Screen name="Record" component={RecordScreen} 
-          options={{
-            headerStyle:{
-              height:0,
-            },
-            headerLeft: null,
-          }} />
-        <Stack.Screen name="Profile" component={AboutScreen}
-          options={{
-            headerStyle:{
-              height:0,
-            },
-            headerLeft: null,
-          }} /> 
-      </Stack.Navigator>
-    );
-  }
+  return (
+    <Stack.Navigator>
+    <Stack.Screen name="Trashcan"component={TrashcanScreen}  
+      options={{
+        headerStyle:{
+          height:0,
+        },
+      }} />  
+    <Stack.Screen name="Profile" component={AboutScreen}
+      options={{
+        headerStyle:{
+          height:0,
+        },
+        headerLeft: null,
+      }} /> 
+    </Stack.Navigator>
+  );
+}
   
 export const TrashSuggestStack = () => {
-    return (
-        <Stack.Navigator>
-            <Stack.Screen name="Suggest"component={SuggestScreen}  
-                options={{
-                headerStyle:{
-                    height:0,
-                }
-                }} />  
-            <Stack.Screen name="Profile" component={AboutScreen} 
-                options={{
-                headerStyle:{
-                    height:0,
-                },
-                headerLeft: null,
-                }} />
-        </Stack.Navigator>
-    );
-  }
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Suggest"component={SuggestScreen}  
+        options={{
+          headerStyle:{
+              height:0,
+          }
+        }} />  
+    <Stack.Screen name="Profile" component={AboutScreen} 
+        options={{
+          headerStyle:{
+              height:0,
+          },
+          headerLeft: null,
+        }} />
+    </Stack.Navigator>
+  );
+}
   
 export const MonthStack = () => {
-    return (
-        <Stack.Navigator>
-            <Stack.Screen name=" "component={MonthScreen}  
-                options={{
-                headerStyle:{
-                    height:0,
-                }
-                }} />  
-            <Stack.Screen name="Profile" component={AboutScreen} 
-            options={{
-                headerStyle:{
-                height:0,
-                },
-                headerLeft: null,
-            }} />
-        </Stack.Navigator>
-    );
-  }
+  return (
+    <Stack.Navigator>
+    <Stack.Screen name=" "component={MonthScreen}  
+      options={{
+        headerStyle:{
+            height:0,
+        }
+      }} />  
+    <Stack.Screen name="Profile" component={AboutScreen} 
+      options={{
+        headerStyle:{
+        height:0,
+        },
+        headerLeft: null,
+      }} />
+    </Stack.Navigator>
+  );
+}
   
 export const GoalStack = () => {
-    return (
-        <Stack.Navigator>
-        <Stack.Screen name=" "component={GoalScreen}  
-            options={{
-            headerStyle:{
-                height:0,
-            }
-            }} />  
-            <Stack.Screen name="Profile" component={AboutScreen} 
-            options={{
-                headerStyle:{
-                height:0,
-                },
-                headerLeft: null,
-            }} />
-       </Stack.Navigator>
-    );
+  return (
+    <Stack.Navigator>
+    <Stack.Screen name=" "component={GoalScreen}  
+      options={{
+      headerStyle:{
+          height:0,
+      }
+      }} />  
+    <Stack.Screen name="Profile" component={AboutScreen} 
+      options={{
+        headerStyle:{
+        height:0,
+        },
+        headerLeft: null,
+      }} />
+    </Stack.Navigator>
+  );
   }
 
 export const AboutStack = () => {
   return (
-      <Stack.Navigator>
-      <Stack.Screen name=" "component={Aboutcreen}  
-          options={{
-          headerStyle:{
-              height:0,
-          }
-          }} />  
-      <Stack.Screen name="Language" component={LanguageScreen} />
-      <Stack.Screen name="Alert" component={AlertScreen} />
-      <Stack.Screen name="Mail" component={MailScreen} />
-      </Stack.Navigator>
+    <Stack.Navigator>
+    <Stack.Screen name=" "component={Aboutcreen}  
+      options={{
+        headerStyle:{
+            height:0,
+        }
+      }} />  
+    <Stack.Screen name="Language" component={LanguageScreen} 
+      options={{
+        headerStyle:{
+        height:0,
+        },
+        headerLeft: null,
+      }} />
+    <Stack.Screen name="Alert" component={AlertScreen} />
+    <Stack.Screen name="Mail" component={MailScreen} />
+    </Stack.Navigator>
   );
 }

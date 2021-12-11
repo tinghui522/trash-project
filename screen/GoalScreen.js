@@ -1,17 +1,9 @@
 import React, { Component , useState } from "react";
-import { StatusBar } from 'expo-status-bar';
-import {   
-  StyleSheet, 
-  Text, 
-  TouchableOpacity, 
-  Image, 
-  View, 
-  ScrollView, 
-  SafeAreaView, 
-} from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, Image, View, ScrollView, SafeAreaView, Modal} from 'react-native';
 import { ProgressBar } from 'react-native-paper';
 import BottomSheet from 'reanimated-bottom-sheet';
 import Animated from "react-native-reanimated";
+import SelectDropdown from "react-native-select-dropdown";
 
 const AddGoalHeader = () => (
   <View style={styles.header_bg}>
@@ -100,8 +92,17 @@ const AddGoalInner = () => (
   </View>
 )
 
+const onValueChange = (flag,value) => {
+  if(flag ==1){
+  this.setState({selected:value});
+  }else{
+    this.setState({dropdown:value});
+  }
+};
+
 const bs = React.createRef();
 const fall = new Animated.Value(1);
+const month = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
 
 export default function GoalScreen({ navigation }) { 
   return (
@@ -115,6 +116,23 @@ export default function GoalScreen({ navigation }) {
             source={require('../assets/icon-profile.png')}
           />
         </TouchableOpacity>
+        <SelectDropdown
+          style={styles.monthselected}
+          data={month}
+          onSelect={(selectedItem, index) => {
+            console.log(selectedItem, index)
+          }}
+          buttonTextAfterSelection={(selectedItem, index) => {
+            // text represented after item is selected
+            // if data array is an array of objects then return selectedItem.property to render after item is selected
+            return selectedItem
+          }}
+          rowTextForSelection={(item, index) => {
+            // text represented for each item in dropdown
+            // if data array is an array of objects then return item.property to represent item in dropdown
+            return item
+          }}
+        />
         <View style={styles.allGoal}>
           <Animated.ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             <View style={styles.goal_bg}>
@@ -181,14 +199,32 @@ const styles = StyleSheet.create({
     marginTop: 100,
   },
   profileiconStyle:{
-    width:58,
-    height:58,
+    width:50,
+    height:50,
     marginLeft:290,
-    marginTop:-80
+    marginTop:-90
   },
-  
+  text:{
+    marginVertical:20,
+    fontSize:26,
+    fontWeight:'bold'
+  },
+  touchableOpacity:{
+    backgroundColor:'#E2E2E2',
+    alignSelf:'stretch',
+    paddingHorizontal:20,
+    marginHorizontal:20
+  },
+  picker:{
+    width: 100,
+    height: 58,
+    backgroundColor:'#E2E2E2',
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor:'#D9D9D9',
+  },
   allGoal: {
-    marginTop: 50,
+    marginTop: 20,
     height: 550,
   },
   goal_bg: {
@@ -223,12 +259,11 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   btn_addgoal: {
-    width:130,
-    height:50,
+    width:170,
+    height:45,
     backgroundColor: '#FF867C',
     borderRadius: 20,
-    marginTop: -20,
-    marginBottom: 20,
+    marginTop: -50,
     alignItems: 'center',
     justifyContent: 'center',
   },

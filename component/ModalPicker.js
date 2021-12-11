@@ -1,7 +1,5 @@
 import React from "react";
-import {
-    StyleSheet, Text, View, TouchableOpacity, Dimensions, ScrollView
-} from 'react-native'
+import {StyleSheet, Text, View, TouchableOpacity, Dimensions, ScrollView} from 'react-native'
 
 const OPTIONS = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月',]
 const WIDTH = Dimensions.get('window').width;
@@ -30,7 +28,7 @@ const ModalPicker = (props) => {
             onPress={() => props.changeModalVisibility(false)}
             style={styles.container}
         >
-            <View style={[styles.modal, {width: WIDTH - 20,height: HEIGHT/2}]}>
+            <View style={[styles.modal, {width: WIDTH - 314,height: HEIGHT-850}]}>
                 <ScrollView>
                     {option}
                 </ScrollView>
@@ -46,16 +44,19 @@ const styles = StyleSheet.create({
         justifyContent:'center',
     },
     modal:{
-        backgroundColor:'gray',
-        borderRadius:20
+        backgroundColor:'#E2E2E2',
+        borderRadius:20,
+        marginLeft:-250,
+        marginTop:-50
     },
     option:{
         alignItems: 'flex-start',
     },
     text:{
-      margin:20,
+      margin:10,
       fontSize: 20,
       fontWeight: 'bold',
+      color:"#909090"
     }
 })
 export {ModalPicker}
