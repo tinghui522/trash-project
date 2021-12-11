@@ -2,207 +2,203 @@ import React, { useState, Component } from 'react';
 import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity} from 'react-native';
 import DatePicker, { getToday, getFormatedDate } from 'react-native-modern-datepicker';
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
-
 import BottomSheet from 'reanimated-bottom-sheet';
 import Animated from "react-native-reanimated";
 
-export default class MonthScreen extends Component {
-  detailHeader = () => (
-   <View>
-    <View style={styles.header_earth}>
-      <Image
-        source={require('../assets/faceIcon/img_earth.png')}
-      />
-    </View>
-    <View style={styles.header_bg}>
-        <Image
-          source={require('../assets/goal/header_綠線.png')}
+const DetailHeader = () => (
+  <View>
+   <View style={styles.header_earth}>
+     <Image
+       source={require('../assets/faceIcon/img_earth.png')}
+     />
+   </View>
+   <View style={styles.header_bg}>
+       <Image
+         source={require('../assets/goal/header_綠線.png')}
+         />
+     </View>
+   </View>
+)
+
+const BfDetailInner = () => (
+  <View style={styles.panel}>
+    <View style={styles.panelContent}>
+      <Text style={styles.panelTitle}>早餐</Text>
+      <View style={styles.detailItem}>
+        <Image style={styles.detailItemImg}
+          source={require('../assets/item-box.png')}
           />
+        <Text style={styles.detailItemText}>x</Text>
+        <Text style={styles.detailItemText}>1</Text>
+      </View>
+      <View style={styles.detailItem}>
+        <Image style={styles.detailItemImg}
+          source={require('../assets/item-chopstick.png')}
+          />
+        <Text style={styles.detailItemText}>x</Text>
+        <Text style={styles.detailItemText}>1</Text>
       </View>
     </View>
-  )
+  </View>
+)
 
-  bfDetailInner = () => (
-    <View style={styles.panel}>
-      <View style={styles.panelContent}>
-        <Text style={styles.panelTitle}>早餐</Text>
-        <View style={styles.detailItem}>
-          <Image style={styles.detailItemImg}
-            source={require('../assets/item-box.png')}
-            />
-          <Text style={styles.detailItemText}>x</Text>
-          <Text style={styles.detailItemText}>1</Text>
-        </View>
-        <View style={styles.detailItem}>
-          <Image style={styles.detailItemImg}
-            source={require('../assets/item-chopstick.png')}
-            />
-          <Text style={styles.detailItemText}>x</Text>
-          <Text style={styles.detailItemText}>1</Text>
-        </View>
+const LunchDetailInner = () => (
+  <View style={{height: 420, alignItems: 'center', borderRadius: 4, backgroundColor: '#FFFFFF',}}>
+    <View style={styles.panelContent}>
+      <Text style={styles.panelTitle}>午餐</Text>
+      <View style={styles.detailItem}>
+        <Image style={styles.detailItemImg}
+          source={require('../assets/item-box.png')}
+          />
+        <Text style={styles.detailItemText}>x</Text>
+        <Text style={styles.detailItemText}>1</Text>
+      </View>
+      <View style={styles.detailItem}>
+        <Image style={styles.detailItemImg}
+          source={require('../assets/item-chopstick.png')}
+          />
+        <Text style={styles.detailItemText}>x</Text>
+        <Text style={styles.detailItemText}>1</Text>
+      </View>
+      <View style={styles.detailItem}>
+        <Image style={styles.detailItemImg}
+          source={require('../assets/item-cup.png')}
+          />
+        <Text style={styles.detailItemText}>x</Text>
+        <Text style={styles.detailItemText}>1</Text>
       </View>
     </View>
-  )
+  </View>
+)
 
-  lunchDetailInner = () => (
-    <View style={{height: 420, alignItems: 'center', borderRadius: 4, backgroundColor: '#FFFFFF',}}>
-      <View style={styles.panelContent}>
-        <Text style={styles.panelTitle}>午餐</Text>
-        <View style={styles.detailItem}>
-          <Image style={styles.detailItemImg}
-            source={require('../assets/item-box.png')}
-            />
-          <Text style={styles.detailItemText}>x</Text>
-          <Text style={styles.detailItemText}>1</Text>
-        </View>
-        <View style={styles.detailItem}>
-          <Image style={styles.detailItemImg}
-            source={require('../assets/item-chopstick.png')}
-            />
-          <Text style={styles.detailItemText}>x</Text>
-          <Text style={styles.detailItemText}>1</Text>
-        </View>
-        <View style={styles.detailItem}>
-          <Image style={styles.detailItemImg}
-            source={require('../assets/item-cup.png')}
-            />
-          <Text style={styles.detailItemText}>x</Text>
-          <Text style={styles.detailItemText}>1</Text>
-        </View>
+const DinnerDetailInner = () => (
+  <View style={{height: 200, alignItems: 'center', borderRadius: 4, backgroundColor: '#FFFFFF',}}>
+    <View style={styles.panelContent}>
+      <Text style={styles.panelTitle}>晚餐</Text>
+      <View style={styles.detailItem}>
+        <Image style={styles.detailItemImg}
+          source={require('../assets/item-plate.png')}
+          />
+        <Text style={styles.detailItemText}>x</Text>
+        <Text style={styles.detailItemText}>1</Text>
       </View>
     </View>
-  )
+  </View>
+)
 
-  dinnerDetailInner = () => (
-    <View style={{height: 200, alignItems: 'center', borderRadius: 4, backgroundColor: '#FFFFFF',}}>
-      <View style={styles.panelContent}>
-        <Text style={styles.panelTitle}>晚餐</Text>
-        <View style={styles.detailItem}>
-          <Image style={styles.detailItemImg}
-            source={require('../assets/item-plate.png')}
-            />
-          <Text style={styles.detailItemText}>x</Text>
-          <Text style={styles.detailItemText}>1</Text>
+const bfBs = React.createRef();
+const lunchBs = React.createRef();
+const dinnerBs = React.createRef();
+const fall = new Animated.Value(1);
+
+export default function MonthScreen({ navigation }) { 
+  return (
+    <ScrollView>
+      <Animated.View style={{opacity: Animated.add(0.3, Animated.multiply(fall, 0.8))}}>
+        <View style={styles.header}>
+          <Image source= {require('../assets/suggest/header-bg.png')} />
+          <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+            <Image
+                style={styles.profileiconStyle}
+                source={require('../assets/icon-profile.png')}
+                />
+          </TouchableOpacity>
+          <Text style={styles.headerText}>月曆</Text>
         </View>
-      </View>
-    </View>
-  )
-  
-  bfBs = React.createRef();
-  lunchBs = React.createRef();
-  dinnerBs = React.createRef();
-  fall = new Animated.Value(1);
-
-  render() {
-    const { navigation } = this.props;
-    return (
-      <ScrollView>
-        <Animated.View style={{opacity: Animated.add(0.3, Animated.multiply(this.fall, 0.8))}}>
-          <View style={styles.header}>
-            <Image source= {require('../assets/suggest/header-bg.png')} />
-            <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
-              <Image
-                  style={styles.profileiconStyle}
-                  source={require('../assets/icon-profile.png')}
-                  />
-            </TouchableOpacity>
-            <Text style={styles.headerText}>月曆</Text>
+        <View style={styles.container}>
+          <View style={styles.calendar}>
+          <DatePicker
+            options={{
+              backgroundColor: '#FFFFFF',
+              headerColor: '#909090',
+              textHeaderColor: '#63CFA8',
+              textDefaultColor: '#909090',
+              selectedTextColor: '#fff',
+              mainColor: '#63CFA8',
+              textSecondaryColor: '#909090',
+              borderColor: '#63CFA8',
+            }}
+            current={getToday()}
+            maximumDate={getToday()}
+            placeholder="select date"
+            mode="calendar"
+            
+            style={{
+              width: 350,
+              height: 325,
+              borderRadius: 20 
+            }}
+          />
           </View>
-          <View style={styles.container}>
-            <View style={styles.calendar}>
-            <DatePicker
-              options={{
-                backgroundColor: '#FFFFFF',
-                headerColor: '#909090',
-                textHeaderColor: '#63CFA8',
-                textDefaultColor: '#909090',
-                selectedTextColor: '#fff',
-                mainColor: '#63CFA8',
-                textSecondaryColor: '#909090',
-                borderColor: '#63CFA8',
-              }}
-              current={getToday()}
-              maximumDate={getToday()}
-              placeholder="select date"
-              mode="calendar"
-              
-              style={{
-                width: 350,
-                height: 325,
-                borderRadius: 20 
-              }}
-            />
+          <View>
+            <View style={styles.totalSection}>
+              <Text style={styles.totalText}>當天總數量 : 6</Text>
+              <Text style={styles.totalText}>當天總額 : $300</Text>
             </View>
-            <View>
-              <View style={styles.totalSection}>
-                <Text style={styles.totalText}>當天總數量 : 6</Text>
-                <Text style={styles.totalText}>當天總額 : $300</Text>
+            <View style={styles.todayDetail}>
+              <View style={styles.detailTitle}>
+                <Text style={styles.detailText}>類別</Text>
+                <Text style={styles.detailText}>垃圾量</Text>
+                <Text style={styles.detailText}>金額</Text>
               </View>
-              <View style={styles.todayDetail}>
-                <View style={styles.detailTitle}>
-                  <Text style={styles.detailText}>類別</Text>
-                  <Text style={styles.detailText}>垃圾量</Text>
-                  <Text style={styles.detailText}>金額</Text>
+              <View>
+                <View style={styles.mealDetail}>
+                  <TouchableOpacity onPress={() => bfBs.current.snapTo(0)}>
+                    <Text style={styles.mealDetailText}>早餐</Text>
+                  </TouchableOpacity>
+                  <Text style={styles.mealDetailText}>2</Text>
+                  <Text style={styles.mealDetailText}>$30</Text>
                 </View>
-                <View>
-                  <View style={styles.mealDetail}>
-                    <TouchableOpacity onPress={() => this.bfBs.current.snapTo(0)}>
-                      <Text style={styles.mealDetailText}>早餐</Text>
-                    </TouchableOpacity>
-                    <Text style={styles.mealDetailText}>2</Text>
-                    <Text style={styles.mealDetailText}>$30</Text>
-                  </View>
-                  <View style={styles.dashLine} />
-                  <View style={styles.mealDetail}>
-                    <TouchableOpacity onPress={() => this.lunchBs.current.snapTo(0)}>
-                      <Text style={styles.mealDetailText}>午餐</Text>
-                    </TouchableOpacity>
-                    <Text style={styles.mealDetailText}>3</Text>
-                    <Text style={styles.mealDetailText}>$120</Text>
-                  </View>
-                  <View style={styles.dashLine} />
-                  <View style={styles.mealDetail}>
-                    <TouchableOpacity onPress={() => this.dinnerBs.current.snapTo(0)}>
-                      <Text style={styles.mealDetailText}>晚餐</Text>
-                    </TouchableOpacity>
-                    <Text style={styles.mealDetailText}>1</Text>
-                    <Text style={styles.mealDetailText}>$150</Text>
-                  </View>
+                <View style={styles.dashLine} />
+                <View style={styles.mealDetail}>
+                  <TouchableOpacity onPress={() => lunchBs.current.snapTo(0)}>
+                    <Text style={styles.mealDetailText}>午餐</Text>
+                  </TouchableOpacity>
+                  <Text style={styles.mealDetailText}>3</Text>
+                  <Text style={styles.mealDetailText}>$120</Text>
+                </View>
+                <View style={styles.dashLine} />
+                <View style={styles.mealDetail}>
+                  <TouchableOpacity onPress={() => dinnerBs.current.snapTo(0)}>
+                    <Text style={styles.mealDetailText}>晚餐</Text>
+                  </TouchableOpacity>
+                  <Text style={styles.mealDetailText}>1</Text>
+                  <Text style={styles.mealDetailText}>$150</Text>
                 </View>
               </View>
             </View>
           </View>
-        </Animated.View>
-        <BottomSheet
-          ref={this.bfBs}
-          snapPoints={[500, 0]}
-          renderContent={this.bfDetailInner}
-          renderHeader={this.detailHeader}
-          initialSnap={1}
-          callbackNode={this.fall}
-          enabledGestureInteraction={true}
-        />
-        <BottomSheet
-          ref={this.lunchBs}
-          snapPoints={[560, 0]}
-          renderContent={this.lunchDetailInner}
-          renderHeader={this.detailHeader}
-          initialSnap={1}
-          callbackNode={this.fall}
-          enabledGestureInteraction={true}
-        />
-        <BottomSheet
-          ref={this.dinnerBs}
-          snapPoints={[400, 0]}
-          renderContent={this.dinnerDetailInner}
-          renderHeader={this.detailHeader}
-          initialSnap={1}
-          callbackNode={this.fall}
-          enabledGestureInteraction={true}
-        />
-      </ScrollView>
-    );
-  }
+        </View>
+      </Animated.View>
+      <BottomSheet
+        ref={bfBs}
+        snapPoints={[500, 0]}
+        renderContent={BfDetailInner}
+        renderHeader={DetailHeader}
+        initialSnap={1}
+        callbackNode={fall}
+        enabledGestureInteraction={true}
+      />
+      <BottomSheet
+        ref={lunchBs}
+        snapPoints={[560, 0]}
+        renderContent={LunchDetailInner}
+        renderHeader={DetailHeader}
+        initialSnap={1}
+        callbackNode={fall}
+        enabledGestureInteraction={true}
+      />
+      <BottomSheet
+        ref={dinnerBs}
+        snapPoints={[400, 0]}
+        renderContent={DinnerDetailInner}
+        renderHeader={DetailHeader}
+        initialSnap={1}
+        callbackNode={fall}
+        enabledGestureInteraction={true}
+      />
+    </ScrollView>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -297,48 +293,48 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   header_bg: {
-    height: 50,
-    alignItems: 'center',
-    paddingTop: 30,
-    backgroundColor:'#FFFFFF',
-    borderTopStartRadius: 20,
-    borderTopEndRadius: 20,
+      height: 50,
+      alignItems: 'center',
+      paddingTop: 30,
+      backgroundColor:'#FFFFFF',
+      borderTopStartRadius: 20,
+      borderTopEndRadius: 20,
   },
   panel: {
-    height: 350,
-    alignItems: 'center',
-    borderRadius: 4,
-    backgroundColor: '#FFFFFF',
+      height: 350,
+      alignItems: 'center',
+      borderRadius: 4,
+      backgroundColor: '#FFFFFF',
   },
   panelContent: {
-    marginTop: 25,
-    alignItems: 'center',
+      marginTop: 25,
+      alignItems: 'center',
   },
   panelTitle: {
-    color: '#909090',
-    fontWeight: 'bold',
-    fontSize: 20,
+      color: '#909090',
+      fontWeight: 'bold',
+      fontSize: 20,
   },
   detailItem: {
-    backgroundColor: '#BCECDB',
-    width: 250,
-    height: 60,
-    borderRadius: 20,
-    flexDirection: "row",
-    marginTop: 20,
-    marginBottom: 10,
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    paddingRight: 20,
-    paddingLeft: 5,
+      backgroundColor: '#BCECDB',
+      width: 250,
+      height: 60,
+      borderRadius: 20,
+      flexDirection: "row",
+      marginTop: 20,
+      marginBottom: 10,
+      justifyContent: 'space-around',
+      alignItems: 'center',
+      paddingRight: 20,
+      paddingLeft: 5,
   },
   detailItemImg: {
-    width: 45,
-    height: 45,
+      width: 45,
+      height: 45,
   },
   detailItemText: {
-    color: '#909090',
-    fontWeight: 'bold',
-    fontSize: 20,
+      color: '#909090',
+      fontWeight: 'bold',
+      fontSize: 20,
   }
 });

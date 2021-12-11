@@ -2,223 +2,183 @@ import React, { Component , useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, Image, View, ScrollView, SafeAreaView, Modal} from 'react-native';
 import { ProgressBar } from 'react-native-paper';
 import BottomSheet from 'reanimated-bottom-sheet';
-import Animated, { interpolate }from "react-native-reanimated";
-import SelectDropdown from 'react-native-select-dropdown';
-import { ModalPicker } from "../component/ModalPicker";
-export default class GoalScreen extends Component {
-  addGoalHeader = () => (
-    <View style={styles.header_bg}>
-      <Image
-        source={require('../assets/goal/header_線線.png')}
-        />
-    </View>
-  )
-  
-  addGoalInner = () => (
-    <View style={styles.panel}>
-      <Image
-        style={styles.faceIcon}
-        source={require('../assets/faceIcon/faceIcon_bag.png')}
+import Animated from "react-native-reanimated";
+import SelectDropdown from "react-native-select-dropdown";
+
+const AddGoalHeader = () => (
+  <View style={styles.header_bg}>
+    <Image
+      source={require('../assets/goal/header_線線.png')}
       />
-      <View style={styles.panelContent}>
-        <TouchableOpacity>
-          <Image
-            style={styles.iconstyle}
-            source={require('../assets/icon-gray-box.png')}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Image
-            style={styles.iconstyle}
-            source={require('../assets/icon-gray-plate.png')}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Image
-            style={styles.iconstyle}
-            source={require('../assets/icon-gray-chopstick.png')}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Image
-            style={styles.iconstyle}
-            source={require('../assets/icon-gray-ketchup.png')}
-          />
-        </TouchableOpacity>
-      </View>
-      <View style={styles.panelContent}>
-        <TouchableOpacity>
-          <Image
-            style={styles.iconstyle}
-            source={require('../assets/icon-gray-cup.png')}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Image
-            style={styles.iconstyle}
-            source={require('../assets/icon-gray-strow.png')}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Image
-            style={styles.iconstyle}
-            source={require('../assets/icon-bag2.png')}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Image
-            style={styles.iconstyle}
-            source={require('../assets/icon-gray-trashother.png')}
-          />
-        </TouchableOpacity>
-      </View>
-      <View style={styles.qtyBlock}>
-        <Text style={styles.qtyText}>數量</Text>
-        <TouchableOpacity>
-          <Text style={styles.btnQty}>-</Text>
-        </TouchableOpacity>
-        <View style={styles.qty_bg}>
-          <Text style={styles.qty}>1</Text>
-        </View>
-        <TouchableOpacity>
-          <Text style={styles.btnQty}>+</Text>
-        </TouchableOpacity>
-      </View>
-        <TouchableOpacity onPress={() => this.bs.current.snapTo(1)}>
-          <Image
-            style={styles.btnCheck}
-            source={require('../assets/goal/btn_check.png')}
-          />
-        </TouchableOpacity>
-    </View>
-  )
+  </View>
+)
 
-  bs = React.createRef();
-  fall = new Animated.Value(1);
-
-  render() {
-    const { navigation } = this.props;
-    // const [chooseData, setchooseData] = useState('月份');
-    // const [isModalVisible,setisModalVisible] = useState(false);
-
-    // const changeModalVisibility = (bool) => {
-    //   setisModalVisible(bool)
-    // }
-
-    // const setData = (option) =>{
-    //   setchooseData(option)
-    // }
-    //const [pickerValue, setPickerValue] = useState('Java')
-    const month = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
-    return (
-      <View style={{flex:1}}>
-        <Animated.View style={{backgroundColor:'#F6F6F6', alignItems:'center', height: 845,
-          opacity: Animated.add(0.3, Animated.multiply(this.fall, 0.8))}}>
-          <Text style={styles.titleText}>垃圾量目標</Text>
-          <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
-            <Image
-              style={styles.profileiconStyle}
-              source={require('../assets/icon-profile.png')}
-            />
-          </TouchableOpacity>
-          {/* <ModalPicker/> */}
-          {/* <TouchableOpacity 
-            onPress={() => changeModalVisibility(true)}
-            style={styles.touchableOpacity}  
-          >
-            <Text style={styles.text}>{chooseData}</Text>
-          </TouchableOpacity>
-          <Modal
-            transparent={true}
-            animationType='fade'
-            visible={isModalVisible}
-            nRequestClose={() => changeModalVisibility(false)}
-          >
-            <ModalPicker
-              changeModalVisibility={changeModalVisibility}
-              setData={setData}
-            />
-          </Modal>  */}
-          <SelectDropdown
-            style={styles.monthselected}
-            data={month}
-            onSelect={(selectedItem, index) => {
-              console.log(selectedItem, index)
-            }}
-            buttonTextAfterSelection={(selectedItem, index) => {
-              // text represented after item is selected
-              // if data array is an array of objects then return selectedItem.property to render after item is selected
-              return selectedItem
-            }}
-            rowTextForSelection={(item, index) => {
-              // text represented for each item in dropdown
-              // if data array is an array of objects then return item.property to represent item in dropdown
-              return item
-            }}
-          />
-          {/* <Picker
-            style={styles.picker}
-            selectedValue={pickerValue}
-            onValueChange={(itemValue) => setPickerValue(itemValue)}
-          >
-            <Picker.Item label="Java" value="Java" />
-            <Picker.Item label="C" value="C" />
-            <Picker.Item label="C#" value="C#" />
-          </Picker> */}
-          <View style={styles.allGoal}>
-            <Animated.ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-              <View style={styles.goal_bg}>
-                <Image
-                  style={styles.faceGifStyle}
-                  source={require('../assets/faceGif/faceIcon_box.gif')}
-                />
-                <ProgressBar progress={0.2} style={styles.probarStyle} color={'#63CFA8'}/>
-                <Text style={styles.probarText}>4/20</Text>
-              </View>
-              <View style={styles.goal_bg}>
-                <Image
-                  style={styles.faceGifStyle}
-                  source={require('../assets/faceGif/faceIcon_cup.gif')}
-                />
-                <ProgressBar progress={0.8} style={styles.probarStyle} color={'#63CFA8'}/>
-                <Text style={styles.probarText}>8/10</Text>
-              </View>
-              <View style={styles.goal_bg}>
-                <Image
-                  style={styles.faceGifStyle}
-                  source={require('../assets/faceGif/faceIcon_chopstick.gif')}
-                />
-                <ProgressBar progress={0.5} style={styles.probarStyle} color={'#63CFA8'}/>
-                <Text style={styles.probarText}>5/10</Text>
-              </View>
-            </Animated.ScrollView>
-          </View>
-          <TouchableOpacity onPress={() => this.bs.current.snapTo(0)}>
-            <View style={styles.btn_addgoal}>
-              <Text style={styles.addgoalText}>+新目標</Text>
-            </View>
-          </TouchableOpacity>
-        </Animated.View>
-        <BottomSheet
-          ref={this.bs}
-          snapPoints={[700, 0]}
-          renderContent={this.addGoalInner}
-          renderHeader={this.addGoalHeader}
-          initialSnap={1}
-          callbackNode={this.fall}
-          enabledGestureInteraction={true}
+const AddGoalInner = () => (
+  <View style={styles.panel}>
+    <Image
+      style={styles.faceIcon}
+      source={require('../assets/faceIcon/faceIcon_bag.png')}
+    />
+    <View style={styles.panelContent}>
+      <TouchableOpacity>
+        <Image
+          style={styles.iconstyle}
+          source={require('../assets/icon-gray-box.png')}
         />
+      </TouchableOpacity>
+      <TouchableOpacity>
+        <Image
+          style={styles.iconstyle}
+          source={require('../assets/icon-gray-plate.png')}
+        />
+      </TouchableOpacity>
+      <TouchableOpacity>
+        <Image
+          style={styles.iconstyle}
+          source={require('../assets/icon-gray-chopstick.png')}
+        />
+      </TouchableOpacity>
+      <TouchableOpacity>
+        <Image
+          style={styles.iconstyle}
+          source={require('../assets/icon-gray-ketchup.png')}
+        />
+      </TouchableOpacity>
+    </View>
+    <View style={styles.panelContent}>
+      <TouchableOpacity>
+        <Image
+          style={styles.iconstyle}
+          source={require('../assets/icon-gray-cup.png')}
+        />
+      </TouchableOpacity>
+      <TouchableOpacity>
+        <Image
+          style={styles.iconstyle}
+          source={require('../assets/icon-gray-strow.png')}
+        />
+      </TouchableOpacity>
+      <TouchableOpacity>
+        <Image
+          style={styles.iconstyle}
+          source={require('../assets/icon-bag.png')}
+        />
+      </TouchableOpacity>
+      <TouchableOpacity>
+        <Image
+          style={styles.iconstyle}
+          source={require('../assets/icon-gray-trashother.png')}
+        />
+      </TouchableOpacity>
+    </View>
+    <View style={styles.qtyBlock}>
+      <Text style={styles.qtyText}>數量</Text>
+      <TouchableOpacity>
+        <Text style={styles.btnQty}>-</Text>
+      </TouchableOpacity>
+      <View style={styles.qty_bg}>
+        <Text style={styles.qty}>1</Text>
       </View>
-    );
+      <TouchableOpacity>
+        <Text style={styles.btnQty}>+</Text>
+      </TouchableOpacity>
+    </View>
+      <TouchableOpacity onPress={() => this.bs.current.snapTo(1)}>
+        <Image
+          style={styles.btnCheck}
+          source={require('../assets/goal/btn_check.png')}
+        />
+      </TouchableOpacity>
+  </View>
+)
+
+const onValueChange = (flag,value) => {
+  if(flag ==1){
+  this.setState({selected:value});
+  }else{
+    this.setState({dropdown:value});
   }
-  onValueChange = (flag,value) => {
-    if(flag ==1){
-    this.setState({selected:value});
-    }else{
-      this.setState({dropdown:value});
-    }
-  };
-  }
+};
+
+const bs = React.createRef();
+const fall = new Animated.Value(1);
+const month = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+
+export default function GoalScreen({ navigation }) { 
+  return (
+    <View style={{flex:1}}>
+      <Animated.View style={{backgroundColor:'#F6F6F6', alignItems:'center', height: 845,
+        opacity: Animated.add(0.3, Animated.multiply(fall, 0.8))}}>
+        <Text style={styles.titleText}>垃圾量目標</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+          <Image
+            style={styles.profileiconStyle}
+            source={require('../assets/icon-profile.png')}
+          />
+        </TouchableOpacity>
+        <SelectDropdown
+          style={styles.monthselected}
+          data={month}
+          onSelect={(selectedItem, index) => {
+            console.log(selectedItem, index)
+          }}
+          buttonTextAfterSelection={(selectedItem, index) => {
+            // text represented after item is selected
+            // if data array is an array of objects then return selectedItem.property to render after item is selected
+            return selectedItem
+          }}
+          rowTextForSelection={(item, index) => {
+            // text represented for each item in dropdown
+            // if data array is an array of objects then return item.property to represent item in dropdown
+            return item
+          }}
+        />
+        <View style={styles.allGoal}>
+          <Animated.ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+            <View style={styles.goal_bg}>
+              <Image
+                style={styles.faceGifStyle}
+                source={require('../assets/faceGif/faceIcon_box.gif')}
+              />
+              <ProgressBar progress={0.2} style={styles.probarStyle} color={'#63CFA8'}/>
+              <Text style={styles.probarText}>4/20</Text>
+            </View>
+            <View style={styles.goal_bg}>
+              <Image
+                style={styles.faceGifStyle}
+                source={require('../assets/faceGif/faceIcon_cup.gif')}
+              />
+              <ProgressBar progress={0.8} style={styles.probarStyle} color={'#63CFA8'}/>
+              <Text style={styles.probarText}>8/10</Text>
+            </View>
+            <View style={styles.goal_bg}>
+              <Image
+                style={styles.faceGifStyle}
+                source={require('../assets/faceGif/faceIcon_chopstick.gif')}
+              />
+              <ProgressBar progress={0.5} style={styles.probarStyle} color={'#63CFA8'}/>
+              <Text style={styles.probarText}>5/10</Text>
+            </View>
+          </Animated.ScrollView>
+        </View>
+        <TouchableOpacity onPress={() => bs.current.snapTo(0)}>
+          <View style={styles.btn_addgoal}>
+            <Text style={styles.addgoalText}>+新目標</Text>
+          </View>
+        </TouchableOpacity>
+      </Animated.View>
+      <BottomSheet
+        ref={bs}
+        snapPoints={[700, 0]}
+        renderContent={AddGoalInner}
+        renderHeader={AddGoalHeader}
+        initialSnap={1}
+        callbackNode={fall}
+        enabledGestureInteraction={true}
+      />
+    </View>
+  );
+}
 
 const styles = StyleSheet.create({
   container:{
