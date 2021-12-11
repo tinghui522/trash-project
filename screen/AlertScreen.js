@@ -1,23 +1,23 @@
 import React , { Component, Fragment }from 'react';
 import { TouchableOpacity,StyleSheet, Text, View ,Image} from 'react-native';
 export default  AlertScreen = ({ navigation }) => {
-    return (
-        <SafeAreaView>
-            <View style={styles.center}>
-            <View style={styles.topbg}>
-            <Text style={styles.title}>設定</Text>
+  return (
+    <SafeAreaView>
+        <View style={styles.center}>
+        <View style={styles.topbg}>
+        <Text style={styles.title}>設定</Text>
+        </View>
+        <View style={styles.bg_personal_form}>
+            <View style={styles.setting}>
+                <TouchableOpacity onPress={() => navigation.goback()}>
+                    <Image source={require('../assets/setting/btn_back.png')} style={{left: 30,top:40}}/>
+                </TouchableOpacity>
+            
             </View>
-            <View style={styles.bg_personal_form}>
-                <View style={styles.setting}>
-                    <TouchableOpacity onPress={() => navigation.goback()}>
-                        <Image source={require('../assets/setting/btn_back.png')} style={{left: 30,top:40}}/>
-                    </TouchableOpacity>
-                
-                </View>
-            </View>
-            </View>
-        </SafeAreaView>
-    )
+        </View>
+        </View>
+    </SafeAreaView>
+  )
 }
 
 const styles = StyleSheet.create({
