@@ -62,7 +62,7 @@ export default class GoalScreen extends Component {
         <TouchableOpacity>
           <Image
             style={styles.iconstyle}
-            source={require('../assets/icon-bag.png')}
+            source={require('../assets/icon-bag2.png')}
           />
         </TouchableOpacity>
         <TouchableOpacity>

@@ -17,6 +17,20 @@ import Animated from "react-native-reanimated";
 import DateTimePicker from "react-native-modal-datetime-picker";
 import moment from "moment";
 export default class RecordScreen extends Component {
+  onIncrement = () => {
+    this.setState({
+        due_date_count: this.state.due_date_count + 1,
+    })
+  };
+
+  onDecrement = () => {
+    this.setState({
+        due_date_count: this.state.due_date_count - 1,
+        
+    })
+    
+  };
+  
     constructor(props) {
       super(props);
       this.state = {
@@ -113,7 +127,20 @@ export default class RecordScreen extends Component {
         </View>
         <View style={styles.qtyBlock}>
           <Text style={styles.qtyText}>數量</Text>
-          <TouchableOpacity>
+
+          <TouchableOpacity 
+            onPress={this.onDecrement}
+          >
+            <Text style={styles.btnQty}>-</Text>
+          </TouchableOpacity>
+            <Text style={styles.qty}>{this.state.due_date_count}</Text>
+        
+          <TouchableOpacity 
+          onPress={this.onIncrement}
+          > 
+            <Text style={styles.btnQty}>+</Text>
+          </TouchableOpacity>
+          {/* <TouchableOpacity>
             <Text style={styles.btnQty}>-</Text>
           </TouchableOpacity>
           <View style={styles.qty_bg}>
@@ -121,7 +148,7 @@ export default class RecordScreen extends Component {
           </View>
           <TouchableOpacity>
             <Text style={styles.btnQty}>+</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
         <View>
           <TouchableOpacity onPress={() => this.bsAdd.current.snapTo(1)}>
@@ -268,7 +295,7 @@ export default class RecordScreen extends Component {
         <TouchableHighlight>
             <Image
             style={styles.itemstyle}
-            source={require('../assets/record/icon-plate.png')}
+            source={require('../assets/record/icon-bag.png')}
             />
           </TouchableHighlight>
           <TouchableHighlight>
@@ -509,7 +536,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FF867C',
     borderRadius:16,
     marginTop:120,
-    left:-185,
+    left:-220,
   },
   btn_change:{
     width:65,
@@ -519,11 +546,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#63CFA8',
     borderRadius:16,
     marginTop:120,
-    left:-10,
+    left:-50,
   },
   itemstyle:{
     left:10,
-    top:10,
+    top:8,
     margin:12,
   },
   btnstyle:{
@@ -672,7 +699,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor:'#D9D9D9',
     borderRadius: 20,
-    marginTop: 20,
+    marginTop: 10,
     paddingRight: 15,
     alignItems: 'center',
     justifyContent: 'space-around',
