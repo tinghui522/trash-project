@@ -133,8 +133,10 @@ export default class RecordScreen extends Component {
           >
             <Text style={styles.btnQty}>-</Text>
           </TouchableOpacity>
-            <Text style={styles.qty}>{this.state.due_date_count}</Text>
-        
+            {/* <Text style={styles.qty}>{this.state.due_date_count}</Text> */}
+            <View style={styles.qty_bg}>
+              <Text style={styles.qty}>1</Text>
+            </View>
           <TouchableOpacity 
           onPress={this.onIncrement}
           > 
@@ -221,7 +223,10 @@ export default class RecordScreen extends Component {
             isVisible={this.state.isVisible}
             onConfirm={this.handlePicker}
             onCancel={this.hidePicker}
+            confirmBtnText="確定"
+            cancelBtnText="取消"
           />
+          
         </View>
       </Animated.View>
       <Animated.View

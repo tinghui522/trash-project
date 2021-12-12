@@ -3,7 +3,7 @@ import { StyleSheet, Text, TouchableOpacity, Image, View, ScrollView, SafeAreaVi
 import { ProgressBar } from 'react-native-paper';
 import BottomSheet from 'reanimated-bottom-sheet';
 import Animated from "react-native-reanimated";
-import SelectDropdown from "react-native-select-dropdown";
+import { ModalPicker } from "../component/ModalPicker";
 
 const AddGoalHeader = () => (
   <View style={styles.header_bg}>
@@ -61,7 +61,7 @@ const AddGoalInner = () => (
       <TouchableOpacity>
         <Image
           style={styles.iconstyle}
-          source={require('../assets/icon-bag.png')}
+          source={require('../assets/icon-bag2.png')}
         />
       </TouchableOpacity>
       <TouchableOpacity>
@@ -73,13 +73,18 @@ const AddGoalInner = () => (
     </View>
     <View style={styles.qtyBlock}>
       <Text style={styles.qtyText}>數量</Text>
-      <TouchableOpacity>
+      <TouchableOpacity 
+        //onPress={this.onDecrement}
+      >
         <Text style={styles.btnQty}>-</Text>
       </TouchableOpacity>
-      <View style={styles.qty_bg}>
-        <Text style={styles.qty}>1</Text>
-      </View>
-      <TouchableOpacity>
+        {/* <Text style={styles.qty}>{this.state.due_date_count}</Text> */}
+        <View style={styles.qty_bg}>
+          <Text style={styles.qty}>1</Text>
+        </View>
+      <TouchableOpacity 
+        //onPress={this.onIncrement}
+      > 
         <Text style={styles.btnQty}>+</Text>
       </TouchableOpacity>
     </View>
@@ -92,19 +97,29 @@ const AddGoalInner = () => (
   </View>
 )
 
-const onValueChange = (flag,value) => {
-  if(flag ==1){
-  this.setState({selected:value});
-  }else{
-    this.setState({dropdown:value});
-  }
-};
+// const onValueChange = (flag,value) => {
+//   if(flag ==1){
+//   this.setState({selected:value});
+//   }else{
+//     this.setState({dropdown:value});
+//   }
+// };
 
 const bs = React.createRef();
 const fall = new Animated.Value(1);
-const month = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
 
 export default function GoalScreen({ navigation }) { 
+  const [chooseData, setchooseData] = useState('12月');
+  const [isModalVisible, setisModalVisible] = useState(false);
+
+  const changeModalVisibility = (bool) => {
+    setisModalVisible(bool)
+  }
+  const setData = (option) =>{
+    setchooseData(option)
+  }
+
+  
   return (
     <View style={{flex:1}}>
       <Animated.View style={{backgroundColor:'#F6F6F6', alignItems:'center', height: 845,
@@ -116,23 +131,27 @@ export default function GoalScreen({ navigation }) {
             source={require('../assets/icon-profile.png')}
           />
         </TouchableOpacity>
-        <SelectDropdown
-          style={styles.monthselected}
-          data={month}
-          onSelect={(selectedItem, index) => {
-            console.log(selectedItem, index)
-          }}
-          buttonTextAfterSelection={(selectedItem, index) => {
-            // text represented after item is selected
-            // if data array is an array of objects then return selectedItem.property to render after item is selected
-            return selectedItem
-          }}
-          rowTextForSelection={(item, index) => {
-            // text represented for each item in dropdown
-            // if data array is an array of objects then return item.property to represent item in dropdown
-            return item
-          }}
-        />
+        <TouchableOpacity 
+          onPress={() => changeModalVisibility(true)}
+          style={styles.touchableOpacity}
+        >
+          <Text style={styles.text}>{chooseData}</Text>
+          <Image
+              style={styles.downbtn}
+              source={require('../assets/goal/monthdown_btn.png')}
+            />
+        </TouchableOpacity>
+        <Modal 
+          transparent={true}
+          animationType="fade"
+          visible={isModalVisible}
+          nRequestClose={() => changeModalVisibility(false)}
+        >
+          <ModalPicker
+            changeModalVisibility={changeModalVisibility}
+            setData={setData}
+          />
+        </Modal>
         <View style={styles.allGoal}>
           <Animated.ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             <View style={styles.goal_bg}>
@@ -205,15 +224,25 @@ const styles = StyleSheet.create({
     marginTop:-90
   },
   text:{
-    marginVertical:20,
-    fontSize:26,
-    fontWeight:'bold'
+    marginVertical:15,
+    fontSize:24,
+    fontWeight:'bold',
+    color: '#909090'
+  },
+  downbtn:{
+    marginLeft:60,
+    marginTop:-35
   },
   touchableOpacity:{
     backgroundColor:'#E2E2E2',
     alignSelf:'stretch',
-    paddingHorizontal:20,
-    marginHorizontal:20
+    paddingHorizontal:10,
+    marginHorizontal:20,
+    width:100,
+    height:60,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor:'#D9D9D9',
   },
   picker:{
     width: 100,

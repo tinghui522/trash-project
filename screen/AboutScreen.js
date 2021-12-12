@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React , { Component, navigation }from 'react';
+import React , { Component }from 'react';
 import { TouchableOpacity } from 'react-native';
 import { StyleSheet, Text, View ,Image} from 'react-native';
 import Modal from 'react-native-modal';
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     fontSize:24,
     fontWeight: 'bold',
     color: 'white',
-    marginTop:50,
+    marginTop:80,
     marginLeft:185,
   },
   bg_personal_form: {
