@@ -102,16 +102,7 @@ export const AboutStack = () => {
         headerStyle:{
             height:0,
         }
-      }} />  
-    <Stack.Screen name="Language" component={LanguageScreen} 
-      options={{
-        headerStyle:{
-        height:0,
-        },
-        headerLeft: null,
       }} />
-    <Stack.Screen name="Alert" component={AlertScreen} />
-    <Stack.Screen name="Mail" component={MailScreen} />
     </Stack.Navigator>
   );
 }

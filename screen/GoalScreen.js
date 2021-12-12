@@ -83,7 +83,7 @@ const AddGoalInner = () => (
         <Text style={styles.btnQty}>+</Text>
       </TouchableOpacity>
     </View>
-      <TouchableOpacity onPress={() => this.bs.current.snapTo(1)}>
+      <TouchableOpacity onPress={() => bs.current.snapTo(1)}>
         <Image
           style={styles.btnCheck}
           source={require('../assets/goal/btn_check.png')}

@@ -1,29 +1,46 @@
 import { StatusBar } from 'expo-status-bar';
 import React , { Component, navigation }from 'react';
 import { TouchableOpacity } from 'react-native';
-import { StyleSheet, Text, View ,Image} from 'react-native';
-import Modal from 'react-native-modal';
+import { StyleSheet, Text, View ,Image, Modal, Animated} from 'react-native';
 import LanguageScreen from './LanguageScreen';
-import ReminderScreen from './ReminderScreen';
-import ContactScreen from './ContactScreen';
+import AlertScreen from './AlertScreen';
+import MailScreen from './MailScreen';
+// import Animated from 'react-native-reanimated';
 
-const state = {
-  isModalVisible: false,
-}
-
-const languageModal = () => {
-  this.setState({isModalVisible:!this.state.isModalVisible})
-}
-
-const reminderModal = () => {
-  this.setState({isModalVisible:!this.state.isModalVisible})
-}
-
-const contactModal = () => {
-  this.setState({isModalVisible:!this.state.isModalVisible})
+const ModalPoup = ({visible, children}) => {
+  const [showModal, setShowModal ] = React.useState(visible);
+  const scalValue = React.useRef(new Animated.Value(0)).current;
+  React.useEffect(() => {
+    toggleModal();
+  }, [visible])
+  const toggleModal =() => {
+    if (visible) {
+      setShowModal(true);
+      Animated.spring(scalValue,{
+        toValue: 1,
+        duration: 300,
+        useNativeDriver: true,
+      }).start();
+    } else {
+      setTimeout(() => setShowModal(false), 200)
+      Animated.timing(scalValue,{
+        toValue: 0,
+        duration: 300,
+        useNativeDriver: true,
+      }).start();
+    }
+  };
+  return(
+    <Modal transparent visible={showModal}>
+      <View style={styles.modalBg}>
+        <Animated.View style={[styles.modalContainer,{transform:[{scale:scalValue}]}]}>{children}</Animated.View>
+      </View>
+    </Modal>
+  )
 }
 
 export default function AboutScreen({ navigation }) {
+  const [visible, setVisible] = React.useState(false);
   return (
     <View style={styles.center}>
       <View style={styles.topbg}>
@@ -34,43 +51,43 @@ export default function AboutScreen({ navigation }) {
       </View>
         <View style={styles.bg_personal_form}>
           <View style={styles.setting}>
-            <TouchableOpacity onPress={languageModal}>
+            <ModalPoup visible={visible}>
+              <LanguageScreen></LanguageScreen>
+              <TouchableOpacity onPress={() => setVisible(false)}>
+                <Image source={require('../assets/setting/btn_back.png')} style={{left: 30,top:-440}}/>
+              </TouchableOpacity> 
+            </ModalPoup>
+            <TouchableOpacity onPress={() => setVisible(true)}>
               <Image source={require('../assets/setting/language.png')} style={{width:35,height:35,top: 50,left: 15}}/>
               <Text style={{marginBottom: 20,marginTop:20,marginLeft:60,fontWeight: 'bold',fontSize: 20,color:'#909090'}}>語言</Text>
               <Image source={require('../assets/setting/arrow.png')} style={{width:16,height:18,marginLeft: 275,marginTop:-35}}/>
             </TouchableOpacity>
-            <Modal isVisible={state.isModalVisible} style={{ marginTop: 70, marginLeft: 48 }}>
-              <LanguageScreen></LanguageScreen>
-              <TouchableOpacity onPress={languageModal}>
-                <Image source={require('../assets/setting/btn_back.png')} style={{left: 30,top:-440}}/>
-              </TouchableOpacity> 
-            </Modal>
             <View style={styles.underline}/>
             
-            <TouchableOpacity onPress={reminderModal}>
+            <ModalPoup visible={visible}>
+              <AlertScreen></AlertScreen>
+              <TouchableOpacity onPress={() => setVisible(false)}>
+                <Image source={require('../assets/setting/btn_back.png')} style={{left: 30,top:-440}}/>
+              </TouchableOpacity> 
+            </ModalPoup>
+            <TouchableOpacity onPress={() => setVisible(true)}>
               <Image source={require('../assets/setting/alert.png')} style={{width:35,height:35,top: 15,left: 15}}/>
               <Text style={{marginTop: -15,marginLeft:60,fontWeight: 'bold',fontSize: 20,color:'#909090'}}>提醒</Text>
               <Image source={require('../assets/setting/arrow.png')} style={{width:16,height:18,marginLeft: 275,marginTop:-20}}/>
             </TouchableOpacity>
-            <Modal isVisible={state.isModalVisible} style={{ marginTop: 70, marginLeft: 48 }}>
-              <ReminderScreen></ReminderScreen>
-              <TouchableOpacity onPress={reminderModal}>
-                <Image source={require('../assets/setting/btn_back.png')} style={{left: 30,top:-440}}/>
-              </TouchableOpacity> 
-            </Modal>
             <View style={styles.underline}/>
 
-            <TouchableOpacity onPress={contactModal}>
+            <ModalPoup visible={visible}>
+              <MailScreen></MailScreen>
+              <TouchableOpacity onPress={() => setVisible(false)}>
+                <Image source={require('../assets/setting/btn_back.png')} style={{left: 30,top:-440}}/>
+              </TouchableOpacity> 
+            </ModalPoup>
+            <TouchableOpacity onPress={() => setVisible(true)}>
               <Image source={require('../assets/setting/contact.png')} style={{width:35,height:35,top: 15,left: 15}}/>
               <Text style={{marginTop:-15,marginLeft:60,fontWeight: 'bold',fontSize: 20,color:'#909090'}}>聯絡我們</Text>
               <Image source={require('../assets/setting/arrow.png')} style={{width:16,height:18,marginLeft: 275,marginTop:-20}}/>
             </TouchableOpacity>
-            <Modal isVisible={state.isModalVisible} style={{ marginTop: 70, marginLeft: 48 }}>
-              <ContactScreen></ContactScreen>
-              <TouchableOpacity onPress={contactModal}>
-                <Image source={require('../assets/setting/btn_back.png')} style={{left: 30,top:-440}}/>
-              </TouchableOpacity> 
-            </Modal>
             <View style={styles.underline}/>
 
               <Image source={require('../assets/setting/about.png')} style={{width:35,height:35,top: 15,left: 15}}/>
@@ -102,7 +119,7 @@ const styles = StyleSheet.create({
     fontSize:24,
     fontWeight: 'bold',
     color: 'white',
-    marginTop:50,
+    marginTop:70,
     marginLeft:185,
   },
   bg_personal_form: {
@@ -142,5 +159,14 @@ const styles = StyleSheet.create({
     height:1,
     backgroundColor:"#C7C7C7",
     left:10,
-  }
+  },
+  modalBg: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  modalContainer: {
+    marginTop: 40,
+  },
 });
