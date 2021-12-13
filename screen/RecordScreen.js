@@ -10,201 +10,176 @@ import {
   View, 
   ScrollView, 
   TouchableHighlight, 
-  SafeAreaView, 
+  SafeAreaView,
+  Modal, 
 } from 'react-native';
 import BottomSheet from 'reanimated-bottom-sheet';
 import Animated from "react-native-reanimated";
 import DateTimePicker from "react-native-modal-datetime-picker";
+import DatePicker, { getToday, getFormatedDate } from 'react-native-modern-datepicker';
 import moment from "moment";
+
 export default class RecordScreen extends Component {
   onIncrement = () => {
     this.setState({
-        due_date_count: this.state.due_date_count + 1,
+      due_date_count: this.state.due_date_count + 1,
     })
   };
 
   onDecrement = () => {
     this.setState({
-        due_date_count: this.state.due_date_count - 1,
-        
+      due_date_count: this.state.due_date_count - 1,  
     })
-    
   };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+        a:'0',
+        b:'0',
+        oper:null,
+        displayValue:'0',
+        due_date_count:'1',
+        modalVisible: false,
+        date: getToday()
+    };
+    this.clickNum = this.clickNum.bind(this);
+    this.setOper = this.setOper.bind(this);
+    this.calc = this.calc.bind(this);
+  }
+
+  setModalVisible = (visible) => {
+    this.setState({ modalVisible: visible });
+  }
+
+  addHeader = () => (
+    <View style={styles.line1}>
+      <Text style={{fontSize:18, color:'#fff', fontWeight:"bold"}}>修改</Text>
+    </View>
+  )
   
-    constructor(props) {
-      super(props);
-      this.state = {
-          a:'0',
-          b:'0',
-          oper:null,
-          displayValue:'0',
-          isVisible: false,
-          chosenDate: ''
-      };
-      this.clickNum = this.clickNum.bind(this);
-      this.setOper = this.setOper.bind(this);
-      this.calc = this.calc.bind(this);
-    }
-
-    handlePicker = (datetime) => {
-      this.setState({
-        isVisible: false,
-        chosenDate: moment(datetime).format('YYYY-MM-DD')
-      })
-    }
-
-    showPicker = () => {
-      this.setState({
-        isVisible: true
-      })
-    }
-
-    hidePicker = () => {
-      this.setState({
-        isVisible: false
-      })
-    }
-
-    addHeader = () => (
-      <View style={styles.line1}>
-        <Text style={{fontSize:18, color:'#fff', fontWeight:"bold"}}>修改</Text>
+  addInner = () => (
+    <View style={styles.panel}>
+      <View style={styles.panelContent}>
+        <TouchableOpacity>
+          <Image
+            style={styles.iconstyle}
+            source={require('../assets/icon-gray-box.png')}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Image
+            style={styles.iconstyle}
+            source={require('../assets/icon-gray-plate.png')}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Image
+            style={styles.iconstyle}
+            source={require('../assets/icon-gray-chopstick.png')}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Image
+            style={styles.iconstyle}
+            source={require('../assets/icon-gray-ketchup.png')}
+          />
+        </TouchableOpacity>
       </View>
-    )
-    
-    addInner = () => (
-      <View style={styles.panel}>
-        <View style={styles.panelContent}>
-          <TouchableOpacity>
-            <Image
-              style={styles.iconstyle}
-              source={require('../assets/icon-gray-box.png')}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Image
-              style={styles.iconstyle}
-              source={require('../assets/icon-gray-plate.png')}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Image
-              style={styles.iconstyle}
-              source={require('../assets/icon-gray-chopstick.png')}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Image
-              style={styles.iconstyle}
-              source={require('../assets/icon-gray-ketchup.png')}
-            />
-          </TouchableOpacity>
-        </View>
-        <View style={styles.panelContent}>
-          <TouchableOpacity>
-            <Image
-              style={styles.iconstyle}
-              source={require('../assets/icon-gray-cup.png')}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Image
-              style={styles.iconstyle}
-              source={require('../assets/icon-gray-strow.png')}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Image
-              style={styles.iconstyle}
-              source={require('../assets/icon-gray-bag.png')}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Image
-              style={styles.iconstyle}
-              source={require('../assets/icon-gray-trashother.png')}
-            />
-          </TouchableOpacity>
-        </View>
-        <View style={styles.qtyBlock}>
-          <Text style={styles.qtyText}>數量</Text>
-
-          <TouchableOpacity 
-            onPress={this.onDecrement}
-          >
-            <Text style={styles.btnQty}>-</Text>
-          </TouchableOpacity>
-            <Text style={styles.qty}>{this.state.due_date_count}</Text>
-        
-          <TouchableOpacity 
-          onPress={this.onIncrement}
-          > 
-            <Text style={styles.btnQty}>+</Text>
-          </TouchableOpacity>
-          {/* <TouchableOpacity>
-            <Text style={styles.btnQty}>-</Text>
-          </TouchableOpacity>
+      <View style={styles.panelContent}>
+        <TouchableOpacity>
+          <Image
+            style={styles.iconstyle}
+            source={require('../assets/icon-gray-cup.png')}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Image
+            style={styles.iconstyle}
+            source={require('../assets/icon-gray-strow.png')}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Image
+            style={styles.iconstyle}
+            source={require('../assets/icon-gray-bag.png')}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Image
+            style={styles.iconstyle}
+            source={require('../assets/icon-gray-trashother.png')}
+          />
+        </TouchableOpacity>
+      </View>
+      <View style={styles.qtyBlock}>
+        <Text style={styles.qtyText}>數量</Text>
+        <TouchableOpacity onPress={this.onDecrement}>
+          <Text style={styles.btnQty}>-</Text>
+        </TouchableOpacity>
           <View style={styles.qty_bg}>
-            <Text style={styles.qty}>1</Text>
+            <Text style={styles.qty}>{this.state.due_date_count}</Text>
           </View>
-          <TouchableOpacity>
-            <Text style={styles.btnQty}>+</Text>
-          </TouchableOpacity> */}
-        </View>
-        <View>
-          <TouchableOpacity onPress={() => this.bsAdd.current.snapTo(1)}>
-            <Image
-              style={styles.btnCheck}
-              source={require('../assets/btn-check.png')}
-            />
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity onPress={this.onIncrement}> 
+          <Text style={styles.btnQty}>+</Text>
+        </TouchableOpacity>
       </View>
-    )
+      <View>
+        <TouchableOpacity onPress={() => this.bsAdd.current.snapTo(1)}>
+          <Image
+            style={styles.btnCheck}
+            source={require('../assets/btn-check.png')}
+          />
+        </TouchableOpacity>
+      </View>
+    </View>
+  )
 
-    addCal = () =>(
-      <View style={styles.rootContainer}>
-        <View style={styles.buttonContainer}>
-            <View style={styles.buttonContainerRight}>
-                <View style={styles.line1}>
-                  <Text style={{fontSize:18, fontWeight:"bold", color:'#fff'}}>金額</Text>
-                  <View style={styles.line1_money_bg}>
-                    <Text style={{fontSize:18, fontWeight:"bold", color:'#909090'}}>{this.state.displayValue} 元</Text>
-                  </View>
-                </View>
-                <View style={styles.line2}>
-                    <TouchableOpacity onPress={this.clickNum.bind(this,'7')}><View style={styles.mygrid}><Text style={styles.money_btn}>7</Text></View></TouchableOpacity>
-                    <TouchableOpacity onPress={this.clickNum.bind(this,'8')}><View style={styles.mygrid}><Text style={styles.money_btn}>8</Text></View></TouchableOpacity>
-                    <TouchableOpacity onPress={this.clickNum.bind(this,'9')}><View style={styles.mygrid}><Text style={styles.money_btn}>9</Text></View></TouchableOpacity>
-                    <TouchableOpacity onPress={this.setOper.bind(this,2)}><View style={styles.mygrid2}><Text style={styles.money_btn}>-</Text></View></TouchableOpacity>
-                </View>
-                <View style={styles.line3}>
-                    <TouchableOpacity onPress={this.clickNum.bind(this,'4')}><View style={styles.mygrid}><Text style={styles.money_btn}>4</Text></View></TouchableOpacity>
-                    <TouchableOpacity onPress={this.clickNum.bind(this,'5')}><View style={styles.mygrid}><Text style={styles.money_btn}>5</Text></View></TouchableOpacity>
-                    <TouchableOpacity onPress={this.clickNum.bind(this,'6')}><View style={styles.mygrid}><Text style={styles.money_btn}>6</Text></View></TouchableOpacity>
-                    <TouchableOpacity onPress={this.setOper.bind(this,1)}><View style={styles.mygrid2}><Text style={styles.money_btn}>+</Text></View></TouchableOpacity>
-                </View>
-                <View style={styles.line4}>
-                    <TouchableOpacity onPress={this.clickNum.bind(this,'1')}><View style={styles.mygrid}><Text style={styles.money_btn}>1</Text></View></TouchableOpacity>
-                    <TouchableOpacity onPress={this.clickNum.bind(this,'2')}><View style={styles.mygrid}><Text style={styles.money_btn}>2</Text></View></TouchableOpacity>
-                    <TouchableOpacity onPress={this.clickNum.bind(this,'3')}><View style={styles.mygrid}><Text style={styles.money_btn}>3</Text></View></TouchableOpacity>
-                    <TouchableOpacity onPress={this.calc}><View style={styles.mygrid2}><Text style={styles.money_btn}>C</Text></View></TouchableOpacity>
-                </View>
-                <View style={styles.line5}>
-                    <TouchableOpacity onPress={this.clickNum.bind(this,'00')}><View style={styles.mygrid2}><Text style={styles.money_btn}>00</Text></View></TouchableOpacity>
-                    <TouchableOpacity onPress={this.clickNum.bind(this,'0')}><View style={styles.mygrid}><Text style={styles.money_btn}>0</Text></View></TouchableOpacity>
-                    <TouchableOpacity onPress={this.calc}><View style={styles.mygrid2}><Text style={styles.money_btn}>=</Text></View></TouchableOpacity>
-                    <TouchableOpacity onPress={() => this.bsCal.current.snapTo(1)}><View style={styles.mygrid2}><Image style={styles.btncheckstyle}source={require('../assets/record/btn-check.png')}/></View></TouchableOpacity>
-                </View>
+  addCal = () =>(
+    <View style={styles.rootContainer}>
+      <View style={styles.buttonContainer}>
+        <View style={styles.buttonContainerRight}>
+          <View style={styles.line1}>
+            <Text style={{fontSize:18, fontWeight:"bold", color:'#fff'}}>金額</Text>
+            <View style={styles.line1_money_bg}>
+              <Text style={{fontSize:18, fontWeight:"bold", color:'#909090'}}>{this.state.displayValue} 元</Text>
             </View>
-        </View> 
-      </View>
-    )
+          </View>
+          <View style={styles.line2}>
+            <TouchableOpacity onPress={this.clickNum.bind(this,'7')}><View style={styles.mygrid}><Text style={styles.money_btn}>7</Text></View></TouchableOpacity>
+            <TouchableOpacity onPress={this.clickNum.bind(this,'8')}><View style={styles.mygrid}><Text style={styles.money_btn}>8</Text></View></TouchableOpacity>
+            <TouchableOpacity onPress={this.clickNum.bind(this,'9')}><View style={styles.mygrid}><Text style={styles.money_btn}>9</Text></View></TouchableOpacity>
+            <TouchableOpacity onPress={this.setOper.bind(this,2)}><View style={styles.mygrid2}><Text style={styles.money_btn}>-</Text></View></TouchableOpacity>
+          </View>
+          <View style={styles.line3}>
+            <TouchableOpacity onPress={this.clickNum.bind(this,'4')}><View style={styles.mygrid}><Text style={styles.money_btn}>4</Text></View></TouchableOpacity>
+            <TouchableOpacity onPress={this.clickNum.bind(this,'5')}><View style={styles.mygrid}><Text style={styles.money_btn}>5</Text></View></TouchableOpacity>
+            <TouchableOpacity onPress={this.clickNum.bind(this,'6')}><View style={styles.mygrid}><Text style={styles.money_btn}>6</Text></View></TouchableOpacity>
+            <TouchableOpacity onPress={this.setOper.bind(this,1)}><View style={styles.mygrid2}><Text style={styles.money_btn}>+</Text></View></TouchableOpacity>
+          </View>
+          <View style={styles.line4}>
+            <TouchableOpacity onPress={this.clickNum.bind(this,'1')}><View style={styles.mygrid}><Text style={styles.money_btn}>1</Text></View></TouchableOpacity>
+            <TouchableOpacity onPress={this.clickNum.bind(this,'2')}><View style={styles.mygrid}><Text style={styles.money_btn}>2</Text></View></TouchableOpacity>
+            <TouchableOpacity onPress={this.clickNum.bind(this,'3')}><View style={styles.mygrid}><Text style={styles.money_btn}>3</Text></View></TouchableOpacity>
+            <TouchableOpacity onPress={this.calc}><View style={styles.mygrid2}><Text style={styles.money_btn}>C</Text></View></TouchableOpacity>
+          </View>
+          <View style={styles.line5}>
+            <TouchableOpacity onPress={this.clickNum.bind(this,'00')}><View style={styles.mygrid2}><Text style={styles.money_btn}>00</Text></View></TouchableOpacity>
+            <TouchableOpacity onPress={this.clickNum.bind(this,'0')}><View style={styles.mygrid}><Text style={styles.money_btn}>0</Text></View></TouchableOpacity>
+            <TouchableOpacity onPress={this.calc}><View style={styles.mygrid2}><Text style={styles.money_btn}>=</Text></View></TouchableOpacity>
+            <TouchableOpacity onPress={() => this.bsCal.current.snapTo(1)}><View style={styles.mygrid2}><Image style={styles.btncheckstyle}source={require('../assets/record/btn-check.png')}/></View></TouchableOpacity>
+          </View>
+        </View>
+      </View> 
+    </View>
+  )
 
   bsAdd = React.createRef();
   bsCal = React.createRef();
   fall = new Animated.Value(1);
 
   render() {
+    const { modalVisible } = this.state;
     return (
       <SafeAreaView>
       <Animated.View
@@ -212,16 +187,47 @@ export default class RecordScreen extends Component {
               opacity: Animated.add(0.3, Animated.multiply(this.fall, 0.8))}}>
         <View style={styles.record_date}>
           <Text style={styles.dateText}>日期</Text>
-          <TouchableOpacity onPress={this.showPicker}>
+          <TouchableOpacity onPress={() => {this.setModalVisible(true);}}>
             <View style={styles.date_bg}>
-              <Text style={styles.date}>{this.state.chosenDate}</Text>
+              <Text style={styles.date}>{this.state.date}</Text>
             </View>
           </TouchableOpacity>
-          <DateTimePicker
-            isVisible={this.state.isVisible}
-            onConfirm={this.handlePicker}
-            onCancel={this.hidePicker}
-          />
+          <Modal 
+          animationType="fade"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            Alert.alert("Modal has been closed.");
+            this.setModalVisible(!modalVisible);
+          }}>
+            <View style={styles.modalBg}>
+              <DatePicker
+                options={{
+                  backgroundColor: '#FFFFFF',
+                  headerColor: '#909090',
+                  textHeaderColor: '#63CFA8',
+                  textDefaultColor: '#909090',
+                  selectedTextColor: '#fff',
+                  mainColor: '#63CFA8',
+                  textSecondaryColor: '#909090',
+                  borderColor: '#63CFA8',
+                }}
+                current={getToday()}
+                maximumDate={getToday()}
+                placeholder="select date"
+                onDateChange={(date) => {this.setState({date: date});
+                              this.setModalVisible(!modalVisible);}}
+                format="YYYY-MM-DD"
+                mode="calendar"
+                style={{
+                  width: 300,
+                  height: 325,
+                  borderRadius: 20,
+                  marginTop: 220, 
+                }}
+              />
+            </View>
+          </Modal>
         </View>
       </Animated.View>
       <Animated.View
@@ -357,6 +363,7 @@ export default class RecordScreen extends Component {
       </SafeAreaView>
     );
   }
+
   //按數字
   clickNum(paramValue){
     /*let beforeValue=this.state.displayValue;
@@ -462,6 +469,11 @@ const styles = StyleSheet.create({
     fontWeight:"bold",
     left:13,
     top:5
+  },
+  modalBg:{
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    alignItems: 'center'
   },
   content:{
     height:500,

@@ -1,22 +1,13 @@
 import React , { Component, Fragment }from 'react';
-import { TouchableOpacity,StyleSheet, Text, View ,Image} from 'react-native';
+import { TouchableOpacity, StyleSheet, Text, View ,Image} from 'react-native';
 
 export default function MailScreen() {
   return (
     <View style={styles.setting}>
       <View style={styles.content}>
-        <Image source={require('../assets/setting/alert.png')} style={{ width: 80, height: 80 }}/>
+        <Image source={require('../assets/setting/contact.png')} style={{ width: 80, height: 80 }}/>
         <Text style={styles.title}>聯絡我們</Text>
-        <TouchableOpacity>
-          <View style={styles.btn_cn}>
-            <Text style={styles.cnText}>繁體中文</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <View style={styles.btn_en}>
-            <Text style={styles.enText}>English</Text>
-          </View>
-        </TouchableOpacity>
+        <Text style={styles.text}>e-mail : lol123@gmail.com</Text>
       </View>
     </View>
   )
@@ -44,32 +35,10 @@ const styles = StyleSheet.create({
     color: '#909090',
     marginBottom: 10
   },
-  btn_cn:{
-    width:130,
-    height:50,
-    backgroundColor: '#63CFA8',
-    borderRadius: 30,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  cnText:{
+  text:{
     fontSize:20,
-    fontWeight:"bold",
-    color: '#fff',
-  },
-  btn_en:{
-    width:130,
-    height:50,
-    backgroundColor: '#fff',
-    borderRadius: 30,
-    borderColor: '#E3E3E3',
-    borderWidth: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  enText: {
-    fontSize:20,
-    fontWeight:"bold",
+    fontWeight: 'bold',
     color: '#909090',
-  }
+    marginBottom: 100
+  },
 });

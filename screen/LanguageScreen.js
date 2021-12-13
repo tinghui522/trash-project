@@ -2,6 +2,7 @@ import React , { Component, Fragment }from 'react';
 import { TouchableOpacity,StyleSheet, Text, View ,Image} from 'react-native';
 
 export default function LanguageScreen() {
+  const [isPress, setIsPress] = React.useState();
   return (
     <View style={styles.setting}>
       <View style={styles.content}>

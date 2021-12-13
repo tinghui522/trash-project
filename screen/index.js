@@ -8,10 +8,6 @@ import SuggestScreen from './SuggestScreen';
 import MonthScreen from './MonthScreen';
 import GoalScreen from './GoalScreen';
 
-import LanguageScreen from './LanguageScreen';
-import AlertScreen from './AlertScreen';
-import MailScreen from './MailScreen';
-
 export const Stack = createStackNavigator();
 
 export const TrashcanStack = () => {
@@ -97,7 +93,7 @@ export const GoalStack = () => {
 export const AboutStack = () => {
   return (
     <Stack.Navigator>
-    <Stack.Screen name=" "component={Aboutcreen}  
+    <Stack.Screen name=" "component={AboutScreen}  
       options={{
         headerStyle:{
             height:0,

@@ -1,11 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
-import React , { Component, navigation }from 'react';
+import React , { Component }from 'react';
 import { TouchableOpacity } from 'react-native';
 import { StyleSheet, Text, View ,Image, Modal, Animated} from 'react-native';
 import LanguageScreen from './LanguageScreen';
 import AlertScreen from './AlertScreen';
 import MailScreen from './MailScreen';
-// import Animated from 'react-native-reanimated';
 
 const ModalPoup = ({visible, children}) => {
   const [showModal, setShowModal ] = React.useState(visible);
@@ -40,7 +39,9 @@ const ModalPoup = ({visible, children}) => {
 }
 
 export default function AboutScreen({ navigation }) {
-  const [visible, setVisible] = React.useState(false);
+  const [languageVisible, setLanguageVisible] = React.useState(false);
+  const [alertVisible, setAlertVisible] = React.useState(false);
+  const [mailVisible, setmailVisible] = React.useState(false);
   return (
     <View style={styles.center}>
       <View style={styles.topbg}>
@@ -51,39 +52,39 @@ export default function AboutScreen({ navigation }) {
       </View>
         <View style={styles.bg_personal_form}>
           <View style={styles.setting}>
-            <ModalPoup visible={visible}>
+            <ModalPoup visible={languageVisible}>
               <LanguageScreen></LanguageScreen>
-              <TouchableOpacity onPress={() => setVisible(false)}>
+              <TouchableOpacity onPress={() => setLanguageVisible(false)}>
                 <Image source={require('../assets/setting/btn_back.png')} style={{left: 30,top:-440}}/>
               </TouchableOpacity> 
             </ModalPoup>
-            <TouchableOpacity onPress={() => setVisible(true)}>
+            <TouchableOpacity onPress={() => setLanguageVisible(true)}>
               <Image source={require('../assets/setting/language.png')} style={{width:35,height:35,top: 50,left: 15}}/>
               <Text style={{marginBottom: 20,marginTop:20,marginLeft:60,fontWeight: 'bold',fontSize: 20,color:'#909090'}}>語言</Text>
               <Image source={require('../assets/setting/arrow.png')} style={{width:16,height:18,marginLeft: 275,marginTop:-35}}/>
             </TouchableOpacity>
             <View style={styles.underline}/>
             
-            <ModalPoup visible={visible}>
+            <ModalPoup visible={alertVisible}>
               <AlertScreen></AlertScreen>
-              <TouchableOpacity onPress={() => setVisible(false)}>
+              <TouchableOpacity onPress={() => setAlertVisible(false)}>
                 <Image source={require('../assets/setting/btn_back.png')} style={{left: 30,top:-440}}/>
               </TouchableOpacity> 
             </ModalPoup>
-            <TouchableOpacity onPress={() => setVisible(true)}>
+            <TouchableOpacity onPress={() => setAlertVisible(true)}>
               <Image source={require('../assets/setting/alert.png')} style={{width:35,height:35,top: 15,left: 15}}/>
               <Text style={{marginTop: -15,marginLeft:60,fontWeight: 'bold',fontSize: 20,color:'#909090'}}>提醒</Text>
               <Image source={require('../assets/setting/arrow.png')} style={{width:16,height:18,marginLeft: 275,marginTop:-20}}/>
             </TouchableOpacity>
             <View style={styles.underline}/>
 
-            <ModalPoup visible={visible}>
+            <ModalPoup visible={mailVisible}>
               <MailScreen></MailScreen>
-              <TouchableOpacity onPress={() => setVisible(false)}>
+              <TouchableOpacity onPress={() => setmailVisible(false)}>
                 <Image source={require('../assets/setting/btn_back.png')} style={{left: 30,top:-440}}/>
               </TouchableOpacity> 
             </ModalPoup>
-            <TouchableOpacity onPress={() => setVisible(true)}>
+            <TouchableOpacity onPress={() => setmailVisible(true)}>
               <Image source={require('../assets/setting/contact.png')} style={{width:35,height:35,top: 15,left: 15}}/>
               <Text style={{marginTop:-15,marginLeft:60,fontWeight: 'bold',fontSize: 20,color:'#909090'}}>聯絡我們</Text>
               <Image source={require('../assets/setting/arrow.png')} style={{width:16,height:18,marginLeft: 275,marginTop:-20}}/>
@@ -119,7 +120,7 @@ const styles = StyleSheet.create({
     fontSize:24,
     fontWeight: 'bold',
     color: 'white',
-    marginTop:70,
+    marginTop:80,
     marginLeft:185,
   },
   bg_personal_form: {

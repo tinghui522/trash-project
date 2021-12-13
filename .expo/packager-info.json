@@ -1,10 +1,10 @@
 {
   "devToolsPort": 19002,
   "expoServerPort": null,
-  "packagerPort": 19000,
-  "expoServerNgrokUrl": "https://r7-z9n.trashproject.trash-project.exp.direct",
-  "packagerNgrokUrl": "https://packager.r7-z9n.trashproject.trash-project.exp.direct",
-  "ngrokPid": 9252,
+  "packagerPort": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null,
   "packagerPid": null,
   "webpackServerPort": null
 }

@@ -122,7 +122,6 @@ export default function MonthScreen({ navigation }) {
             maximumDate={getToday()}
             placeholder="select date"
             mode="calendar"
-            
             style={{
               width: 350,
               height: 325,
